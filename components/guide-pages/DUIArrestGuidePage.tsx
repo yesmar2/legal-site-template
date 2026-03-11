@@ -1,5 +1,3 @@
-import { SiteHeader } from "@/components/site-header"
-import { SiteFooter } from "@/components/site-footer"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Car, AlertTriangle, FileText, Gavel, Clock, CreditCard, ArrowRight, Phone, Calendar } from "lucide-react"
@@ -22,9 +20,7 @@ const penalties = [
 
 export default function DUIArrestGuidePage() {
   return (
-    <div className="flex min-h-screen flex-col">
-      <SiteHeader />
-      <main>
+    <main>
         <section className="relative isolate overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 pb-16 pt-32 md:pb-20 md:pt-40">
           <div aria-hidden="true" className="absolute -top-40 left-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-gradient-to-br from-blue-500/25 via-indigo-500/15 to-transparent blur-3xl" />
           <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:72px_72px]" />
@@ -144,8 +140,6 @@ export default function DUIArrestGuidePage() {
             </div>
           </div>
         </section>
-      </main>
-      <SiteFooter />
-    </div>
+    </main>
   )
 }

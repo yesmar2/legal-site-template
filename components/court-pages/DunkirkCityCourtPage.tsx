@@ -1,5 +1,3 @@
-import { SiteHeader } from "@/components/site-header"
-import { SiteFooter } from "@/components/site-footer"
 import { CourtHero } from "@/components/courts/court-hero"
 import { CourtAbout } from "@/components/courts/court-about"
 import { CourtCaseTypes } from "@/components/courts/court-case-types"
@@ -51,17 +49,13 @@ const courtData = {
 
 export default function DunkirkCityCourtPage() {
   return (
-    <div className="flex min-h-screen flex-col">
-      <SiteHeader />
-      <main>
-        <CourtHero courtName={courtData.name} description={courtData.description} />
-        <CourtAbout courtName={courtData.name} paragraphs={courtData.aboutParagraphs} location={courtData.location} />
-        <CourtCaseTypes courtName={courtData.name} caseTypes={courtData.caseTypes} />
-        <CourtWhatToExpect beforeAppearance={courtData.beforeAppearance} duringAppearance={courtData.duringAppearance} />
-        <CourtRelatedAreas areas={courtData.relatedAreas} />
-        <CourtCTA courtName={courtData.name} />
-      </main>
-      <SiteFooter />
-    </div>
+    <main>
+      <CourtHero courtName={courtData.name} description={courtData.description} />
+      <CourtAbout courtName={courtData.name} paragraphs={courtData.aboutParagraphs} location={courtData.location} />
+      <CourtCaseTypes courtName={courtData.name} caseTypes={courtData.caseTypes} />
+      <CourtWhatToExpect beforeAppearance={courtData.beforeAppearance} duringAppearance={courtData.duringAppearance} />
+      <CourtRelatedAreas areas={courtData.relatedAreas} />
+      <CourtCTA courtName={courtData.name} />
+    </main>
   )
 }

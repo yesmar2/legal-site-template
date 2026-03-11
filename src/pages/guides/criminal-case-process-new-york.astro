@@ -1,10 +1,16 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteHeader from '@/src/components/site-header.astro';
+import SiteFooter from '@/src/components/site-footer.astro';
 import CriminalCaseProcessPage from '@/components/guide-pages/CriminalCaseProcessPage';
 ---
 <BaseLayout
   title="Criminal Case Process in New York | Step-by-Step Guide"
   description="Learn how criminal cases work in New York State. Understand each stage from arrest to resolution, including arraignment, discovery, and trial."
 >
-  <CriminalCaseProcessPage />
+  <div class="flex min-h-screen flex-col">
+    <SiteHeader />
+    <CriminalCaseProcessPage />
+    <SiteFooter />
+  </div>
 </BaseLayout>

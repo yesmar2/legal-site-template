@@ -1,10 +1,16 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteHeader from '@/src/components/site-header.astro';
+import SiteFooter from '@/src/components/site-footer.astro';
 import DUIArrestGuidePage from '@/components/guide-pages/DUIArrestGuidePage';
 ---
 <BaseLayout
   title="What Happens After a DUI Arrest in New York | Legal Guide"
   description="Step-by-step guide to the DUI arrest process in New York. Learn about chemical tests, arraignment, license suspension, and what to expect at each stage."
 >
-  <DUIArrestGuidePage />
+  <div class="flex min-h-screen flex-col">
+    <SiteHeader />
+    <DUIArrestGuidePage />
+    <SiteFooter />
+  </div>
 </BaseLayout>
