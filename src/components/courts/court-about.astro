@@ -1,0 +1,73 @@
+---
+import MapPin from '@lucide/astro/icons/map-pin';
+import Clock from '@lucide/astro/icons/clock';
+import Phone from '@lucide/astro/icons/phone';
+
+interface CourtLocation {
+  name: string;
+  address: string;
+  city: string;
+  phone: string;
+  hours: {
+    days: string;
+    times: string;
+  };
+}
+
+interface Props {
+  courtName: string;
+  paragraphs: string[];
+  location: CourtLocation;
+}
+
+const { courtName, paragraphs, location } = Astro.props as Props;
+---
+<section class="py-16 md:py-20">
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="grid gap-12 lg:grid-cols-3">
+      <div class="lg:col-span-2">
+        <h2 class="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+          About {courtName}
+        </h2>
+        <div class="mt-6 space-y-4 text-muted-foreground">
+          {paragraphs.map((paragraph) => (
+            <p>{paragraph}</p>
+          ))}
+        </div>
+      </div>
+
+      <div class="h-fit rounded-2xl border border-border bg-card p-6 shadow-sm">
+        <div class="flex items-center gap-2">
+          <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
+            <MapPin class="h-5 w-5 text-primary" />
+          </div>
+          <h3 class="text-base font-semibold text-foreground">Court Location</h3>
+        </div>
+
+        <div class="mt-6 space-y-4 text-sm text-muted-foreground">
+          <div>
+            <p class="font-medium text-foreground">{location.name}</p>
+            <p>{location.address}</p>
+            <p>{location.city}</p>
+          </div>
+          <div class="flex items-start gap-2">
+            <Clock class="mt-0.5 h-4 w-4 text-muted-foreground" />
+            <div>
+              <p class="font-medium text-foreground">Hours</p>
+              <p>{location.hours.days}</p>
+              <p>{location.hours.times}</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-2">
+            <Phone class="mt-0.5 h-4 w-4 text-muted-foreground" />
+            <div>
+              <p class="font-medium text-foreground">Phone</p>
+              <p>{location.phone}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
