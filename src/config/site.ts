@@ -19,6 +19,8 @@ export const site = {
     state: 'New York'
   },
 
-  consultationText: 'Free Consultation'
+  consultationText: 'Free Consultation',
+
+  yearsExperience: 20
 };
 

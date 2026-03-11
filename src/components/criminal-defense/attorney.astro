@@ -20,7 +20,7 @@ import { site } from '../../config/site';
         </h2>
 
         <p class="mt-3 text-muted-foreground">
-          With over 20 years of criminal defense experience in {site.location.city} and {site.location.county},
+          With over {site.yearsExperience} years of criminal defense experience in {site.location.city} and {site.location.county},
           Attorney Anderson brings former prosecutor insight to every case. He understands the
           local court system and is committed to protecting your rights.
         </p>
@@ -32,7 +32,7 @@ import { site } from '../../config/site';
           </span>
           <span class="flex items-center gap-1.5">
             <Award class="h-4 w-4 text-primary" />
-            20+ Years Experience
+            {site.yearsExperience}+ Years Experience
           </span>
         </div>
 
