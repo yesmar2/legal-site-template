@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteHeader from '@/src/components/site-header.astro';
+import SiteFooter from '@/src/components/site-footer.astro';
+import GuideCard from '@/src/components/GuideCard.astro';
+import { guides } from '@/src/content/guides';
+import { site } from '@/src/config/site';
+
+const pageTitle = `${site.location.city} & ${site.location.county} Legal Guides`;
+const pageDescription = `Learn what happens during common legal situations in ${site.location.city} and ${site.location.county} courts.`;
+
+const practiceLabels: Record<string, string> = {
+  "criminal-defense": "Criminal Defense Guides",
+  "family-law": "Family Law Guides",
+  "personal-injury": "Personal Injury Guides",
+  "real-estate-law": "Real Estate Law Guides",
+};
+
+const groupedGuides = guides.reduce<Record<string, typeof guides>>((acc, guide) => {
+  if (!acc[guide.practiceArea]) {
+    acc[guide.practiceArea] = [];
+  }
+  acc[guide.practiceArea].push(guide);
+  return acc;
+}, {});
+---
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+>
+  <div class="flex min-h-screen flex-col">
+    <SiteHeader />
+    <main>
+      <!-- Hero with gradient (matches site hero-section) -->
+      <section class="relative isolate overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 pb-24 pt-32 md:pb-28 md:pt-40">
+        <div aria-hidden="true" class="absolute -top-40 left-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-gradient-to-br from-blue-500/30 via-indigo-500/20 to-transparent blur-3xl" />
+        <div aria-hidden="true" class="absolute -bottom-20 right-0 -z-10 h-[350px] w-[350px] rounded-full bg-gradient-to-tl from-blue-600/20 via-cyan-500/10 to-transparent blur-3xl" />
+        <div aria-hidden="true" class="absolute inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:72px_72px]" />
+
+        <div class="relative mx-auto max-w-4xl px-6 text-center lg:px-8">
+          <h1 class="text-balance text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl">
+            {pageTitle}
+          </h1>
+          <p class="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-slate-400 md:text-xl">
+            {pageDescription}
+          </p>
+        </div>
+      </section>
+
+      <!-- Guides grouped by practice area -->
+      <section class="bg-background py-16 md:py-24">
+        <div class="mx-auto max-w-6xl px-6">
+          {Object.entries(groupedGuides).map(([practiceArea, areaGuides]) => (
+            <div class="guide-group">
+              <h2 class="section-title">{practiceLabels[practiceArea] ?? practiceArea}</h2>
+              <div class="guides-grid">
+                {areaGuides.map((guide) => (
+                  <GuideCard
+                    title={guide.title}
+                    description={guide.description}
+                    slug={guide.slug}
+                  />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </main>
+    <SiteFooter />
+  </div>
+</BaseLayout>
+
+<style>
+  .guide-group {
+    margin-bottom: 3rem;
+  }
+
+  .guide-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-foreground);
+    margin: 0 0 1.25rem;
+    line-height: 1.3;
+  }
+
+  .guides-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+    gap: 1.5rem;
+  }
+</style>
