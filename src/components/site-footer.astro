@@ -1,0 +1,114 @@
+---
+const year = new Date().getFullYear();
+---
+<footer class="border-t bg-foreground text-background">
+  <div class="mx-auto max-w-6xl px-6 py-12 md:py-16">
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+      <!-- Firm info -->
+      <div class="lg:col-span-1">
+        <a href="/" class="flex items-center gap-2">
+          <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
+            <span class="text-sm font-semibold text-primary-foreground">AL</span>
+          </div>
+          <span class="font-bold">Anderson Law</span>
+        </a>
+        <p class="mt-4 text-sm text-background/70 leading-relaxed">
+          Providing experienced legal representation to individuals and families 
+          throughout Chautauqua County for over 20 years.
+        </p>
+      </div>
+
+      <!-- Practice Areas -->
+      <div>
+        <h3 class="font-semibold">Practice Areas</h3>
+        <ul class="mt-4 space-y-2">
+          <li>
+            <a href="/jamestown-criminal-defense-lawyer" class="text-sm text-background/70 transition-colors hover:text-background">
+              Criminal Defense
+            </a>
+          </li>
+          <li>
+            <a href="/practice-areas/dui-defense" class="text-sm text-background/70 transition-colors hover:text-background">
+              DUI Defense
+            </a>
+          </li>
+          <li>
+            <a href="/practice-areas/personal-injury" class="text-sm text-background/70 transition-colors hover:text-background">
+              Personal Injury
+            </a>
+          </li>
+          <li>
+            <a href="/practice-areas/family-law" class="text-sm text-background/70 transition-colors hover:text-background">
+              Family Law
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h3 class="font-semibold">Quick Links</h3>
+        <ul class="mt-4 space-y-2">
+          <li>
+            <a href="/about" class="text-sm text-background/70 transition-colors hover:text-background">
+              About Us
+            </a>
+          </li>
+          <li>
+            <a href="/attorney" class="text-sm text-background/70 transition-colors hover:text-background">
+              Our Attorney
+            </a>
+          </li>
+          <li>
+            <a href="/contact" class="text-sm text-background/70 transition-colors hover:text-background">
+              Contact
+            </a>
+          </li>
+          <li>
+            <a href="/blog" class="text-sm text-background/70 transition-colors hover:text-background">
+              Blog
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div>
+        <h3 class="font-semibold">Contact Us</h3>
+        <ul class="mt-4 space-y-3">
+          <li class="flex items-start gap-3 text-sm text-background/70">
+            <span class="mt-0.5 inline-block h-4 w-4 rounded-full border border-background/50"></span>
+            <span>123 Main Street, Suite 200<br />Jamestown, NY 14701</span>
+          </li>
+          <li class="flex items-center gap-3 text-sm text-background/70">
+            <span class="inline-block h-4 w-4 rounded-full border border-background/50"></span>
+            <span>(716) 555-0123</span>
+          </li>
+          <li class="flex items-center gap-3 text-sm text-background/70">
+            <span class="inline-block h-4 w-4 rounded-full border border-background/50"></span>
+            <span>info@andersonlaw.com</span>
+          </li>
+          <li class="flex items-start gap-3 text-sm text-background/70">
+            <span class="mt-0.5 inline-block h-4 w-4 rounded-full border border-background/50"></span>
+            <span>Mon–Fri: 9AM–5PM<br />24/7 Emergency Line</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="mt-12 border-t border-background/20 pt-8">
+      <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <p class="text-xs text-background/60">
+          © {year} Anderson Law Firm. All rights reserved.
+        </p>
+        <p class="text-xs text-background/60 leading-relaxed max-w-2xl">
+          <strong>Legal Disclaimer:</strong> The information on this website is for general informational purposes only. 
+          Nothing on this site should be taken as legal advice for any individual case or situation. 
+          This information is not intended to create an attorney-client relationship.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
