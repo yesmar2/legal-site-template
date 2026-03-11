@@ -1,0 +1,62 @@
+---
+import Calendar from '@lucide/astro/icons/calendar';
+import Phone from '@lucide/astro/icons/phone';
+import ArrowRight from '@lucide/astro/icons/arrow-right';
+---
+<section class="relative isolate overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 pb-20 pt-32 md:pb-24 md:pt-40">
+  <div
+    aria-hidden="true"
+    class="absolute -top-40 left-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-gradient-to-br from-blue-500/25 via-indigo-500/15 to-transparent blur-3xl"
+  />
+  <div
+    aria-hidden="true"
+    class="absolute -bottom-20 right-0 -z-10 h-[300px] w-[300px] rounded-full bg-gradient-to-tl from-blue-600/15 via-cyan-500/10 to-transparent blur-3xl"
+  />
+
+  <div
+    aria-hidden="true"
+    class="absolute inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:72px_72px]"
+  />
+
+  <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
+    <nav class="mb-8 flex items-center gap-2 text-sm text-slate-400">
+      <a href="/" class="transition-colors hover:text-white">Home</a>
+      <span>/</span>
+      <span class="text-slate-300">Criminal Defense</span>
+    </nav>
+
+    <div class="max-w-3xl">
+      <h1 class="text-balance text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl">
+        Jamestown
+        <span class="bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent">
+          {' '}
+          Criminal Defense Lawyers
+        </span>
+      </h1>
+
+      <p class="mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-slate-400">
+        Facing criminal charges can be overwhelming. Our experienced defense attorneys in
+        Jamestown and Chautauqua County fight to protect your rights, your freedom, and your future.
+      </p>
+
+      <div class="mt-10 flex flex-col gap-4 sm:flex-row sm:gap-5">
+        <a
+          href="/contact"
+          class="group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-blue-500 px-6 text-base font-medium text-white shadow-lg shadow-blue-500/25 transition-all hover:from-blue-500 hover:to-blue-400 hover:shadow-xl hover:shadow-blue-500/30"
+        >
+          <Calendar class="h-5 w-5" />
+          Free Consultation
+          <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+        </a>
+        <a
+          href="tel:+17165550123"
+          class="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 text-base font-medium text-white backdrop-blur-sm transition-all hover:border-white/25 hover:bg-white/10"
+        >
+          <Phone class="h-5 w-5" />
+          (716) 555-0123
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
