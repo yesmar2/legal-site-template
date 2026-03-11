@@ -1,6 +1,7 @@
 ---
 import User from '@lucide/astro/icons/user';
 import { site } from '../config/site';
+import { attorneys } from '../data/attorneys';
 ---
 <section class="bg-muted py-20 md:py-28" id="attorney">
   <div class="mx-auto max-w-6xl px-6">
@@ -14,62 +15,26 @@ import { site } from '../config/site';
     </div>
 
     <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      <a href="/attorneys/michael-anderson" class="group">
-        <div class="h-full rounded-2xl border border-border bg-card p-6 text-center shadow-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg">
-          <div class="mx-auto mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-accent/20">
-            <User class="h-10 w-10 text-primary" />
+      {attorneys.map((attorney) => (
+        <a href={attorney.href} class="group">
+          <div class="h-full rounded-2xl border border-border bg-card p-6 text-center shadow-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg">
+            <div class="mx-auto mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-accent/20">
+              <User class="h-10 w-10 text-primary" />
+            </div>
+            <h3 class="text-xl font-semibold text-foreground">{attorney.name}</h3>
+            <p class="mt-1 text-sm font-medium text-primary">
+              {attorney.title}
+            </p>
+            <p class="mt-4 text-base leading-relaxed text-muted-foreground">
+              {attorney.focus}
+            </p>
+            <span class="mt-6 inline-flex items-center justify-center gap-2 text-sm font-medium text-primary">
+              View Profile
+              <span class="text-xs transition-transform group-hover:translate-x-0.5">→</span>
+            </span>
           </div>
-          <h3 class="text-xl font-semibold text-foreground">Michael J. Anderson</h3>
-          <p class="mt-1 text-sm font-medium text-primary">
-            Criminal Defense &amp; Trial Attorney
-          </p>
-        <p class="mt-4 text-base leading-relaxed text-muted-foreground">
-            With over {site.yearsExperience} years of experience, Michael focuses on criminal defense, DUI cases, and trial advocacy throughout Chautauqua County.
-          </p>
-          <span class="mt-6 inline-flex items-center justify-center gap-2 text-sm font-medium text-primary">
-            View Profile
-            <span class="text-xs transition-transform group-hover:translate-x-0.5">→</span>
-          </span>
-        </div>
-      </a>
-
-      <a href="/attorneys/sarah-mitchell" class="group">
-        <div class="h-full rounded-2xl border border-border bg-card p-6 text-center shadow-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg">
-          <div class="mx-auto mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-accent/20">
-            <User class="h-10 w-10 text-primary" />
-          </div>
-          <h3 class="text-xl font-semibold text-foreground">Sarah Mitchell</h3>
-          <p class="mt-1 text-sm font-medium text-primary">
-            Family Law Attorney
-          </p>
-          <p class="mt-4 text-base leading-relaxed text-muted-foreground">
-            Sarah brings compassionate guidance to divorce, child custody, and family law matters, helping clients navigate difficult transitions.
-          </p>
-          <span class="mt-6 inline-flex items-center justify-center gap-2 text-sm font-medium text-primary">
-            View Profile
-            <span class="text-xs transition-transform group-hover:translate-x-0.5">→</span>
-          </span>
-        </div>
-      </a>
-
-      <a href="/attorneys/david-carter" class="group">
-        <div class="h-full rounded-2xl border border-border bg-card p-6 text-center shadow-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg">
-          <div class="mx-auto mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-accent/20">
-            <User class="h-10 w-10 text-primary" />
-          </div>
-          <h3 class="text-xl font-semibold text-foreground">David Carter</h3>
-          <p class="mt-1 text-sm font-medium text-primary">
-            Personal Injury Attorney
-          </p>
-          <p class="mt-4 text-base leading-relaxed text-muted-foreground">
-            David is dedicated to representing injury victims, fighting for fair compensation in car accidents, slip and falls, and negligence cases.
-          </p>
-          <span class="mt-6 inline-flex items-center justify-center gap-2 text-sm font-medium text-primary">
-            View Profile
-            <span class="text-xs transition-transform group-hover:translate-x-0.5">→</span>
-          </span>
-        </div>
-      </a>
+        </a>
+      ))}
     </div>
   </div>
 </section>
