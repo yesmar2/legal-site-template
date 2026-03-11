@@ -2,8 +2,18 @@
 import Calendar from '@lucide/astro/icons/calendar';
 import Phone from '@lucide/astro/icons/phone';
 import ArrowRight from '@lucide/astro/icons/arrow-right';
-import { site } from '../../config/site';
+import { site } from '../config/site';
+
+interface Practice {
+  slug: string;
+  name: string;
+  title: string;
+  description: string;
+}
+
+const { practice } = Astro.props as { practice: Practice };
 ---
+
 <section class="relative isolate overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 pb-20 pt-32 md:pb-24 md:pt-40">
   <div
     aria-hidden="true"
@@ -23,7 +33,7 @@ import { site } from '../../config/site';
     <nav class="mb-8 flex items-center gap-2 text-sm text-slate-400">
       <a href="/" class="transition-colors hover:text-white">Home</a>
       <span>/</span>
-      <span class="text-slate-300">Criminal Defense</span>
+      <span class="text-slate-300">{practice.name}</span>
     </nav>
 
     <div class="max-w-3xl">
@@ -31,13 +41,12 @@ import { site } from '../../config/site';
         {site.location.city}
         <span class="bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent">
           {' '}
-          Criminal Defense Lawyers
+          {practice.title.replace(site.location.city, '').trim() || practice.name + ' Lawyers'}
         </span>
       </h1>
 
       <p class="mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-slate-400">
-        Facing criminal charges can be overwhelming. Our experienced defense attorneys in
-        {` ${site.location.city} and ${site.location.county}`} fight to protect your rights, your freedom, and your future.
+        {practice.description}
       </p>
 
       <div class="mt-10 flex flex-col gap-4 sm:flex-row sm:gap-5">
