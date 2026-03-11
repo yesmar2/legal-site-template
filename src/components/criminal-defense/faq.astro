@@ -1,4 +1,6 @@
 ---
+import { site } from '../../config/site';
+
 interface FAQItem {
   question: string;
   answer: string;
@@ -43,9 +45,9 @@ const faqs: FAQItem[] = [
       <h2 class="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
         Frequently Asked Questions
       </h2>
-      <p class="mx-auto mt-4 max-w-2xl text-muted-foreground">
-        Get answers to common questions about criminal defense in Jamestown and
-        Chautauqua County. For specific advice about your case, contact us for a free consultation.
+        <p class="mx-auto mt-4 max-w-2xl text-muted-foreground">
+        Get answers to common questions about criminal defense in {site.location.city} and
+        {` ${site.location.county}`}. For specific advice about your case, contact us for a {site.consultationText.toLowerCase()}.
       </p>
     </div>
 

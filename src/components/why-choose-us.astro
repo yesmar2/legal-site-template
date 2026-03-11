@@ -3,12 +3,13 @@ import Shield from '@lucide/astro/icons/shield';
 import Users from '@lucide/astro/icons/users';
 import Clock from '@lucide/astro/icons/clock';
 import Award from '@lucide/astro/icons/award';
+import { site } from '../config/site';
 ---
 <section class="bg-muted py-20 md:py-28">
   <div class="mx-auto max-w-6xl px-6">
     <div class="text-center">
       <h2 class="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-        Why Choose Anderson Law
+        Why Choose {site.firmName}
       </h2>
       <p class="mx-auto mt-4 max-w-2xl text-muted-foreground">
         When your future is on the line, you need an attorney who will fight for you.
@@ -22,7 +23,7 @@ import Award from '@lucide/astro/icons/award';
         </div>
         <h3 class="mt-4 text-lg font-semibold text-foreground">20+ Years Experience</h3>
         <p class="mt-2 text-sm leading-relaxed text-muted-foreground">
-          Decades of dedicated legal experience protecting clients in Jamestown and throughout Chautauqua County.
+          Decades of dedicated legal experience protecting clients in {site.location.city} and throughout {site.location.county}.
         </p>
       </div>
 

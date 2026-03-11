@@ -4,6 +4,7 @@ import MapPin from '@lucide/astro/icons/map-pin';
 import Phone from '@lucide/astro/icons/phone';
 import Mail from '@lucide/astro/icons/mail';
 import Clock from '@lucide/astro/icons/clock';
+import { site } from '../config/site';
 
 const year = new Date().getFullYear();
 ---
@@ -16,11 +17,11 @@ const year = new Date().getFullYear();
           <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
             <Scale class="h-5 w-5 text-primary-foreground" />
           </div>
-          <span class="font-bold">Anderson Law</span>
+          <span class="font-bold">{site.firmName}</span>
         </a>
         <p class="mt-4 text-sm text-background/70 leading-relaxed">
           Providing experienced legal representation to individuals and families 
-          throughout Chautauqua County for over 20 years.
+          throughout {site.location.county} for over 20 years.
         </p>
       </div>
 
@@ -84,15 +85,15 @@ const year = new Date().getFullYear();
         <ul class="mt-4 space-y-3">
           <li class="flex items-start gap-3 text-sm text-background/70">
             <MapPin class="mt-0.5 h-4 w-4 shrink-0" />
-            <span>123 Main Street, Suite 200<br />Jamestown, NY 14701</span>
+            <span>{site.address.street}, Suite 200<br />{site.address.city}, {site.address.state} {site.address.zip}</span>
           </li>
           <li class="flex items-center gap-3 text-sm text-background/70">
             <Phone class="h-4 w-4 shrink-0" />
-            <span>(716) 555-0123</span>
+            <span>{site.phone}</span>
           </li>
           <li class="flex items-center gap-3 text-sm text-background/70">
             <Mail class="h-4 w-4 shrink-0" />
-            <span>info@andersonlaw.com</span>
+            <span>{site.email}</span>
           </li>
           <li class="flex items-start gap-3 text-sm text-background/70">
             <Clock class="mt-0.5 h-4 w-4 shrink-0" />
@@ -106,7 +107,7 @@ const year = new Date().getFullYear();
     <div class="mt-12 border-t border-background/20 pt-8">
       <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <p class="text-xs text-background/60">
-          © {year} Anderson Law Firm. All rights reserved.
+          © {year} {site.firmName}. All rights reserved.
         </p>
         <p class="text-xs text-background/60 leading-relaxed max-w-2xl">
           <strong>Legal Disclaimer:</strong> The information on this website is for general informational purposes only. 

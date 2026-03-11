@@ -1,4 +1,5 @@
 ---
+import { site } from '../config/site';
 import '../styles/globals.css';
 
 interface Props {
@@ -6,7 +7,10 @@ interface Props {
   description?: string;
 }
 
-const { title, description = 'Experienced criminal defense and personal injury attorneys serving Chautauqua County. Free consultations available. Call today for dedicated legal representation.' } = Astro.props;
+const {
+  title,
+  description = `Experienced ${site.tagline.toLowerCase()} serving ${site.location.county}. ${site.consultationText}s available. Call today for dedicated legal representation.`
+} = Astro.props;
 ---
 <!doctype html>
 <html lang="en">

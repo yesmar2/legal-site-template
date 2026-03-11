@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../config/site';
 import SiteHeader from '@/src/components/site-header.astro';
 import HeroSection from '@/src/components/hero-section.astro';
 import FirmIntro from '@/src/components/firm-intro.astro';
@@ -13,8 +14,8 @@ import CTASection from '@/src/components/cta-section.astro';
 import SiteFooter from '@/src/components/site-footer.astro';
 ---
 <BaseLayout
-  title="Anderson Law Firm | Criminal Defense & Personal Injury Attorneys"
-  description="Experienced criminal defense and personal injury attorneys serving Chautauqua County. Free consultations available. Call today for dedicated legal representation."
+  title={`${site.firmName} | ${site.tagline}`}
+  description={`Experienced ${site.tagline.toLowerCase()} serving ${site.location.county}. ${site.consultationText}s available. Call today for dedicated legal representation.`}
 >
   <div class="flex min-h-screen flex-col">
     <SiteHeader />

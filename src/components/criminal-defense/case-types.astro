@@ -5,6 +5,7 @@ import Swords from '@lucide/astro/icons/swords';
 import Home from '@lucide/astro/icons/house';
 import ShoppingBag from '@lucide/astro/icons/shopping-bag';
 import ArrowRight from '@lucide/astro/icons/arrow-right';
+import { site } from '../../config/site';
 
 const caseTypes = [
   {
@@ -52,7 +53,7 @@ const caseTypes = [
       </h2>
       <p class="mx-auto mt-4 max-w-2xl text-muted-foreground">
         Our attorneys have extensive experience defending clients against a wide range of
-        criminal charges in Jamestown and throughout Chautauqua County.
+        criminal charges in {site.location.city} and throughout {site.location.county}.
       </p>
     </div>
 

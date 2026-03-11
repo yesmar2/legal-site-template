@@ -1,5 +1,6 @@
 ---
 import User from '@lucide/astro/icons/user';
+import { site } from '../config/site';
 ---
 <section class="bg-muted py-20 md:py-28" id="attorney">
   <div class="mx-auto max-w-6xl px-6">
@@ -8,7 +9,7 @@ import User from '@lucide/astro/icons/user';
         Our Attorneys
       </h2>
       <p class="mx-auto mt-4 max-w-2xl text-muted-foreground">
-        Meet the attorneys representing clients throughout Jamestown and Chautauqua County.
+        Meet the attorneys representing clients throughout {site.location.city} and {site.location.county}.
       </p>
     </div>
 

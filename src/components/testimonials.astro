@@ -1,6 +1,7 @@
 ---
 import Star from '@lucide/astro/icons/star';
 import Quote from '@lucide/astro/icons/quote';
+import { site } from '../config/site';
 ---
 <section class="bg-muted py-20 md:py-28">
   <div class="mx-auto max-w-6xl px-6">
@@ -43,7 +44,7 @@ import Quote from '@lucide/astro/icons/quote';
           <Star class="h-4 w-4 fill-primary text-primary" />
         </div>
         <p class="relative z-10 leading-relaxed text-muted-foreground">
-          "I was terrified after my DUI arrest, but the team at Anderson Law walked me through everything step by step. 
+          "I was terrified after my DUI arrest, but the team at {site.firmName} walked me through everything step by step. 
           They got my charges significantly reduced and helped me keep my license. Highly recommend."
         </p>
         <div class="mt-6 border-t pt-4">
@@ -62,7 +63,7 @@ import Quote from '@lucide/astro/icons/quote';
           <Star class="h-4 w-4 fill-primary text-primary" />
         </div>
         <p class="relative z-10 leading-relaxed text-muted-foreground">
-          "After our car accident, we didn't know where to turn. Anderson Law handled everything with the insurance companies 
+          "After our car accident, we didn't know where to turn. {site.firmName} handled everything with the insurance companies 
           and got us fair compensation. They truly cared about our recovery."
         </p>
         <div class="mt-6 border-t pt-4">

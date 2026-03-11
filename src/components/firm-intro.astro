@@ -1,13 +1,14 @@
 ---
+import { site } from '../config/site';
 ---
 <section class="border-b border-border bg-background py-16 md:py-20">
   <div class="mx-auto max-w-3xl px-6 text-center">
     <h2 class="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
-      About Anderson Law
+      About {site.firmName}
     </h2>
 
     <p class="mt-5 text-lg leading-relaxed text-muted-foreground">
-      Anderson Law represents clients throughout Jamestown and Chautauqua County in criminal 
+      {site.firmName} represents clients throughout {site.location.city} and {site.location.county} in criminal 
       defense, personal injury, family law, and real estate matters. Attorney Michael J. Anderson 
       has more than 20 years of legal experience helping individuals navigate complex legal 
       issues in local courts.
