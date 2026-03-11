@@ -1,0 +1,210 @@
+---
+import ShieldAlert from '@lucide/astro/icons/shield-alert';
+import Gavel from '@lucide/astro/icons/gavel';
+import FileSearch from '@lucide/astro/icons/file-search';
+import Scale from '@lucide/astro/icons/scale';
+import Users from '@lucide/astro/icons/users';
+import TriangleAlert from '@lucide/astro/icons/triangle-alert';
+import ArrowRight from '@lucide/astro/icons/arrow-right';
+import Phone from '@lucide/astro/icons/phone';
+import Calendar from '@lucide/astro/icons/calendar';
+
+const steps = [
+  {
+    number: '01',
+    icon: ShieldAlert,
+    title: 'Arrest',
+    content: [
+      'A criminal case typically begins with an arrest. Police may arrest you if they witness a crime, have a warrant, or have probable cause to believe you committed an offense.',
+      "At the time of arrest, you have constitutional rights including the right to remain silent and the right to an attorney. Exercise these rights. Do not answer questions or make statements without your lawyer present.",
+      'After arrest, you will be taken to a police station for booking, which includes fingerprinting and photographing. You may be held until arraignment or released with an appearance ticket.'
+    ]
+  },
+  {
+    number: '02',
+    icon: Gavel,
+    title: 'Arraignment',
+    content: [
+      'Arraignment is your first court appearance, typically within 24 hours of arrest if you are held in custody. For appearance tickets, arraignment may be scheduled days or weeks later.',
+      'At arraignment, the judge will read the charges against you, inform you of your rights, and ask how you plead. Most defendants plead not guilty at this stage.',
+      'The judge will also consider bail. You may be released on your own recognizance, released on bail, or held without bail depending on the charges and your circumstances.'
+    ]
+  },
+  {
+    number: '03',
+    icon: FileSearch,
+    title: 'Discovery & Pretrial Motions',
+    content: [
+      "After arraignment, the prosecution must provide discovery – evidence they intend to use against you. New York's discovery laws require prosecutors to share evidence early in the process.",
+      'Your attorney will review all evidence and may file pretrial motions to suppress illegally obtained evidence, dismiss charges, or address other legal issues.',
+      'This stage involves investigation, evidence analysis, and legal research. It is often the most important phase for building your defense.'
+    ]
+  },
+  {
+    number: '04',
+    icon: Users,
+    title: 'Plea Negotiations',
+    content: [
+      'Most criminal cases are resolved through plea negotiations rather than trial. Your attorney will discuss potential plea offers with the prosecution.',
+      'A plea bargain may involve pleading guilty to reduced charges or agreeing to a specific sentence recommendation. You always have the right to reject any offer and proceed to trial.',
+      'Your attorney will advise you on the strengths and weaknesses of your case and whether a plea offer is in your best interest.'
+    ]
+  },
+  {
+    number: '05',
+    icon: Scale,
+    title: 'Trial',
+    content: [
+      'If your case proceeds to trial, the prosecution must prove your guilt beyond a reasonable doubt. You have the right to a jury trial for most criminal charges.',
+      'At trial, both sides present evidence and witnesses. Your attorney will cross-examine prosecution witnesses and may present your own evidence and witnesses.',
+      'After both sides rest, the jury deliberates and returns a verdict. If acquitted, you are free to go. If convicted, the case proceeds to sentencing.'
+    ]
+  },
+  {
+    number: '06',
+    icon: TriangleAlert,
+    title: 'Sentencing',
+    content: [
+      'If you plead guilty or are convicted at trial, the judge will impose a sentence. Sentencing may occur immediately or be scheduled for a later date.',
+      'Sentences vary widely depending on the offense, your criminal history, and other factors. Options include fines, probation, community service, or incarceration.',
+      'Your attorney can advocate for leniency and present mitigating factors to the court before sentencing.'
+    ]
+  }
+];
+---
+<main>
+  <section class="relative isolate overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 pb-16 pt-32 md:pb-20 md:pt-40">
+    <div
+      aria-hidden="true"
+      class="absolute -top-40 left-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-gradient-to-br from-blue-500/25 via-indigo-500/15 to-transparent blur-3xl"
+    />
+    <div
+      aria-hidden="true"
+      class="absolute inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:72px_72px]"
+    />
+    <div class="relative mx-auto max-w-6xl px-6">
+      <nav class="mb-8 flex items-center gap-2 text-sm text-slate-400">
+        <a href="/" class="transition-colors hover:text-white">Home</a>
+        <span>/</span>
+        <span class="text-slate-300">Legal Guides</span>
+        <span>/</span>
+        <span class="text-slate-300">Criminal Case Process</span>
+      </nav>
+      <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-slate-300">
+        Legal Guide
+      </div>
+      <h1 class="mt-6 text-balance text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+        Criminal Case Process in New York
+      </h1>
+      <p class="mt-4 max-w-2xl text-lg text-slate-400">
+        Understanding how criminal cases proceed through the New York court system, from arrest through resolution.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20">
+    <div class="mx-auto max-w-3xl px-6">
+      <p class="text-lg leading-relaxed text-muted-foreground">
+        If you or someone you know has been charged with a crime in New York, understanding the criminal justice
+        process can help you navigate what lies ahead. Every case is different, but most criminal cases follow a
+        similar path through the court system.
+      </p>
+      <p class="mt-4 text-lg leading-relaxed text-muted-foreground">
+        This guide explains each stage of a criminal case in New York State. While it provides general information,
+        it is not a substitute for legal advice. If you are facing criminal charges, consult with an experienced
+        criminal defense attorney.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-muted py-16 md:py-20">
+    <div class="mx-auto max-w-3xl px-6">
+      <div class="space-y-8">
+        {steps.map((step) => (
+          <article class="overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
+            <div class="flex">
+              <div class="flex w-16 shrink-0 flex-col items-center justify-start bg-primary/5 py-6">
+                <span class="text-sm font-medium text-primary">{step.number}</span>
+                <div class="mt-2 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
+                  <step.icon class="h-5 w-5 text-primary" />
+                </div>
+              </div>
+              <div class="flex-1 p-6">
+                <h2 class="text-xl font-semibold text-foreground">
+                  {step.title}
+                </h2>
+                <div class="mt-4 space-y-3">
+                  {step.content.map((paragraph) => (
+                    <p class="text-muted-foreground">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20">
+    <div class="mx-auto max-w-3xl px-6">
+      <h2 class="text-2xl font-bold tracking-tight text-foreground">
+        Related Information
+      </h2>
+      <div class="mt-6 flex flex-wrap gap-4">
+        <a
+          href="/jamestown-criminal-defense-lawyer"
+          class="inline-flex items-center gap-2 rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground shadow-sm transition-colors hover:bg-muted"
+        >
+          Criminal Defense Services
+          <ArrowRight class="h-4 w-4" />
+        </a>
+        <a
+          href="/courts/jamestown-city-court"
+          class="inline-flex items-center gap-2 rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground shadow-sm transition-colors hover:bg-muted"
+        >
+          Jamestown City Court
+          <ArrowRight class="h-4 w-4" />
+        </a>
+        <a
+          href="/courts/chautauqua-county-court"
+          class="inline-flex items-center gap-2 rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground shadow-sm transition-colors hover:bg-muted"
+        >
+          Chautauqua County Court
+          <ArrowRight class="h-4 w-4" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-border bg-muted py-16 md:py-20">
+    <div class="mx-auto max-w-3xl px-6 text-center">
+      <h2 class="text-2xl font-bold tracking-tight text-foreground">
+        Facing Criminal Charges?
+      </h2>
+      <p class="mx-auto mt-4 max-w-xl text-muted-foreground">
+        If you have been charged with a crime in Jamestown or Chautauqua County, contact us for a free consultation.
+        We can explain your options and help protect your rights.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a
+          href="/contact"
+          class="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-base font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
+        >
+          <Calendar class="h-5 w-5" />
+          Free Consultation
+        </a>
+        <a
+          href="tel:+17165550123"
+          class="inline-flex items-center justify-center gap-2 rounded-full border border-input bg-background px-6 py-3 text-base font-semibold text-foreground shadow-sm transition-colors hover:bg-muted"
+        >
+          <Phone class="h-5 w-5" />
+          (716) 555-0123
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+

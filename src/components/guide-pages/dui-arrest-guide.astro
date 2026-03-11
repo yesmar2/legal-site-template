@@ -1,0 +1,285 @@
+---
+import Card from '@lucide/astro/icons/credit-card'; // alias not used, but we need Card types
+import Car from '@lucide/astro/icons/car';
+import TriangleAlert from '@lucide/astro/icons/triangle-alert';
+import FileText from '@lucide/astro/icons/file-text';
+import Gavel from '@lucide/astro/icons/gavel';
+import Clock from '@lucide/astro/icons/clock';
+import CreditCard from '@lucide/astro/icons/credit-card';
+import ArrowRight from '@lucide/astro/icons/arrow-right';
+import Phone from '@lucide/astro/icons/phone';
+import Calendar from '@lucide/astro/icons/calendar';
+
+const timeline = [
+  {
+    icon: Car,
+    title: 'Traffic Stop & Field Tests',
+    description:
+      'The officer conducts field sobriety tests and may request a preliminary breath test. You can refuse field tests, but this may lead to arrest based on other observations.'
+  },
+  {
+    icon: TriangleAlert,
+    title: 'Arrest & Chemical Test',
+    description:
+      "If arrested, you'll be taken to the station for a chemical test (breath, blood, or urine). Refusing this test triggers automatic license suspension under New York's implied consent law."
+  },
+  {
+    icon: FileText,
+    title: 'Booking & Release',
+    description:
+      "You'll be fingerprinted, photographed, and typically released with an appearance ticket for arraignment. In some cases, you may be held until arraignment."
+  },
+  {
+    icon: Gavel,
+    title: 'Arraignment',
+    description:
+      'Your first court appearance where charges are read and bail may be set. The court will also schedule a DMV hearing if you refused the chemical test or failed with a BAC of 0.08% or higher.'
+  },
+  {
+    icon: Clock,
+    title: 'DMV Hearing',
+    description:
+      'Separate from your criminal case, the DMV will hold an administrative hearing about your driving privileges. You have only 15 days from arrest to request this hearing.'
+  },
+  {
+    icon: CreditCard,
+    title: 'Case Resolution',
+    description:
+      'Your case may be resolved through plea negotiation or trial. Outcomes range from dismissal to conviction with penalties including fines, license suspension, and possible jail time.'
+  }
+];
+
+const penalties = [
+  { offense: 'First DUI/DWI', fines: '$500 - $1,000', license: '6-month suspension', jail: 'Up to 1 year' },
+  { offense: 'Second DUI/DWI (within 10 years)', fines: '$1,000 - $5,000', license: '1-year revocation', jail: 'Up to 4 years' },
+  { offense: 'Third DUI/DWI (within 10 years)', fines: '$2,000 - $10,000', license: '1-year revocation', jail: 'Up to 7 years' },
+  { offense: 'DWAI (Alcohol)', fines: '$300 - $500', license: '90-day suspension', jail: 'Up to 15 days' }
+];
+---
+<main>
+  <section class="relative isolate overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 pb-16 pt-32 md:pb-20 md:pt-40">
+    <div
+      aria-hidden="true"
+      class="absolute -top-40 left-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-gradient-to-br from-blue-500/25 via-indigo-500/15 to-transparent blur-3xl"
+    />
+    <div
+      aria-hidden="true"
+      class="absolute inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:72px_72px]"
+    />
+    <div class="relative mx-auto max-w-6xl px-6">
+      <nav class="mb-8 flex items-center gap-2 text-sm text-slate-400">
+        <a href="/" class="transition-colors hover:text-white">Home</a>
+        <span>/</span>
+        <span class="text-slate-300">Legal Guides</span>
+        <span>/</span>
+        <span class="text-slate-300">DUI Arrest Guide</span>
+      </nav>
+      <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-slate-300">
+        Legal Guide
+      </div>
+      <h1 class="mt-6 text-balance text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+        What Happens After a DUI Arrest in New York
+      </h1>
+      <p class="mt-4 max-w-2xl text-lg text-slate-400">
+        A step-by-step guide to the DUI arrest process in New York State, from traffic stop to case resolution.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20">
+    <div class="mx-auto max-w-3xl px-6">
+      <p class="text-lg leading-relaxed text-muted-foreground">
+        Being arrested for DUI (Driving Under the Influence) or DWI (Driving While Intoxicated) in New York can be
+        frightening and confusing. Understanding what happens next can help you make informed decisions about your case.
+      </p>
+      <p class="mt-4 text-lg leading-relaxed text-muted-foreground">
+        New York takes drunk driving seriously. The consequences include both criminal penalties and administrative
+        actions against your driver's license. Acting quickly – especially regarding your DMV hearing – is critical.
+      </p>
+      <div class="mt-8 rounded-xl border border-amber-200 bg-amber-50">
+        <div class="flex gap-4 p-4">
+          <TriangleAlert class="h-6 w-6 shrink-0 text-amber-600" />
+          <div>
+            <p class="font-semibold text-amber-900">Important: 15-Day Deadline</p>
+            <p class="mt-1 text-sm text-amber-800">
+              If you refused a chemical test or failed with a BAC of 0.08% or higher, you have only 15 days from your
+              arrest to request a DMV hearing. Missing this deadline can result in automatic license suspension.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-muted py-16 md:py-20">
+    <div class="mx-auto max-w-3xl px-6">
+      <h2 class="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+        The DUI Process Step by Step
+      </h2>
+      <p class="mt-3 text-muted-foreground">
+        Here's what typically happens after a DUI arrest in New York.
+      </p>
+      <div class="mt-10 space-y-6">
+        {timeline.map((step, index) => (
+          <div class="flex gap-4">
+            <div class="flex flex-col items-center">
+              <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10">
+                <step.icon class="h-6 w-6 text-primary" />
+              </div>
+              {index < timeline.length - 1 && <div class="mt-2 h-full w-px bg-border" />}
+            </div>
+            <div class="pb-8">
+              <h3 class="font-semibold text-foreground">{step.title}</h3>
+              <p class="mt-2 text-muted-foreground">
+                {step.description}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20">
+    <div class="mx-auto max-w-3xl px-6">
+      <h2 class="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+        Potential Penalties
+      </h2>
+      <p class="mt-3 text-muted-foreground">
+        DUI penalties in New York vary based on your BAC level, prior offenses, and other factors.
+      </p>
+      <div class="mt-8 overflow-hidden rounded-lg border border-border">
+        <table class="w-full">
+          <thead class="bg-muted">
+            <tr>
+              <th class="px-4 py-3 text-left text-sm font-semibold text-foreground">Offense</th>
+              <th class="px-4 py-3 text-left text-sm font-semibold text-foreground">Fines</th>
+              <th class="px-4 py-3 text-left text-sm font-semibold text-foreground">License</th>
+              <th class="px-4 py-3 text-left text-sm font-semibold text-foreground">Jail</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-border bg-background">
+            {penalties.map((row) => (
+              <tr>
+                <td class="px-4 py-3 text-sm font-medium text-foreground">{row.offense}</td>
+                <td class="px-4 py-3 text-sm text-muted-foreground">{row.fines}</td>
+                <td class="px-4 py-3 text-sm text-muted-foreground">{row.license}</td>
+                <td class="px-4 py-3 text-sm text-muted-foreground">{row.jail}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-4 text-sm text-muted-foreground">
+        * Penalties may vary. Additional consequences may include ignition interlock device requirements, alcohol
+        assessment, and increased insurance rates.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-muted py-16 md:py-20">
+    <div class="mx-auto max-w-3xl px-6">
+      <h2 class="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+        What You Should Do Now
+      </h2>
+      <div class="mt-8 space-y-4">
+        <article class="rounded-xl border border-border bg-background p-4">
+          <h3 class="text-base font-semibold text-foreground">
+            1. Contact an Attorney Immediately
+          </h3>
+          <p class="mt-2 text-sm text-muted-foreground">
+            An experienced DUI attorney can protect your rights, help you understand your options, and represent you at
+            both your criminal case and DMV hearing.
+          </p>
+        </article>
+        <article class="rounded-xl border border-border bg-background p-4">
+          <h3 class="text-base font-semibold text-foreground">
+            2. Request Your DMV Hearing Within 15 Days
+          </h3>
+          <p class="mt-2 text-sm text-muted-foreground">
+            This is critical. If you don't request a hearing within 15 days of your arrest, your license may be
+            automatically suspended without any opportunity to contest it.
+          </p>
+        </article>
+        <article class="rounded-xl border border-border bg-background p-4">
+          <h3 class="text-base font-semibold text-foreground">
+            3. Document Everything
+          </h3>
+          <p class="mt-2 text-sm text-muted-foreground">
+            Write down everything you remember about your arrest while it's fresh in your mind. This information can be
+            valuable for your defense.
+          </p>
+        </article>
+        <article class="rounded-xl border border-border bg-background p-4">
+          <h3 class="text-base font-semibold text-foreground">
+            4. Don't Discuss Your Case
+          </h3>
+          <p class="mt-2 text-sm text-muted-foreground">
+            Avoid discussing your case with anyone except your attorney. Don't post about it on social media or talk to
+            police without your lawyer present.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20">
+    <div class="mx-auto max-w-3xl px-6">
+      <h2 class="text-2xl font-bold tracking-tight text-foreground">
+        Related Information
+      </h2>
+      <div class="mt-6 flex flex-wrap gap-4">
+        <a
+          href="/jamestown-criminal-defense-lawyer"
+          class="inline-flex items-center gap-2 rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground shadow-sm transition-colors hover:bg-muted"
+        >
+          Criminal Defense Services
+          <ArrowRight class="h-4 w-4" />
+        </a>
+        <a
+          href="/guides/criminal-case-process-new-york"
+          class="inline-flex items-center gap-2 rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground shadow-sm transition-colors hover:bg-muted"
+        >
+          Criminal Case Process
+          <ArrowRight class="h-4 w-4" />
+        </a>
+        <a
+          href="/courts/jamestown-city-court"
+          class="inline-flex items-center gap-2 rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground shadow-sm transition-colors hover:bg-muted"
+        >
+          Jamestown City Court
+          <ArrowRight class="h-4 w-4" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-border bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-16 md:py-20">
+    <div class="mx-auto max-w-3xl px-6 text-center">
+      <h2 class="text-2xl font-bold tracking-tight text-white">
+        Arrested for DUI in Jamestown?
+      </h2>
+      <p class="mx-auto mt-4 max-w-xl text-slate-300">
+        Time is critical after a DUI arrest. Contact us today for a free consultation and to discuss your DMV hearing
+        options.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a
+          href="/contact"
+          class="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-base font-semibold text-slate-900 hover:bg-slate-100"
+        >
+          <Calendar class="h-5 w-5" />
+          Free Consultation
+        </a>
+        <a
+          href="tel:+17165550123"
+          class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-transparent px-6 py-3 text-base font-semibold text-white hover:bg-white/10"
+        >
+          <Phone class="h-5 w-5" />
+          (716) 555-0123
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
