@@ -1,4 +1,10 @@
 ---
+import Scale from '@lucide/astro/icons/scale';
+import MapPin from '@lucide/astro/icons/map-pin';
+import Phone from '@lucide/astro/icons/phone';
+import Mail from '@lucide/astro/icons/mail';
+import Clock from '@lucide/astro/icons/clock';
+
 const year = new Date().getFullYear();
 ---
 <footer class="border-t bg-foreground text-background">
@@ -8,7 +14,7 @@ const year = new Date().getFullYear();
       <div class="lg:col-span-1">
         <a href="/" class="flex items-center gap-2">
           <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
-            <span class="text-sm font-semibold text-primary-foreground">AL</span>
+            <Scale class="h-5 w-5 text-primary-foreground" />
           </div>
           <span class="font-bold">Anderson Law</span>
         </a>
@@ -77,19 +83,19 @@ const year = new Date().getFullYear();
         <h3 class="font-semibold">Contact Us</h3>
         <ul class="mt-4 space-y-3">
           <li class="flex items-start gap-3 text-sm text-background/70">
-            <span class="mt-0.5 inline-block h-4 w-4 rounded-full border border-background/50"></span>
+            <MapPin class="mt-0.5 h-4 w-4 shrink-0" />
             <span>123 Main Street, Suite 200<br />Jamestown, NY 14701</span>
           </li>
           <li class="flex items-center gap-3 text-sm text-background/70">
-            <span class="inline-block h-4 w-4 rounded-full border border-background/50"></span>
+            <Phone class="h-4 w-4 shrink-0" />
             <span>(716) 555-0123</span>
           </li>
           <li class="flex items-center gap-3 text-sm text-background/70">
-            <span class="inline-block h-4 w-4 rounded-full border border-background/50"></span>
+            <Mail class="h-4 w-4 shrink-0" />
             <span>info@andersonlaw.com</span>
           </li>
           <li class="flex items-start gap-3 text-sm text-background/70">
-            <span class="mt-0.5 inline-block h-4 w-4 rounded-full border border-background/50"></span>
+            <Clock class="mt-0.5 h-4 w-4 shrink-0" />
             <span>Mon–Fri: 9AM–5PM<br />24/7 Emergency Line</span>
           </li>
         </ul>

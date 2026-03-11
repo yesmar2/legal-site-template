@@ -1,11 +1,13 @@
 ---
+import Scale from '@lucide/astro/icons/scale';
+import Phone from '@lucide/astro/icons/phone';
 ---
 <header class="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
   <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
     <!-- Logo -->
     <a href="/" class="flex items-center gap-2">
       <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
-        <span class="text-sm font-semibold text-primary-foreground">AL</span>
+        <Scale class="h-5 w-5 text-primary-foreground" />
       </div>
       <div>
         <span class="font-bold text-foreground">Anderson Law</span>
@@ -35,7 +37,7 @@
         href="tel:+17165551234" 
         class="flex items-center gap-2 text-base font-semibold text-foreground transition-colors hover:text-primary"
       >
-        <span class="inline-block h-2 w-2 rounded-full bg-primary" aria-hidden="true"></span>
+        <Phone class="h-5 w-5 text-primary" />
         (716) 555-1234
       </a>
       <a
