@@ -1,8 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, User } from "lucide-react"
-import Link from "next/link"
-
 const attorneys = [
   {
     name: "Michael J. Anderson",
@@ -39,7 +37,7 @@ export function AttorneySection() {
         
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {attorneys.map((attorney) => (
-            <Link key={attorney.name} href={attorney.href} className="group">
+            <a key={attorney.name} href={attorney.href} className="group">
               <Card className="h-full transition-all duration-300 hover:border-primary/50 hover:shadow-lg">
                 <CardHeader className="text-center">
                   {/* Photo placeholder */}
@@ -59,7 +57,7 @@ export function AttorneySection() {
                   </Button>
                 </CardContent>
               </Card>
-            </Link>
+            </a>
           ))}
         </div>
       </div>

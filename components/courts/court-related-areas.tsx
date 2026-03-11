@@ -1,7 +1,5 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
-import Link from "next/link"
-
 interface RelatedArea {
   title: string
   href: string
@@ -24,12 +22,12 @@ export function CourtRelatedAreas({ areas }: CourtRelatedAreasProps) {
         
         <div className="mt-8 flex flex-wrap gap-4">
           {areas.map((area) => (
-            <Link key={area.href} href={area.href}>
+            <a key={area.href} href={area.href}>
               <Button variant="outline" className="gap-2">
                 {area.title}
                 <ArrowRight className="h-4 w-4" />
               </Button>
-            </Link>
+            </a>
           ))}
         </div>
       </div>

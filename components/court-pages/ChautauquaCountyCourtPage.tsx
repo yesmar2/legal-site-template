@@ -1,4 +1,3 @@
-import { Metadata } from "next"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { CourtHero } from "@/components/courts/court-hero"
@@ -8,11 +7,6 @@ import { CourtWhatToExpect } from "@/components/courts/court-what-to-expect"
 import { CourtRelatedAreas } from "@/components/courts/court-related-areas"
 import { CourtCTA } from "@/components/courts/court-cta"
 import { Scale, Gavel, FileText, AlertTriangle, Briefcase } from "lucide-react"
-
-export const metadata: Metadata = {
-  title: "Chautauqua County Court | Felony & Criminal Court Information",
-  description: "Information about Chautauqua County Court in Mayville, NY. Learn about felony cases, court procedures, and what to expect at your court appearance.",
-}
 
 const courtData = {
   name: "Chautauqua County Court",
@@ -33,31 +27,11 @@ const courtData = {
     }
   },
   caseTypes: [
-    {
-      icon: Scale,
-      title: "Felony Criminal Cases",
-      description: "All felony offenses including violent crimes, drug felonies, and property crimes."
-    },
-    {
-      icon: Gavel,
-      title: "Grand Jury Proceedings",
-      description: "Indictment proceedings for felony charges presented by the District Attorney."
-    },
-    {
-      icon: FileText,
-      title: "Appeals from Local Courts",
-      description: "Appeals from city, town, and village court decisions within the county."
-    },
-    {
-      icon: AlertTriangle,
-      title: "Serious Drug Offenses",
-      description: "Drug possession, sale, and trafficking charges at the felony level."
-    },
-    {
-      icon: Briefcase,
-      title: "Major Civil Matters",
-      description: "Civil cases exceeding local court jurisdiction limits."
-    }
+    { icon: Scale, title: "Felony Criminal Cases", description: "All felony offenses including violent crimes, drug felonies, and property crimes." },
+    { icon: Gavel, title: "Grand Jury Proceedings", description: "Indictment proceedings for felony charges presented by the District Attorney." },
+    { icon: FileText, title: "Appeals from Local Courts", description: "Appeals from city, town, and village court decisions within the county." },
+    { icon: AlertTriangle, title: "Serious Drug Offenses", description: "Drug possession, sale, and trafficking charges at the felony level." },
+    { icon: Briefcase, title: "Major Civil Matters", description: "Civil cases exceeding local court jurisdiction limits." }
   ],
   beforeAppearance: [
     { text: "Arrive at least 30 minutes early for security screening" },
@@ -83,23 +57,10 @@ export default function ChautauquaCountyCourtPage() {
     <div className="flex min-h-screen flex-col">
       <SiteHeader />
       <main>
-        <CourtHero 
-          courtName={courtData.name} 
-          description={courtData.description} 
-        />
-        <CourtAbout 
-          courtName={courtData.name}
-          paragraphs={courtData.aboutParagraphs}
-          location={courtData.location}
-        />
-        <CourtCaseTypes 
-          courtName={courtData.name}
-          caseTypes={courtData.caseTypes}
-        />
-        <CourtWhatToExpect 
-          beforeAppearance={courtData.beforeAppearance}
-          duringAppearance={courtData.duringAppearance}
-        />
+        <CourtHero courtName={courtData.name} description={courtData.description} />
+        <CourtAbout courtName={courtData.name} paragraphs={courtData.aboutParagraphs} location={courtData.location} />
+        <CourtCaseTypes courtName={courtData.name} caseTypes={courtData.caseTypes} />
+        <CourtWhatToExpect beforeAppearance={courtData.beforeAppearance} duringAppearance={courtData.duringAppearance} />
         <CourtRelatedAreas areas={courtData.relatedAreas} />
         <CourtCTA courtName={courtData.name} />
       </main>

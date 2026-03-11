@@ -1,7 +1,4 @@
-"use client"
-
 import { useState } from "react"
-import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Scale, Menu, X, Phone } from "lucide-react"
 
@@ -14,7 +11,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
+        <a href="/" className="flex items-center gap-2">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
             <Scale className="h-5 w-5 text-primary-foreground" />
           </div>
@@ -22,18 +19,18 @@ export function SiteHeader() {
             <span className="font-bold text-foreground">Anderson Law</span>
             <span className="hidden text-xs text-muted-foreground sm:block">Chautauqua County</span>
           </div>
-        </Link>
+        </a>
 
         {/* Desktop navigation */}
         <div className="hidden items-center gap-6 lg:flex">
           {navigation.map((item) => (
-            <Link
+            <a
               key={item.name}
               href={item.href}
               className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
               {item.name}
-            </Link>
+            </a>
           ))}
         </div>
 
@@ -69,14 +66,14 @@ export function SiteHeader() {
         <div className="border-t bg-background lg:hidden">
           <div className="space-y-1 px-6 py-4">
             {navigation.map((item) => (
-              <Link
+              <a
                 key={item.name}
                 href={item.href}
                 className="block rounded-lg px-3 py-2 text-base font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.name}
-              </Link>
+              </a>
             ))}
             <div className="mt-4 flex flex-col gap-2 pt-4">
               <a 

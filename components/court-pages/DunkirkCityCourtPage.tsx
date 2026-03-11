@@ -1,4 +1,3 @@
-import { Metadata } from "next"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { CourtHero } from "@/components/courts/court-hero"
@@ -8,11 +7,6 @@ import { CourtWhatToExpect } from "@/components/courts/court-what-to-expect"
 import { CourtRelatedAreas } from "@/components/courts/court-related-areas"
 import { CourtCTA } from "@/components/courts/court-cta"
 import { Scale, Car, FileText, Users, Home } from "lucide-react"
-
-export const metadata: Metadata = {
-  title: "Dunkirk City Court | Criminal & Traffic Court Information",
-  description: "Information about Dunkirk City Court in Chautauqua County, NY. Learn about case types, court procedures, and what to expect at your court appearance.",
-}
 
 const courtData = {
   name: "Dunkirk City Court",
@@ -27,37 +21,14 @@ const courtData = {
     address: "342 Central Avenue",
     city: "Dunkirk, NY 14048",
     phone: "(716) 366-2055",
-    hours: {
-      days: "Monday - Friday",
-      times: "9:00 AM - 4:00 PM"
-    }
+    hours: { days: "Monday - Friday", times: "9:00 AM - 4:00 PM" }
   },
   caseTypes: [
-    {
-      icon: Scale,
-      title: "Misdemeanor Criminal Charges",
-      description: "Class A and B misdemeanors including theft, assault, and drug possession."
-    },
-    {
-      icon: Car,
-      title: "Traffic Violations",
-      description: "Speeding tickets, DUI/DWI charges, and vehicle and traffic law violations."
-    },
-    {
-      icon: FileText,
-      title: "Preliminary Felony Hearings",
-      description: "Initial hearings for felony charges before transfer to County Court."
-    },
-    {
-      icon: Users,
-      title: "Small Claims Cases",
-      description: "Civil disputes involving claims up to $5,000."
-    },
-    {
-      icon: Home,
-      title: "Landlord-Tenant Disputes",
-      description: "Eviction proceedings and housing-related legal matters."
-    }
+    { icon: Scale, title: "Misdemeanor Criminal Charges", description: "Class A and B misdemeanors including theft, assault, and drug possession." },
+    { icon: Car, title: "Traffic Violations", description: "Speeding tickets, DUI/DWI charges, and vehicle and traffic law violations." },
+    { icon: FileText, title: "Preliminary Felony Hearings", description: "Initial hearings for felony charges before transfer to County Court." },
+    { icon: Users, title: "Small Claims Cases", description: "Civil disputes involving claims up to $5,000." },
+    { icon: Home, title: "Landlord-Tenant Disputes", description: "Eviction proceedings and housing-related legal matters." }
   ],
   beforeAppearance: [
     { text: "Arrive at least 15 minutes before your scheduled time" },
@@ -83,23 +54,10 @@ export default function DunkirkCityCourtPage() {
     <div className="flex min-h-screen flex-col">
       <SiteHeader />
       <main>
-        <CourtHero 
-          courtName={courtData.name} 
-          description={courtData.description} 
-        />
-        <CourtAbout 
-          courtName={courtData.name}
-          paragraphs={courtData.aboutParagraphs}
-          location={courtData.location}
-        />
-        <CourtCaseTypes 
-          courtName={courtData.name}
-          caseTypes={courtData.caseTypes}
-        />
-        <CourtWhatToExpect 
-          beforeAppearance={courtData.beforeAppearance}
-          duringAppearance={courtData.duringAppearance}
-        />
+        <CourtHero courtName={courtData.name} description={courtData.description} />
+        <CourtAbout courtName={courtData.name} paragraphs={courtData.aboutParagraphs} location={courtData.location} />
+        <CourtCaseTypes courtName={courtData.name} caseTypes={courtData.caseTypes} />
+        <CourtWhatToExpect beforeAppearance={courtData.beforeAppearance} duringAppearance={courtData.duringAppearance} />
         <CourtRelatedAreas areas={courtData.relatedAreas} />
         <CourtCTA courtName={courtData.name} />
       </main>

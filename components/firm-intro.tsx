@@ -1,7 +1,5 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
-import Link from "next/link"
-
 export function FirmIntro() {
   return (
     <section className="border-b border-border bg-background py-16 md:py-20">
@@ -17,12 +15,12 @@ export function FirmIntro() {
           issues in local courts.
         </p>
         
-        <Link href="/about">
+        <a href="/about">
           <Button variant="outline" className="mt-6 gap-2">
             Learn More
             <ArrowRight className="h-4 w-4" />
           </Button>
-        </Link>
+        </a>
       </div>
     </section>
   )

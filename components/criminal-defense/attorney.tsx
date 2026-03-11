@@ -1,7 +1,5 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Scale, Award, Briefcase } from "lucide-react"
-import Link from "next/link"
-
 export function CriminalDefenseAttorney() {
   return (
     <section className="border-t border-border py-16">
@@ -37,12 +35,12 @@ export function CriminalDefenseAttorney() {
               </span>
             </div>
             
-            <Link href="/attorney">
+            <a href="/attorney">
               <Button variant="outline" size="sm" className="mt-5 gap-2">
                 View Full Profile
                 <ArrowRight className="h-3 w-3" />
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
       </div>

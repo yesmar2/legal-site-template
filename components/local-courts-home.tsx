@@ -1,7 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Building2, ArrowRight } from "lucide-react"
-import Link from "next/link"
-
 const courts = [
   {
     title: "Jamestown City Court",
@@ -36,7 +34,7 @@ export function LocalCourtsHome() {
         
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {courts.map((court) => (
-            <Link key={court.title} href={court.href} className="group">
+            <a key={court.title} href={court.href} className="group">
               <Card className="h-full transition-all duration-300 hover:border-primary/50 hover:shadow-lg">
                 <CardHeader>
                   <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
@@ -53,18 +51,18 @@ export function LocalCourtsHome() {
                   </CardDescription>
                 </CardContent>
               </Card>
-            </Link>
+            </a>
           ))}
         </div>
         
         <div className="mt-10 text-center">
-          <Link 
+          <a 
             href="/guides/criminal-case-process-new-york" 
             className="inline-flex items-center gap-1.5 text-sm text-primary hover:underline"
           >
             Learn more about how local courts handle criminal cases
             <ArrowRight className="h-3.5 w-3.5" />
-          </Link>
+          </a>
         </div>
       </div>
     </section>

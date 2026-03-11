@@ -1,4 +1,3 @@
-import Link from "next/link"
 import { Scale, MapPin, Phone, Mail, Clock } from "lucide-react"
 
 const practiceAreas = [
@@ -22,12 +21,12 @@ export function SiteFooter() {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Firm info */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2">
+            <a href="/" className="flex items-center gap-2">
               <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
                 <Scale className="h-5 w-5 text-primary-foreground" />
               </div>
               <span className="font-bold">Anderson Law</span>
-            </Link>
+            </a>
             <p className="mt-4 text-sm text-background/70 leading-relaxed">
               Providing experienced legal representation to individuals and families 
               throughout Chautauqua County for over 20 years.
@@ -40,12 +39,12 @@ export function SiteFooter() {
             <ul className="mt-4 space-y-2">
               {practiceAreas.map((item) => (
                 <li key={item.name}>
-                  <Link 
+                  <a 
                     href={item.href} 
                     className="text-sm text-background/70 transition-colors hover:text-background"
                   >
                     {item.name}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -57,12 +56,12 @@ export function SiteFooter() {
             <ul className="mt-4 space-y-2">
               {quickLinks.map((item) => (
                 <li key={item.name}>
-                  <Link 
+                  <a 
                     href={item.href} 
                     className="text-sm text-background/70 transition-colors hover:text-background"
                   >
                     {item.name}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>

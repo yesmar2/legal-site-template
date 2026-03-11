@@ -1,5 +1,3 @@
-import Link from "next/link"
-
 interface CourtHeroProps {
   courtName: string
   description: string
@@ -19,7 +17,7 @@ export function CourtHero({ courtName, description }: CourtHeroProps) {
       
       <div className="relative mx-auto max-w-6xl px-6">
         <nav className="mb-8 flex items-center gap-2 text-sm text-slate-400">
-          <Link href="/" className="transition-colors hover:text-white">Home</Link>
+          <a href="/" className="transition-colors hover:text-white">Home</a>
           <span>/</span>
           <span className="text-slate-400">Courts</span>
           <span>/</span>

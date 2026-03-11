@@ -1,7 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { FileText, Scale, Building2, Landmark, ArrowRight } from "lucide-react"
-import Link from "next/link"
-
 const resources = [
   {
     icon: FileText,
@@ -42,7 +40,7 @@ export function CriminalDefenseResources() {
         
         <div className="mt-10 grid gap-4 sm:grid-cols-2">
           {resources.map((resource) => (
-            <Link key={resource.title} href={resource.href}>
+            <a key={resource.title} href={resource.href}>
               <Card className="group h-full transition-all hover:border-primary/50 hover:shadow-md">
                 <CardHeader className="flex flex-row items-start gap-4 pb-3">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
@@ -59,7 +57,7 @@ export function CriminalDefenseResources() {
                   </div>
                 </CardHeader>
               </Card>
-            </Link>
+            </a>
           ))}
         </div>
       </div>

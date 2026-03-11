@@ -1,7 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Car, Pill, Swords, Home, ShoppingBag, ArrowRight } from "lucide-react"
-import Link from "next/link"
-
 const caseTypes = [
   {
     icon: Car,
@@ -65,13 +63,13 @@ export function CriminalCaseTypes() {
                 <CardDescription className="mb-4 leading-relaxed">
                   {caseType.description}
                 </CardDescription>
-                <Link 
+                <a 
                   href={caseType.href}
                   className="inline-flex items-center gap-1 text-sm font-medium text-primary transition-colors hover:text-primary/80"
                 >
                   Learn More
                   <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
-                </Link>
+                </a>
               </CardContent>
             </Card>
           ))}

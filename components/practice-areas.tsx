@@ -1,7 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Scale, HeartPulse, Heart, Home, ArrowRight } from "lucide-react"
-import Link from "next/link"
-
 const practiceAreas = [
   {
     icon: Scale,
@@ -44,7 +42,7 @@ export function PracticeAreas() {
         
         <div className="mt-14 grid gap-5 sm:grid-cols-2">
           {practiceAreas.map((area) => (
-            <Link key={area.title} href={area.href} className="group">
+            <a key={area.title} href={area.href} className="group">
               <Card className="h-full transition-all duration-300 hover:border-primary/50 hover:shadow-lg">
                 <CardHeader>
                   <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
@@ -61,7 +59,7 @@ export function PracticeAreas() {
                   </CardDescription>
                 </CardContent>
               </Card>
-            </Link>
+            </a>
           ))}
         </div>
       </div>

@@ -1,4 +1,3 @@
-import { Metadata } from "next"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { CourtHero } from "@/components/courts/court-hero"
@@ -8,11 +7,6 @@ import { CourtWhatToExpect } from "@/components/courts/court-what-to-expect"
 import { CourtRelatedAreas } from "@/components/courts/court-related-areas"
 import { CourtCTA } from "@/components/courts/court-cta"
 import { Scale, Car, FileText, Users, Home } from "lucide-react"
-
-export const metadata: Metadata = {
-  title: "Jamestown City Court | Criminal & Traffic Court Information",
-  description: "Information about Jamestown City Court in Chautauqua County, NY. Learn about case types, court procedures, and what to expect at your court appearance.",
-}
 
 const courtData = {
   name: "Jamestown City Court",
@@ -27,37 +21,14 @@ const courtData = {
     address: "200 E. Third Street",
     city: "Jamestown, NY 14701",
     phone: "(716) 483-7561",
-    hours: {
-      days: "Monday - Friday",
-      times: "9:00 AM - 4:30 PM"
-    }
+    hours: { days: "Monday - Friday", times: "9:00 AM - 4:30 PM" }
   },
   caseTypes: [
-    {
-      icon: Scale,
-      title: "Misdemeanor Criminal Charges",
-      description: "Class A and B misdemeanors including petit larceny, assault, and criminal mischief."
-    },
-    {
-      icon: Car,
-      title: "Traffic Violations",
-      description: "Speeding tickets, DUI/DWI charges, and other vehicle and traffic law violations."
-    },
-    {
-      icon: FileText,
-      title: "Preliminary Felony Hearings",
-      description: "Initial hearings for felony charges before cases are transferred to County Court."
-    },
-    {
-      icon: Users,
-      title: "Small Claims Cases",
-      description: "Civil disputes involving claims up to $5,000 between individuals or businesses."
-    },
-    {
-      icon: Home,
-      title: "Landlord-Tenant Disputes",
-      description: "Housing court matters including evictions and lease disputes."
-    }
+    { icon: Scale, title: "Misdemeanor Criminal Charges", description: "Class A and B misdemeanors including petit larceny, assault, and criminal mischief." },
+    { icon: Car, title: "Traffic Violations", description: "Speeding tickets, DUI/DWI charges, and other vehicle and traffic law violations." },
+    { icon: FileText, title: "Preliminary Felony Hearings", description: "Initial hearings for felony charges before cases are transferred to County Court." },
+    { icon: Users, title: "Small Claims Cases", description: "Civil disputes involving claims up to $5,000 between individuals or businesses." },
+    { icon: Home, title: "Landlord-Tenant Disputes", description: "Housing court matters including evictions and lease disputes." }
   ],
   beforeAppearance: [
     { text: "Arrive at least 15 minutes before your scheduled time" },
@@ -83,23 +54,10 @@ export default function JamestownCityCourtPage() {
     <div className="flex min-h-screen flex-col">
       <SiteHeader />
       <main>
-        <CourtHero 
-          courtName={courtData.name} 
-          description={courtData.description} 
-        />
-        <CourtAbout 
-          courtName={courtData.name}
-          paragraphs={courtData.aboutParagraphs}
-          location={courtData.location}
-        />
-        <CourtCaseTypes 
-          courtName={courtData.name}
-          caseTypes={courtData.caseTypes}
-        />
-        <CourtWhatToExpect 
-          beforeAppearance={courtData.beforeAppearance}
-          duringAppearance={courtData.duringAppearance}
-        />
+        <CourtHero courtName={courtData.name} description={courtData.description} />
+        <CourtAbout courtName={courtData.name} paragraphs={courtData.aboutParagraphs} location={courtData.location} />
+        <CourtCaseTypes courtName={courtData.name} caseTypes={courtData.caseTypes} />
+        <CourtWhatToExpect beforeAppearance={courtData.beforeAppearance} duringAppearance={courtData.duringAppearance} />
         <CourtRelatedAreas areas={courtData.relatedAreas} />
         <CourtCTA courtName={courtData.name} />
       </main>

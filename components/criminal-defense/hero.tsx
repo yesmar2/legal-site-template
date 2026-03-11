@@ -2,8 +2,6 @@
 
 import { Button } from "@/components/ui/button"
 import { Phone, Calendar, ArrowRight } from "lucide-react"
-import Link from "next/link"
-
 export function CriminalDefenseHero() {
   return (
     <section className="relative isolate overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 pb-20 pt-32 md:pb-24 md:pt-40">
@@ -26,7 +24,7 @@ export function CriminalDefenseHero() {
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         {/* Breadcrumb */}
         <nav className="mb-8 flex items-center gap-2 text-sm text-slate-400">
-          <Link href="/" className="transition-colors hover:text-white">Home</Link>
+          <a href="/" className="transition-colors hover:text-white">Home</a>
           <span>/</span>
           <span className="text-slate-300">Criminal Defense</span>
         </nav>
