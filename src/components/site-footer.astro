@@ -5,6 +5,7 @@ import Phone from '@lucide/astro/icons/phone';
 import Mail from '@lucide/astro/icons/mail';
 import Clock from '@lucide/astro/icons/clock';
 import { site } from '../config/site';
+import { practiceAreas } from '../data/practiceAreas';
 
 const year = new Date().getFullYear();
 ---
@@ -29,26 +30,13 @@ const year = new Date().getFullYear();
       <div>
         <h3 class="font-semibold">Practice Areas</h3>
         <ul class="mt-4 space-y-2">
-          <li>
-            <a href="/practice/criminal-defense" class="text-sm text-background/70 transition-colors hover:text-background">
-              Criminal Defense
-            </a>
-          </li>
-          <li>
-            <a href="/practice/dui-dwi-defense" class="text-sm text-background/70 transition-colors hover:text-background">
-              DUI / DWI Defense
-            </a>
-          </li>
-          <li>
-            <a href="/practice/personal-injury" class="text-sm text-background/70 transition-colors hover:text-background">
-              Personal Injury
-            </a>
-          </li>
-          <li>
-            <a href="/practice-areas/family-law" class="text-sm text-background/70 transition-colors hover:text-background">
-              Family Law
-            </a>
-          </li>
+          {practiceAreas.map((area) => (
+            <li>
+              <a href={area.href} class="text-sm text-background/70 transition-colors hover:text-background">
+                {area.name}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
 
