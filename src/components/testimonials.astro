@@ -2,6 +2,7 @@
 import Star from '@lucide/astro/icons/star';
 import Quote from '@lucide/astro/icons/quote';
 import { site } from '../config/site';
+import { testimonials } from '../data/testimonials';
 ---
 <section class="bg-muted py-20 md:py-28">
   <div class="mx-auto max-w-6xl px-6">
@@ -14,63 +15,36 @@ import { site } from '../config/site';
       </p>
     </div>
 
-    <div class="mt-12 grid gap-6 md:grid-cols-3">
-      <article class="relative overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-sm">
-        <Quote class="absolute -top-4 right-4 h-16 w-16 text-primary/10" />
-        <div class="mb-4 flex gap-0.5">
-          <Star class="h-4 w-4 fill-primary text-primary" />
-          <Star class="h-4 w-4 fill-primary text-primary" />
-          <Star class="h-4 w-4 fill-primary text-primary" />
-          <Star class="h-4 w-4 fill-primary text-primary" />
-          <Star class="h-4 w-4 fill-primary text-primary" />
-        </div>
-        <p class="relative z-10 leading-relaxed text-muted-foreground">
-          "When I was facing serious charges, Mr. Anderson's expertise and dedication made all the difference. 
-          He fought tirelessly for me and secured an outcome I never thought possible. I can't thank him enough."
-        </p>
-        <div class="mt-6 border-t pt-4">
-          <p class="font-semibold text-foreground">James R.</p>
-          <p class="text-sm text-muted-foreground">Criminal Defense Client</p>
-        </div>
-      </article>
-
-      <article class="relative overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-sm">
-        <Quote class="absolute -top-4 right-4 h-16 w-16 text-primary/10" />
-        <div class="mb-4 flex gap-0.5">
-          <Star class="h-4 w-4 fill-primary text-primary" />
-          <Star class="h-4 w-4 fill-primary text-primary" />
-          <Star class="h-4 w-4 fill-primary text-primary" />
-          <Star class="h-4 w-4 fill-primary text-primary" />
-          <Star class="h-4 w-4 fill-primary text-primary" />
-        </div>
-        <p class="relative z-10 leading-relaxed text-muted-foreground">
-          "I was terrified after my DUI arrest, but the team at {site.firmName} walked me through everything step by step. 
-          They got my charges significantly reduced and helped me keep my license. Highly recommend."
-        </p>
-        <div class="mt-6 border-t pt-4">
-          <p class="font-semibold text-foreground">Sarah M.</p>
-          <p class="text-sm text-muted-foreground">DUI Defense Client</p>
-        </div>
-      </article>
-
-      <article class="relative overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-sm">
-        <Quote class="absolute -top-4 right-4 h-16 w-16 text-primary/10" />
-        <div class="mb-4 flex gap-0.5">
-          <Star class="h-4 w-4 fill-primary text-primary" />
-          <Star class="h-4 w-4 fill-primary text-primary" />
-          <Star class="h-4 w-4 fill-primary text-primary" />
-          <Star class="h-4 w-4 fill-primary text-primary" />
-          <Star class="h-4 w-4 fill-primary text-primary" />
-        </div>
-        <p class="relative z-10 leading-relaxed text-muted-foreground">
-          "After our car accident, we didn't know where to turn. {site.firmName} handled everything with the insurance companies 
-          and got us fair compensation. They truly cared about our recovery."
-        </p>
-        <div class="mt-6 border-t pt-4">
-          <p class="font-semibold text-foreground">Robert &amp; Linda T.</p>
-          <p class="text-sm text-muted-foreground">Personal Injury Clients</p>
-        </div>
-      </article>
+    <div class="mt-12 grid gap-8 md:grid-cols-3">
+      {testimonials.map((t) => (
+        <article class="relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card p-8 shadow-sm">
+          <Quote class="absolute -top-4 right-4 h-16 w-16 text-primary/10" />
+          <div class="mb-4 flex gap-0.5">
+            <Star class="h-4 w-4 fill-primary text-primary" />
+            <Star class="h-4 w-4 fill-primary text-primary" />
+            <Star class="h-4 w-4 fill-primary text-primary" />
+            <Star class="h-4 w-4 fill-primary text-primary" />
+            <Star class="h-4 w-4 fill-primary text-primary" />
+          </div>
+          <p class="relative z-10 leading-relaxed text-muted-foreground">
+            "{t.quote.replace('{{firmName}}', site.firmName)}"
+          </p>
+          <div class="mt-6 flex items-center justify-between border-t pt-4 text-sm">
+            <div>
+              <p class="font-semibold text-foreground">{t.name}</p>
+              <p class="text-xs text-muted-foreground">{t.role}</p>
+            </div>
+            <a
+              href={t.url}
+              target="_blank"
+              rel="noreferrer"
+              class="text-xs font-medium uppercase tracking-wide text-primary hover:underline"
+            >
+              Review on Google
+            </a>
+          </div>
+        </article>
+      ))}
     </div>
   </div>
 </section>
