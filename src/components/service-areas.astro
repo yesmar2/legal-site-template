@@ -1,6 +1,9 @@
 ---
 import MapPin from '@lucide/astro/icons/map-pin';
 import { site } from '../config/site';
+import { practiceAreas } from '../data/practiceAreas';
+
+const practiceAreaNames = practiceAreas.map((area) => area.name).join(', ');
 ---
 <section class="border-y border-border bg-muted/30 py-16 md:py-20">
   <div class="mx-auto max-w-6xl px-6">
@@ -9,40 +12,17 @@ import { site } from '../config/site';
         Serving {site.location.city} &amp; {site.location.county}
       </h2>
       <p class="mx-auto mt-3 max-w-xl text-muted-foreground">
-        We represent clients throughout {site.location.county} in criminal defense, DUI, 
-        and traffic violation matters.
+        We represent clients throughout {site.location.county} in {practiceAreaNames.toLowerCase()} matters.
       </p>
     </div>
 
     <div class="mt-10 flex flex-wrap items-center justify-center gap-3 md:gap-4">
-      <div class="flex items-center gap-2 rounded-full border border-border bg-background px-5 py-2.5 text-sm font-medium text-foreground shadow-sm transition-colors hover:border-primary/50 hover:bg-primary/5">
-        <MapPin class="h-4 w-4 text-primary" />
-        {site.location.city}
-      </div>
-      <div class="flex items-center gap-2 rounded-full border border-border bg-background px-5 py-2.5 text-sm font-medium text-foreground shadow-sm transition-colors hover:border-primary/50 hover:bg-primary/5">
-        <MapPin class="h-4 w-4 text-primary" />
-        Lakewood
-      </div>
-      <div class="flex items-center gap-2 rounded-full border border-border bg-background px-5 py-2.5 text-sm font-medium text-foreground shadow-sm transition-colors hover:border-primary/50 hover:bg-primary/5">
-        <MapPin class="h-4 w-4 text-primary" />
-        Falconer
-      </div>
-      <div class="flex items-center gap-2 rounded-full border border-border bg-background px-5 py-2.5 text-sm font-medium text-foreground shadow-sm transition-colors hover:border-primary/50 hover:bg-primary/5">
-        <MapPin class="h-4 w-4 text-primary" />
-        Bemus Point
-      </div>
-      <div class="flex items-center gap-2 rounded-full border border-border bg-background px-5 py-2.5 text-sm font-medium text-foreground shadow-sm transition-colors hover:border-primary/50 hover:bg-primary/5">
-        <MapPin class="h-4 w-4 text-primary" />
-        Celoron
-      </div>
-      <div class="flex items-center gap-2 rounded-full border border-border bg-background px-5 py-2.5 text-sm font-medium text-foreground shadow-sm transition-colors hover:border-primary/50 hover:bg-primary/5">
-        <MapPin class="h-4 w-4 text-primary" />
-        Fredonia
-      </div>
-      <div class="flex items-center gap-2 rounded-full border border-border bg-background px-5 py-2.5 text-sm font-medium text-foreground shadow-sm transition-colors hover:border-primary/50 hover:bg-primary/5">
-        <MapPin class="h-4 w-4 text-primary" />
-        Dunkirk
-      </div>
+      {site.serviceAreas.map((city) => (
+        <div class="flex items-center gap-2 rounded-full border border-border bg-background px-5 py-2.5 text-sm font-medium text-foreground shadow-sm transition-colors hover:border-primary/50 hover:bg-primary/5">
+          <MapPin class="h-4 w-4 text-primary" />
+          {city}
+        </div>
+      ))}
     </div>
   </div>
 </section>

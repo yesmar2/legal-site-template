@@ -19,6 +19,8 @@ export const site = {
     state: 'New York'
   },
 
+  serviceAreas: ['Jamestown', 'Lakewood', 'Falconer', 'Bemus Point', 'Celoron', 'Fredonia', 'Dunkirk'],
+
   consultationText: 'Free Consultation',
 
   yearsExperience: 20,
