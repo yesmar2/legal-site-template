@@ -46,7 +46,9 @@ import { site } from '../../config/site';
     </div>
 
     <p class="mt-8 text-sm text-slate-500">
-      Available 24/7 for emergencies. Evening and weekend appointments available.
+      {site.isTwentyFourSeven && site.hasEveningAndWeekendAppointments && 'Available 24/7 for emergencies. Evening and weekend appointments available.'}
+      {site.isTwentyFourSeven && !site.hasEveningAndWeekendAppointments && 'Available 24/7 for emergencies.'}
+      {!site.isTwentyFourSeven && site.hasEveningAndWeekendAppointments && 'Evening and weekend appointments available.'}
     </p>
   </div>
 </section>

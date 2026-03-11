@@ -97,7 +97,10 @@ const year = new Date().getFullYear();
           </li>
           <li class="flex items-start gap-3 text-sm text-background/70">
             <Clock class="mt-0.5 h-4 w-4 shrink-0" />
-            <span>Mon–Fri: 9AM–5PM<br />24/7 Emergency Line</span>
+            <span>
+              Mon–Fri: 9AM–5PM
+              {site.isTwentyFourSeven && <><br />24/7 Emergency Line</>}
+            </span>
           </li>
         </ul>
       </div>

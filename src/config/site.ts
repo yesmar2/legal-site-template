@@ -21,6 +21,10 @@ export const site = {
 
   consultationText: 'Free Consultation',
 
-  yearsExperience: 20
+  yearsExperience: 20,
+
+  isTwentyFourSeven: true,
+
+  hasEveningAndWeekendAppointments: true
 };
 
