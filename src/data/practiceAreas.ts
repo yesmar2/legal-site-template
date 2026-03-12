@@ -1,10 +1,10 @@
 import CriminalDefenseOverview from '../components/criminal-defense/overview.astro';
-import CriminalCaseTypes from '../components/criminal-defense/case-types.astro';
 import CriminalDefensePenalties from '../components/criminal-defense/penalties.astro';
 import CriminalDefenseFAQ from '../components/criminal-defense/faq.astro';
 import CriminalDefenseResources from '../components/criminal-defense/resources.astro';
 import CriminalDefenseAttorney from '../components/criminal-defense/attorney.astro';
 import CriminalDefenseCTA from '../components/criminal-defense/cta.astro';
+import PracticeCaseTypes from '../components/practice-case-types.astro';
 
 export const practiceAreas = [
   {
@@ -15,9 +15,10 @@ export const practiceAreas = [
       'Defense representation for DUI, assault, theft, and other criminal charges in Jamestown and Chautauqua County.',
     href: '/practice/criminal-defense',
     icon: 'scale',
+    caseTypeIds: ['dui-dwi-defense', 'drug-charges', 'assault-charges', 'domestic-violence', 'theft-crimes'],
     sections: [
       CriminalDefenseOverview,
-      CriminalCaseTypes,
+      PracticeCaseTypes,
       CriminalDefensePenalties,
       CriminalDefenseFAQ,
       CriminalDefenseResources,
@@ -33,7 +34,8 @@ export const practiceAreas = [
       'Legal representation for injury victims involved in car accidents, slip and fall cases, and other negligence claims.',
     href: '/practice/personal-injury',
     icon: 'heart-pulse',
-    sections: []
+    caseTypeIds: ['car-accidents', 'slip-and-fall', 'wrongful-death'],
+    sections: [PracticeCaseTypes]
   },
   {
     slug: 'family-law',
@@ -43,7 +45,8 @@ export const practiceAreas = [
       'Guidance and representation for divorce, custody, and other family law matters.',
     href: '/practice/family-law',
     icon: 'heart',
-    sections: []
+    caseTypeIds: ['divorce', 'child-custody', 'child-support'],
+    sections: [PracticeCaseTypes]
   },
   {
     slug: 'real-estate-law',
@@ -53,7 +56,8 @@ export const practiceAreas = [
       'Legal assistance with residential and commercial real estate transactions and property matters.',
     href: '/practice/real-estate-law',
     icon: 'building-2',
-    sections: []
+    caseTypeIds: ['residential-closings', 'commercial-transactions', 'landlord-tenant'],
+    sections: [PracticeCaseTypes]
   }
 ];
 

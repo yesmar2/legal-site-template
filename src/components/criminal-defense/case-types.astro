@@ -6,44 +6,15 @@ import Home from '@lucide/astro/icons/house';
 import ShoppingBag from '@lucide/astro/icons/shopping-bag';
 import ArrowRight from '@lucide/astro/icons/arrow-right';
 import { site } from '../../config/site';
+import { caseTypes } from '../../data/caseTypes';
 
-const caseTypes = [
-  {
-    icon: Car,
-    title: 'DUI / DWI Defense',
-    description:
-      'Aggressive defense against drunk driving charges. We challenge traffic stops, breathalyzer accuracy, and field sobriety tests to protect your license and freedom.',
-    href: '/practice-areas/dui-defense'
-  },
-  {
-    icon: Pill,
-    title: 'Drug Charges',
-    description:
-      'Strategic defense for drug possession, distribution, and trafficking charges. We explore diversion programs, challenge search and seizure procedures, and fight for reduced charges.',
-    href: '/practice-areas/drug-charges'
-  },
-  {
-    icon: Swords,
-    title: 'Assault Charges',
-    description:
-      'Dedicated representation for simple assault, aggravated assault, and other violent crime accusations. We investigate the circumstances and build strong defenses.',
-    href: '/practice-areas/assault-charges'
-  },
-  {
-    icon: Home,
-    title: 'Domestic Violence',
-    description:
-      'Confidential, compassionate defense for domestic violence allegations. We understand the sensitive nature of these cases and work to protect your rights and reputation.',
-    href: '/practice-areas/domestic-violence'
-  },
-  {
-    icon: ShoppingBag,
-    title: 'Theft Crimes',
-    description:
-      'Defense for shoplifting, larceny, burglary, and other theft-related charges. We work to minimize consequences and explore alternatives to conviction.',
-    href: '/practice-areas/theft-crimes'
-  }
-];
+const iconMap = {
+  car: Car,
+  pill: Pill,
+  swords: Swords,
+  home: Home,
+  'shopping-bag': ShoppingBag,
+} as const;
 ---
 <section class="bg-muted py-20 md:py-28">
   <div class="mx-auto max-w-6xl px-6">
@@ -58,28 +29,33 @@ const caseTypes = [
     </div>
 
     <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {caseTypes.map((caseType) => (
-        <article class="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:shadow-lg">
-          <header>
-            <div class="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
-              <caseType.icon class="h-6 w-6 text-primary" />
-            </div>
-            <h3 class="text-xl font-semibold text-foreground">
-              {caseType.title}
-            </h3>
-          </header>
-          <p class="mt-3 mb-4 text-sm leading-relaxed text-muted-foreground">
-            {caseType.description}
-          </p>
-          <a
-            href={caseType.href}
-            class="inline-flex items-center gap-1 text-sm font-medium text-primary transition-colors hover:text-primary/80"
-          >
-            Learn More
-            <ArrowRight class="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
-          </a>
-        </article>
-      ))}
+      {caseTypes
+        .filter((caseType) => caseType.practiceSlug === 'criminal-defense')
+        .map((caseType) => {
+        const Icon = iconMap[caseType.icon as keyof typeof iconMap];
+        return (
+          <article class="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:shadow-lg">
+            <header>
+              <div class="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+                <Icon class="h-6 w-6 text-primary" />
+              </div>
+              <h3 class="text-xl font-semibold text-foreground">
+                {caseType.title}
+              </h3>
+            </header>
+            <p class="mt-3 mb-4 text-sm leading-relaxed text-muted-foreground">
+              {caseType.description}
+            </p>
+            <a
+              href={caseType.href}
+              class="inline-flex items-center gap-1 text-sm font-medium text-primary transition-colors hover:text-primary/80"
+            >
+              Learn More
+              <ArrowRight class="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
+            </a>
+          </article>
+        );
+      })}
     </div>
   </div>
 </section>
