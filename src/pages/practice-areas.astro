@@ -1,0 +1,106 @@
+---
+import Scale from '@lucide/astro/icons/scale';
+import HeartPulse from '@lucide/astro/icons/heart-pulse';
+import Heart from '@lucide/astro/icons/heart';
+import Building2 from '@lucide/astro/icons/building-2';
+import ArrowRight from '@lucide/astro/icons/arrow-right';
+import Calendar from '@lucide/astro/icons/calendar';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '@/src/components/site-header.astro';
+import SiteFooter from '@/src/components/site-footer.astro';
+import { site } from '@/src/config/site';
+import { practiceAreas } from '../content/practiceAreas';
+import { caseTypes } from '@/src/data/caseTypes';
+
+const iconMap = {
+  scale: Scale,
+  'heart-pulse': HeartPulse,
+  heart: Heart,
+  'building-2': Building2
+} as const;
+
+const pageTitle = `${site.firmName} Practice Areas`;
+const pageDescription = `${site.firmName} represents clients throughout ${site.location.county} in criminal defense, personal injury, family law, real estate law, and other legal matters.`;
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <div class="flex min-h-screen flex-col">
+    <SiteHeader />
+    <main>
+      <section class="bg-background py-20">
+        <div class="mx-auto max-w-4xl px-6 text-center">
+          <h1 class="text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+            Practice Areas
+          </h1>
+          <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
+            {site.firmName} represents clients throughout {site.location.county} in a wide range of legal matters including criminal defense, personal injury, family law, and real estate law.
+          </p>
+        </div>
+      </section>
+
+      <section class="bg-background pb-20">
+        <div class="mx-auto max-w-6xl px-6">
+          <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {practiceAreas.map((area) => {
+              const Icon = iconMap[area.icon as keyof typeof iconMap];
+              const types = caseTypes.filter((type) =>
+                Array.isArray(area.caseTypeIds) ? area.caseTypeIds.includes(type.id) : false
+              );
+
+              return (
+                <a href={`/practice/${area.slug}`} class="group">
+                  <div class="h-full rounded-2xl border border-border bg-card p-8 shadow-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg">
+                    <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+                      {Icon && <Icon class="h-6 w-6 text-primary" />}
+                    </div>
+                    <h2 class="flex items-center gap-2 text-xl font-semibold text-foreground">
+                      {area.name}
+                      <ArrowRight class="h-4 w-4 opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
+                    </h2>
+                    {types.length > 0 && (
+                      <p class="mt-2 text-sm text-slate-600">
+                        {types
+                          .slice(0, 3)
+                          .map((type) => type.title.replace('Defense', '').trim())
+                          .join(' • ')}
+                      </p>
+                    )}
+                    <p class="mt-4 text-base leading-relaxed text-muted-foreground">
+                      {area.description}
+                    </p>
+                    <p class="mt-4 text-xs text-muted-foreground">
+                      Serving {site.location.city} &amp; {site.location.county}
+                    </p>
+                    <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary">
+                      Learn More
+                      <ArrowRight class="h-4 w-4" />
+                    </span>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-muted py-20">
+        <div class="mx-auto max-w-4xl px-6 text-center">
+          <h2 class="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+            Need Help With a Legal Matter?
+          </h2>
+          <p class="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
+            Speak with an attorney today about your case.
+          </p>
+          <a
+            href="/contact"
+            class="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-blue-700"
+          >
+            <Calendar class="h-5 w-5" />
+            Schedule {site.consultationText}
+          </a>
+        </div>
+      </section>
+    </main>
+    <SiteFooter />
+  </div>
+</BaseLayout>

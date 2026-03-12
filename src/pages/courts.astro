@@ -1,0 +1,93 @@
+---
+import Building2 from '@lucide/astro/icons/building-2';
+import ArrowRight from '@lucide/astro/icons/arrow-right';
+import Calendar from '@lucide/astro/icons/calendar';
+import MapPin from '@lucide/astro/icons/map-pin';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '@/src/components/site-header.astro';
+import SiteFooter from '@/src/components/site-footer.astro';
+import { site } from '@/src/config/site';
+import { courts } from '../content/courts';
+
+const pageTitle = `Courts We Serve | ${site.firmName}`;
+const pageDescription = `Learn about the courts throughout ${site.location.county} where ${site.firmName} regularly represents clients.`;
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <div class="flex min-h-screen flex-col">
+    <SiteHeader />
+    <main>
+      <section class="bg-background py-20">
+        <div class="mx-auto max-w-4xl px-6 text-center">
+          <h1 class="text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+            Courts We Serve
+          </h1>
+          <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
+            Our attorneys regularly represent clients in courts throughout {site.location.county}, including Jamestown City Court and Chautauqua County Court.
+          </p>
+        </div>
+      </section>
+
+      <section class="bg-background">
+        <div class="mx-auto max-w-6xl px-6 pb-20">
+          <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {courts.map((court) => (
+              <a href={`/courts/${court.slug}`} class="group">
+                <div class="h-full rounded-2xl border border-border bg-card p-8 shadow-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg">
+                  <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+                    <Building2 class="h-6 w-6 text-primary" />
+                  </div>
+                  <h2 class="flex items-center gap-2 text-xl font-semibold text-foreground">
+                    {court.name}
+                    <ArrowRight class="h-4 w-4 opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
+                  </h2>
+                  <p class="mt-3 inline-flex items-center gap-2 text-sm text-slate-500">
+                    <MapPin class="h-4 w-4 text-primary" />
+                    {court.location.city}
+                  </p>
+                  <p class="mt-4 text-base leading-relaxed text-muted-foreground">
+                    {court.cardDescription}
+                  </p>
+                  <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary">
+                    Learn More
+                    <ArrowRight class="h-4 w-4" />
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-muted py-20">
+        <div class="mx-auto max-w-3xl px-6 text-center">
+          <h2 class="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+            Local Court Experience Matters
+          </h2>
+          <p class="mt-4 text-lg leading-relaxed text-muted-foreground">
+            Every court has its own procedures, prosecutors, and judges. Our firm represents clients in courts throughout {site.location.county} and understands how cases move through the local court system.
+          </p>
+        </div>
+      </section>
+
+      <section class="bg-background py-20">
+        <div class="mx-auto max-w-4xl px-6 text-center">
+          <h2 class="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+            Facing a Case in One of These Courts?
+          </h2>
+          <p class="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
+            Contact our office today to discuss your situation with an attorney.
+          </p>
+          <a
+            href="/contact"
+            class="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-blue-700"
+          >
+            <Calendar class="h-5 w-5" />
+            Schedule {site.consultationText}
+          </a>
+        </div>
+      </section>
+    </main>
+    <SiteFooter />
+  </div>
+</BaseLayout>
