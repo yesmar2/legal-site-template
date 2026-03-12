@@ -4,7 +4,6 @@ import Pill from '@lucide/astro/icons/pill';
 import Swords from '@lucide/astro/icons/swords';
 import Home from '@lucide/astro/icons/house';
 import ShoppingBag from '@lucide/astro/icons/shopping-bag';
-import ArrowRight from '@lucide/astro/icons/arrow-right';
 import { site } from '../../config/site';
 import { caseTypes } from '../../data/caseTypes';
 
@@ -43,16 +42,9 @@ const iconMap = {
                 {caseType.title}
               </h3>
             </header>
-            <p class="mt-3 mb-4 text-sm leading-relaxed text-muted-foreground">
+            <p class="mt-3 text-sm leading-relaxed text-muted-foreground">
               {caseType.description}
             </p>
-            <a
-              href={caseType.href}
-              class="inline-flex items-center gap-1 text-sm font-medium text-primary transition-colors hover:text-primary/80"
-            >
-              Learn More
-              <ArrowRight class="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
-            </a>
           </article>
         );
       })}

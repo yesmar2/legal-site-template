@@ -1,0 +1,271 @@
+# Cursor Project Rules
+
+# GEO Law Firm Website Template (Astro)
+
+This project is a reusable law firm website template designed for GEO (AI search visibility).
+All code generation must preserve template architecture and avoid hardcoded firm data.
+
+---
+
+## CORE PRINCIPLES
+
+1. This is a reusable multi-firm template.
+2. Firm-specific data MUST NOT be hardcoded.
+3. Components must pull data from configuration or content models.
+4. Maintain clear entity relationships between:
+
+   * Law Firm
+   * Attorneys
+   * Practice Areas
+   * Courts
+   * Locations
+   * Legal Guides
+
+---
+
+## CONFIGURATION RULES
+
+All firm-specific data must come from:
+
+src/config/site.ts
+
+Example structure:
+
+export const site = {
+firmName: "",
+phone: "",
+city: "",
+county: "",
+state: "",
+tagline: ""
+}
+
+Components must import values like:
+
+import { site } from "../config/site"
+
+Never hardcode:
+
+* phone numbers
+* firm names
+* city names
+* county names
+* state names
+
+---
+
+## CONTENT MODELS
+
+Structured content must live in content files.
+
+Practice Areas:
+src/content/practiceAreas.ts
+
+Courts:
+src/content/courts.ts
+
+Attorneys:
+src/content/attorneys.ts
+
+Guides:
+src/content/guides.ts
+
+These files define the structured data used to generate pages.
+
+Example fields:
+
+slug
+title
+description
+summary
+caseTypes
+
+---
+
+## DYNAMIC PAGE GENERATION
+
+Use Astro dynamic routes to generate pages.
+
+Practice Areas:
+
+src/pages/practice/[slug].astro
+
+Courts:
+
+src/pages/courts/[slug].astro
+
+Guides:
+
+src/pages/guides/[slug].astro
+
+These pages must use getStaticPaths() to generate routes from content models.
+
+---
+
+## HOMEPAGE STRUCTURE
+
+Homepage must follow this order:
+
+HeroSection
+PracticeAreas
+AboutTheFirm
+AttorneySection
+ServiceAreas
+LocalCourtsHome
+Testimonials
+CTASection
+
+Do not introduce large new sections without clear architectural purpose.
+
+---
+
+## COMPONENT DESIGN RULES
+
+Components should:
+
+• accept props when possible
+• avoid embedded content
+• avoid page-specific logic
+
+Preferred structure:
+
+src/components/
+
+Example components:
+
+HeroSection
+PracticeAreas
+AboutTheFirm
+AttorneySection
+ServiceAreas
+LocalCourtsHome
+Testimonials
+CTASection
+
+---
+
+## STYLING CONVENTIONS
+
+Use Tailwind CSS.
+
+Preferred design patterns:
+
+cards:
+rounded-xl
+border
+p-6
+
+containers:
+max-w-6xl
+mx-auto
+
+text hierarchy:
+
+headings:
+text-3xl font-bold
+
+subtext:
+text-slate-600
+
+secondary metadata:
+text-sm text-slate-500
+text-xs text-slate-400
+
+---
+
+## LOCATION AUTHORITY RULES
+
+Location signals should reference:
+
+site.city
+site.county
+site.state
+
+Example:
+
+Serving {site.city} & {site.county}
+
+Avoid repeating long location phrases excessively.
+
+---
+
+## PRACTICE AREA CARD STRUCTURE
+
+Practice cards should follow this structure:
+
+Icon
+Practice Title
+Case Types
+Location Line
+Learn More Link
+
+Example:
+
+Criminal Defense
+
+DUI • Assault • Drug Charges
+
+Serving {site.city} & {site.county}
+
+---
+
+## LEGAL GUIDE STRUCTURE
+
+Guides must be informational.
+
+Guides should include:
+
+Hero
+Overview
+Process explanation
+FAQs
+CTA
+
+Guides must include:
+
+disclaimer
+last reviewed date
+attorney attribution
+citations when appropriate
+
+---
+
+## COURT PAGE STRUCTURE
+
+Court pages should contain:
+
+Court Overview
+Cases Handled
+Location
+Court Process
+How the Firm Represents Clients There
+
+---
+
+## SEO AND GEO GOALS
+
+Site architecture should reinforce relationships between:
+
+Law Firm
+Practice Areas
+Courts
+Locations
+Legal Questions (Guides)
+
+These relationships improve AI citation probability.
+
+---
+
+## WHEN GENERATING CODE
+
+Always:
+
+1. Follow template architecture.
+2. Avoid hardcoding firm data.
+3. Use configuration and content models.
+4. Maintain reusable components.
+5. Preserve Astro static generation patterns.
+
+---
+
+## END RULES
