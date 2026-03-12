@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '@/src/components/site-header.astro';
+import SiteFooter from '@/src/components/site-footer.astro';
+import Phone from '@lucide/astro/icons/phone';
+import MapPin from '@lucide/astro/icons/map-pin';
+import { site } from '../config/site';
+
+const telHref = `tel:${site.phone.replace(/[^0-9+]/g, '')}`;
+---
+
+<BaseLayout
+  title={`Contact ${site.firmName}`}
+  description={`Contact ${site.firmName} in ${site.location.city}, ${site.location.state} to discuss your case and schedule a ${site.consultationText.toLowerCase()}.`}
+>
+  <div class="flex min-h-screen flex-col">
+    <SiteHeader />
+    <main class="flex-1">
+      <!-- ContactHero -->
+      <section class="bg-muted py-20">
+        <div class="mx-auto max-w-3xl px-6 text-center">
+          <h1 class="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+            Contact {site.firmName}
+          </h1>
+          <p class="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
+            Speak with a local attorney about your case. Call today for a {site.consultationText.toLowerCase()}.
+          </p>
+        </div>
+      </section>
+
+      <!-- CallSection -->
+      <section class="bg-background py-20">
+        <div class="mx-auto max-w-3xl px-6 text-center">
+          <h2 class="text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
+            Call to Discuss Your Case
+          </h2>
+          <p class="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">
+            The quickest way to reach us is by phone. If we are in court when you call, leave a message and we will return your call as soon as possible.
+          </p>
+          <a
+            href={telHref}
+            class="mt-6 inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-base font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
+          >
+            <Phone class="h-5 w-5" />
+            Call {site.phone}
+          </a>
+          <p class="mt-3 text-xs text-muted-foreground md:text-sm">
+            Free consultations available. If this is an emergency, call now.
+          </p>
+        </div>
+      </section>
+
+      <!-- FormPlaceholder -->
+      <section class="bg-muted py-20">
+        <div class="mx-auto max-w-3xl px-6">
+          <div class="mx-auto max-w-2xl rounded-xl bg-card p-8 text-center shadow-sm">
+            <h2 class="text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
+              Send Us a Message
+            </h2>
+            <p class="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">
+              Online consultation requests will be available soon. For now, please call our office directly to speak with an attorney about your situation.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- OfficeInfo -->
+      <section class="bg-background py-20">
+        <div class="mx-auto max-w-3xl px-6 text-center">
+          <h2 class="text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
+            Office Location
+          </h2>
+          <div class="mt-6 space-y-3 text-sm leading-relaxed text-muted-foreground md:text-base">
+            <div class="flex flex-col items-center gap-2">
+              <div class="inline-flex items-center gap-2 rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">
+                <MapPin class="h-4 w-4 text-primary" />
+                Office Address
+              </div>
+              <p class="mt-1">
+                {site.address.street}
+              </p>
+              <p>
+                {site.address.city}, {site.address.state} {site.address.zip}
+              </p>
+            </div>
+            <p class="mt-4">
+              Serving clients throughout {site.location.county}, including {site.location.city} and the surrounding communities.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ContactDisclaimer -->
+      <section class="bg-muted py-20">
+        <div class="mx-auto max-w-3xl px-6">
+          <p class="mx-auto max-w-2xl text-center text-xs leading-relaxed text-muted-foreground">
+            Contacting our firm does not create an attorney-client relationship. Please do not send confidential information until an attorney-client relationship has been established.
+          </p>
+        </div>
+      </section>
+    </main>
+    <SiteFooter />
+  </div>
+</BaseLayout>
+
