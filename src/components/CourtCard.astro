@@ -1,0 +1,44 @@
+---
+import Building2 from '@lucide/astro/icons/building-2';
+import { site } from '@/src/config/site';
+import Card from '@/src/components/Card.astro';
+
+type Variant = 'full' | 'summary' | 'home';
+
+interface Props {
+  court: {
+    slug: string;
+    name: string;
+    location: {
+      city: string;
+      county?: string;
+      state?: string;
+    };
+    description?: string;
+    cardDescription?: string;
+    homeCardDescription?: string;
+  };
+  variant?: Variant;
+}
+
+const { court, variant = 'summary' } = Astro.props as Props;
+
+const city = court.location.city;
+const county = court.location.county ?? site.location.county;
+const state = court.location.state ?? site.address.state;
+const fullDescription = court.cardDescription ?? court.description;
+const homeDescription = court.homeCardDescription ?? fullDescription;
+const href = `/courts/${court.slug}`;
+---
+
+<Card
+  href={href}
+  title={court.name}
+  icon={Building2}
+  eyebrow={`${city}${county ? ` • ${county}` : ''}`}
+  meta={variant === 'full' ? `${county} ${state}` : undefined}
+  ctaLabel={variant === 'full' ? 'View Court Details' : 'Learn More'}
+>
+  {variant === 'home' ? homeDescription : fullDescription}
+</Card>
+

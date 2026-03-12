@@ -57,30 +57,20 @@ const getPrimaryCourt = (guide: (typeof guides)[number]) => {
             {guides.map((guide) => {
               const primaryCourt = getPrimaryCourt(guide);
 
-              const eyebrow = practiceLabels[guide.practiceArea] ?? guide.practiceArea;
-
-              const metaParts = [];
-              if (primaryCourt) {
-                metaParts.push(primaryCourt.name);
-              }
-              if (guide.lastReviewed) {
-                metaParts.push(`Last Reviewed: ${guide.lastReviewed}`);
-              }
-
-              const meta = metaParts.length > 0
-                ? `${metaParts.join(' • ')} • ${site.location.county} ${site.address.state}`
-                : undefined;
-
               return (
                 <Card
                   href={`/guides/${guide.slug}`}
                   title={guide.title}
                   icon={BookOpen}
-                  eyebrow={eyebrow}
-                  meta={meta}
+                  eyebrow={practiceLabels[guide.practiceArea] ?? guide.practiceArea}
                   ctaLabel="Read Guide"
                 >
                   {guide.description}
+                  {guide.lastReviewed && (
+                    <p class="mt-2 text-xs text-slate-400">
+                      Last Reviewed: {guide.lastReviewed}
+                    </p>
+                  )}
                 </Card>
               );
             })}

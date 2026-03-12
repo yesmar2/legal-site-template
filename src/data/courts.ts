@@ -6,6 +6,8 @@ export const courts = [
     name: 'Jamestown City Court',
     cardDescription:
       'Handles many misdemeanor criminal cases, traffic violations, and preliminary hearings for felony cases in Jamestown.',
+    homeCardDescription:
+      'Handles many criminal and traffic cases in Jamestown City.',
     href: '/courts/jamestown-city-court',
     page: {
       title: 'Jamestown City Court | Criminal & Traffic Court Information',
@@ -79,6 +81,8 @@ export const courts = [
     name: 'Dunkirk City Court',
     cardDescription:
       'Local court serving Dunkirk handling criminal misdemeanors, traffic violations, and preliminary hearings.',
+    homeCardDescription:
+      'Local court for criminal and traffic matters in Dunkirk.',
     href: '/courts/dunkirk-city-court',
     page: {
       title: 'Dunkirk City Court | Criminal & Traffic Court Information',
@@ -151,6 +155,8 @@ export const courts = [
     name: 'Chautauqua County Court',
     cardDescription:
       'Handles felony criminal cases and higher-level matters for Chautauqua County.',
+    homeCardDescription:
+      'County-level court handling serious felony criminal cases.',
     href: '/courts/chautauqua-county-court',
     page: {
       title: 'Chautauqua County Court | Felony & Criminal Court Information',
@@ -227,6 +233,8 @@ export const courts = [
     name: 'Ellicott Town Court',
     cardDescription:
       'Local town court serving Ellicott and nearby communities for traffic, criminal, and town-level matters.',
+    homeCardDescription:
+      'Town court for traffic, criminal, and local disputes in Ellicott.',
     href: '/courts/ellicott-town-court',
     page: {
       title: 'Ellicott Town Court | Local Court Information',
