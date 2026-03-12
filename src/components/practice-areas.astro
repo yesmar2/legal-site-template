@@ -27,7 +27,7 @@ const iconMap = {
 
     <div class="mt-14 grid gap-5 sm:grid-cols-2">
       {practiceAreas.map((area) => {
-        const Icon = iconMap[area.icon];
+        const Icon = iconMap[area.icon as keyof typeof iconMap];
 
         return (
           <a href={area.href} class="group">
@@ -39,9 +39,16 @@ const iconMap = {
                 {area.name}
                 <ArrowRight class="h-4 w-4 opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
               </h3>
-              <p class="mt-3 text-base leading-relaxed text-muted-foreground">
+              <p class="mt-3 text-sm leading-relaxed text-muted-foreground">
                 {area.description}
               </p>
+              <p class="mt-2 text-xs text-muted-foreground">
+                Serving {site.location.city} &amp; {site.location.county}
+              </p>
+              <span class="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary">
+                Learn more
+                <ArrowRight class="h-4 w-4" />
+              </span>
             </div>
           </a>
         );

@@ -8,6 +8,7 @@ import MapPin from '@lucide/astro/icons/map-pin';
 import Calendar from '@lucide/astro/icons/calendar';
 import ArrowRight from '@lucide/astro/icons/arrow-right';
 import Phone from '@lucide/astro/icons/phone';
+import Scale from '@lucide/astro/icons/scale';
 import { site } from '../config/site';
 import { attorneys } from '../content/attorneys';
 import { courts } from '../content/courts';
@@ -33,8 +34,11 @@ const practiceAreasLabel = 'Criminal • Injury • Family'; // placeholder; can
           <h1 class="text-balance text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl">
             About {site.firmName}
           </h1>
-          <p class="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-slate-400 md:text-xl">
+          <p class="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-slate-200 md:text-xl">
             {site.firmName} is a law firm based in {site.location.city}, {site.location.state}, representing clients throughout {site.location.county}.
+          </p>
+          <p class="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-slate-300 md:text-base">
+            {site.firmName} represents clients throughout {site.location.city} and {site.location.county}, regularly handling matters in local courts across {site.location.county}.
           </p>
 
           <!-- Authority badge row -->
@@ -64,10 +68,10 @@ const practiceAreasLabel = 'Criminal • Injury • Family'; // placeholder; can
           <p class="mt-3 text-lg font-medium text-primary">
             {site.tagline}
           </p>
-          <p class="mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground">
+          <p class="mt-4 max-w-2xl mx-auto text-base leading-relaxed text-muted-foreground">
             {site.firmName} represents individuals and families in criminal defense, personal injury, family law, and related matters. Our attorneys focus on protecting clients' rights and achieving the best possible outcomes in {site.location.city} and across {site.location.county}.
           </p>
-          <p class="mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground">
+          <p class="mt-4 max-w-2xl mx-auto text-base leading-relaxed text-muted-foreground">
             The firm regularly represents clients in local courts throughout {site.location.county}, {site.location.state}. We understand local procedures and work to provide responsive, effective representation close to home.
           </p>
         </div>
@@ -88,7 +92,7 @@ const practiceAreasLabel = 'Criminal • Injury • Family'; // placeholder; can
               const att = attorney as typeof attorney & { experience?: string; education?: string; focusList?: string[]; image?: string };
               return (
                 <a href={attorney.href} class="group">
-                  <div class="h-full rounded-2xl border border-border bg-card p-6 text-center shadow-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg">
+                  <div class="h-full rounded-xl border border-border bg-card p-6 text-center shadow-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg">
                     {att.image ? (
                       <img src={att.image} alt={attorney.name} class="mx-auto mb-4 h-24 w-24 rounded-full object-cover" />
                     ) : (
@@ -98,7 +102,7 @@ const practiceAreasLabel = 'Criminal • Injury • Family'; // placeholder; can
                     )}
                     <h3 class="text-xl font-semibold text-foreground">{attorney.name}</h3>
                     {att.experience && (
-                      <p class="mt-1 text-sm text-muted-foreground">{att.experience}</p>
+                      <p class="mt-1 text-sm font-medium text-muted-foreground">{att.experience}</p>
                     )}
                     <p class="mt-2 text-sm font-medium text-primary">{attorney.title}</p>
                     <p class="mt-4 text-base leading-relaxed text-muted-foreground">
@@ -130,20 +134,32 @@ const practiceAreasLabel = 'Criminal • Injury • Family'; // placeholder; can
             Experience & Credentials
           </h2>
           <div class="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            <div class="rounded-2xl border border-border bg-card p-6 text-center shadow-sm">
-              <span class="text-3xl font-bold text-primary">{yearsExp}+</span>
-              <p class="mt-2 text-sm font-medium text-muted-foreground">Years of Legal Experience</p>
+            <div class="rounded-xl border border-border bg-card p-6 text-center shadow-sm">
+              <div class="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+                <Award class="h-5 w-5 text-primary" />
+              </div>
+              <span class="text-4xl font-bold text-primary">{yearsExp}+</span>
+              <p class="mt-2 text-sm font-medium text-muted-foreground">Years Experience</p>
             </div>
-            <div class="rounded-2xl border border-border bg-card p-6 text-center shadow-sm">
-              <span class="text-2xl font-bold text-foreground">Licensed</span>
+            <div class="rounded-xl border border-border bg-card p-6 text-center shadow-sm">
+              <div class="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+                <Scale class="h-5 w-5 text-foreground" />
+              </div>
+              <span class="text-3xl font-bold text-foreground">Licensed</span>
               <p class="mt-2 text-sm font-medium text-muted-foreground">{site.location.state}</p>
             </div>
-            <div class="rounded-2xl border border-border bg-card p-6 text-center shadow-sm">
-              <span class="text-2xl font-bold text-foreground">Local Courts</span>
+            <div class="rounded-xl border border-border bg-card p-6 text-center shadow-sm">
+              <div class="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+                <MapPin class="h-5 w-5 text-foreground" />
+              </div>
+              <span class="text-3xl font-bold text-foreground">Local Courts</span>
               <p class="mt-2 text-sm font-medium text-muted-foreground">{site.location.county}</p>
             </div>
-            <div class="rounded-2xl border border-border bg-card p-6 text-center shadow-sm">
-              <span class="text-2xl font-bold text-foreground">Focused Practice</span>
+            <div class="rounded-xl border border-border bg-card p-6 text-center shadow-sm">
+              <div class="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+                <Calendar class="h-5 w-5 text-foreground" />
+              </div>
+              <span class="text-3xl font-bold text-foreground">Focused Practice</span>
               <p class="mt-2 text-sm font-medium text-muted-foreground">{practiceAreasLabel}</p>
             </div>
           </div>
@@ -162,8 +178,13 @@ const practiceAreasLabel = 'Criminal • Injury • Family'; // placeholder; can
           <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {courts.map((court) => (
               <a href={`/courts/${court.slug}`} class="group">
-                <div class="h-full rounded-2xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg">
+                <div class="h-full rounded-xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg">
                   <h3 class="text-lg font-semibold text-foreground">{court.name}</h3>
+                  {('location' in court) && (court as any).location?.city && (
+                    <p class="mt-1 text-xs font-medium text-muted-foreground">
+                      {(court as any).location.city}
+                    </p>
+                  )}
                   <p class="mt-2 text-sm leading-relaxed text-muted-foreground line-clamp-3">
                     {court.cardDescription}
                   </p>
@@ -181,11 +202,14 @@ const practiceAreasLabel = 'Criminal • Injury • Family'; // placeholder; can
       <!-- 6. Contact CTA -->
       <section class="about-section border-t border-border bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div class="about-container text-center">
-          <h2 class="text-2xl font-bold tracking-tight text-white md:text-3xl">
+          <h2 class="text-3xl font-bold tracking-tight text-white md:text-4xl">
             Speak With a Local Attorney
           </h2>
           <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-300">
             If you need legal representation in {site.location.city} or throughout {site.location.county}, contact {site.firmName} to schedule a consultation.
+          </p>
+          <p class="mx-auto mt-2 max-w-2xl text-sm text-slate-300">
+            Consultations are available by phone or in person.
           </p>
           <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a
