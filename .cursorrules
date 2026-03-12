@@ -23,6 +23,10 @@ All code generation must preserve template architecture and avoid hardcoded firm
 
 ---
 
+## SITE RULES
+
+1.  Site must be javascript free
+
 ## CONFIGURATION RULES
 
 All firm-specific data must come from:

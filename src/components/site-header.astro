@@ -1,23 +1,27 @@
 ---
 import Scale from '@lucide/astro/icons/scale';
 import Phone from '@lucide/astro/icons/phone';
+import Menu from '@lucide/astro/icons/menu';
 import { site } from '../config/site';
 ---
 <header class="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-  <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+  <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
     <!-- Logo -->
     <a href="/" class="flex items-center gap-2">
       <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
         <Scale class="h-5 w-5 text-primary-foreground" />
       </div>
       <div>
-        <span class="font-bold text-foreground">{site.firmName}</span>
+        <span class="text-sm font-bold text-foreground sm:text-base">{site.firmName}</span>
         <span class="hidden text-xs text-muted-foreground sm:block">{site.location.county}</span>
       </div>
     </a>
 
-    <!-- Simple navigation (desktop) -->
+    <!-- Desktop navigation -->
     <div class="hidden items-center gap-6 lg:flex">
+      <a href="/about" class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+        About
+      </a>
       <a href="/#practice-areas" class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
         Practice Areas
       </a>
@@ -27,45 +31,84 @@ import { site } from '../config/site';
       <a href="/courts/jamestown-city-court" class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
         Local Courts
       </a>
+      <a href="/contact" class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+        Contact
+      </a>
     </div>
 
-    <!-- Phone number and CTA -->
-    <div class="hidden items-center gap-4 md:flex">
-      <a 
-        href={`tel:${site.phone.replace(/[^0-9+]/g, '')}`} 
-        class="flex items-center gap-2 text-base font-semibold text-foreground transition-colors hover:text-primary"
-      >
-        <Phone class="h-5 w-5 text-primary" />
-        {site.phone}
-      </a>
+    <!-- Right-side actions -->
+    <div class="flex items-center gap-2">
+      <!-- Mobile call icon (below lg) -->
       <a
         href={`tel:${site.phone.replace(/[^0-9+]/g, '')}`}
-        class="inline-flex items-center justify-center whitespace-nowrap rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
+        class="inline-flex items-center justify-center rounded-lg border border-input bg-background p-2 text-muted-foreground hover:bg-muted hover:text-foreground lg:hidden"
+        aria-label={`Call ${site.phone}`}
       >
-        <Phone class="mr-1 h-4 w-4" />
-        Call Now
+        <Phone class="h-5 w-5 text-primary" />
       </a>
+
+      <!-- Mobile menu toggle (below lg) -->
+      <button
+        type="button"
+        id="mobile-menu-toggle"
+        class="inline-flex items-center justify-center rounded-lg border border-input bg-background p-2 text-muted-foreground hover:bg-muted hover:text-foreground lg:hidden"
+        aria-label="Toggle navigation menu"
+      >
+        <Menu class="h-5 w-5" />
+      </button>
+
+      <!-- Desktop phone + CTA (lg and up) -->
+      <div class="hidden items-center gap-6 lg:flex">
+        <a
+          href={`tel:${site.phone.replace(/[^0-9+]/g, '')}`}
+          class="flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+        >
+          <Phone class="h-5 w-5 text-primary" />
+          {site.phone}
+        </a>
+        <a
+          href="/contact"
+          class="inline-flex items-center justify-center whitespace-nowrap rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-blue-700"
+        >
+          Schedule Free Consultation
+        </a>
+      </div>
     </div>
   </nav>
 
-  <!-- Simple mobile bar (no JS) -->
-  <div class="border-t bg-background px-6 py-3 text-sm md:hidden">
-    <div class="flex flex-col gap-2">
-      <a 
-        href={`tel:${site.phone.replace(/[^0-9+]/g, '')}`} 
-        class="flex items-center justify-center gap-2 rounded-md border border-input bg-background px-4 py-2 text-base font-semibold text-foreground transition-colors hover:bg-muted"
-      >
-        <Phone class="h-5 w-5 text-primary" />
-        Call Now
+  <!-- Mobile navigation panel -->
+  <div
+    id="mobile-menu-panel"
+    class="hidden border-t bg-background px-4 pb-4 pt-2 text-sm lg:hidden"
+  >
+    <nav class="flex flex-col gap-2">
+      <a href="/about" class="py-1 text-muted-foreground hover:text-foreground">
+        About
       </a>
-      <div class="flex items-center justify-center gap-3 text-xs text-muted-foreground">
-        <a href="/#practice-areas" class="hover:text-foreground">Practice Areas</a>
-        <span class="h-1 w-1 rounded-full bg-muted-foreground/40"></span>
-        <a href="/courts/jamestown-city-court" class="hover:text-foreground">Courts</a>
-        <span class="h-1 w-1 rounded-full bg-muted-foreground/40"></span>
-        <a href="/guides" class="hover:text-foreground">Guides</a>
-      </div>
-    </div>
+      <a href="/#practice-areas" class="py-1 text-muted-foreground hover:text-foreground">
+        Practice Areas
+      </a>
+      <a href="/courts/jamestown-city-court" class="py-1 text-muted-foreground hover:text-foreground">
+        Courts
+      </a>
+      <a href="/guides" class="py-1 text-muted-foreground hover:text-foreground">
+        Guides
+      </a>
+      <a href="/contact" class="py-1 text-muted-foreground hover:text-foreground">
+        Contact
+      </a>
+    </nav>
   </div>
+
+  <script>
+    const toggle = document.getElementById('mobile-menu-toggle');
+    const panel = document.getElementById('mobile-menu-panel');
+
+    if (toggle && panel) {
+      toggle.addEventListener('click', () => {
+        panel.classList.toggle('hidden');
+      });
+    }
+  </script>
 </header>
 
