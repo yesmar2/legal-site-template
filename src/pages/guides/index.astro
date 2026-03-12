@@ -8,6 +8,7 @@ import { courts } from '@/src/content/courts';
 import Phone from '@lucide/astro/icons/phone';
 import BookOpen from '@lucide/astro/icons/book-open';
 import ArrowRight from '@lucide/astro/icons/arrow-right';
+import Card from '@/src/components/Card.astro';
 
 const pageTitle = `Legal Guides | ${site.firmName}`;
 const pageDescription = `Practical legal guides from ${site.firmName} to help people throughout ${site.location.county} understand common legal issues and local court processes.`;
@@ -56,42 +57,31 @@ const getPrimaryCourt = (guide: (typeof guides)[number]) => {
             {guides.map((guide) => {
               const primaryCourt = getPrimaryCourt(guide);
 
+              const eyebrow = practiceLabels[guide.practiceArea] ?? guide.practiceArea;
+
+              const metaParts = [];
+              if (primaryCourt) {
+                metaParts.push(primaryCourt.name);
+              }
+              if (guide.lastReviewed) {
+                metaParts.push(`Last Reviewed: ${guide.lastReviewed}`);
+              }
+
+              const meta = metaParts.length > 0
+                ? `${metaParts.join(' • ')} • ${site.location.county} ${site.address.state}`
+                : undefined;
+
               return (
-                <a href={`/guides/${guide.slug}`} class="group block h-full">
-                  <article class="flex h-full flex-col rounded-2xl border border-border bg-card p-8 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg">
-                    <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                      <BookOpen class="h-6 w-6 text-primary" />
-                    </div>
-                    <p class="text-sm font-medium text-blue-600">
-                      {practiceLabels[guide.practiceArea] ?? guide.practiceArea}
-                    </p>
-                    <h2 class="mt-1 flex items-center gap-2 text-xl font-semibold text-foreground">
-                      {guide.title}
-                      <ArrowRight class="h-4 w-4 opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
-                    </h2>
-                    <p class="mt-4 text-base leading-relaxed text-muted-foreground">
-                      {guide.description}
-                    </p>
-                    {primaryCourt && (
-                      <p class="mt-2 text-sm text-slate-500">
-                        <span class="underline decoration-from-font">
-                          {primaryCourt.name}
-                        </span>
-                        {' '}
-                        • {site.location.county} {site.address.state}
-                      </p>
-                    )}
-                    {guide.lastReviewed && (
-                      <p class="mt-1 text-xs text-slate-400">
-                        Last Reviewed: {guide.lastReviewed}
-                      </p>
-                    )}
-                    <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary">
-                      Read Guide
-                      <ArrowRight class="h-4 w-4" />
-                    </span>
-                  </article>
-                </a>
+                <Card
+                  href={`/guides/${guide.slug}`}
+                  title={guide.title}
+                  icon={BookOpen}
+                  eyebrow={eyebrow}
+                  meta={meta}
+                  ctaLabel="Read Guide"
+                >
+                  {guide.description}
+                </Card>
               );
             })}
           </div>

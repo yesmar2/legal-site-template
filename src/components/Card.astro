@@ -1,0 +1,60 @@
+---
+import ArrowRight from '@lucide/astro/icons/arrow-right';
+
+interface Props {
+  href: string;
+  title: string;
+  icon?: any;
+  eyebrow?: string;
+  meta?: string;
+  ctaLabel?: string;
+}
+
+const {
+  href,
+  title,
+  icon: Icon,
+  eyebrow,
+  meta,
+  ctaLabel = 'Learn More'
+} = Astro.props as Props;
+---
+
+<a href={href} class="group block h-full">
+  <article class="flex h-full flex-col rounded-2xl border border-border bg-card p-8 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg">
+    {Icon && (
+      <div class="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+        <Icon class="h-6 w-6 text-primary" />
+      </div>
+    )}
+
+    <h3 class="flex items-center gap-2 text-xl font-semibold text-foreground">
+      {title}
+      <ArrowRight class="h-4 w-4 opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
+    </h3>
+
+    {eyebrow && (
+      <p class="mt-2 text-sm text-slate-600">
+        {eyebrow}
+      </p>
+    )}
+
+    <p class="mt-4 text-base leading-relaxed text-muted-foreground">
+      <slot />
+    </p>
+
+    {meta && (
+      <p class="mt-4 text-xs text-muted-foreground">
+        {meta}
+      </p>
+    )}
+
+    {ctaLabel && (
+      <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary">
+        {ctaLabel}
+        <ArrowRight class="h-4 w-4" />
+      </span>
+    )}
+  </article>
+</a>
+

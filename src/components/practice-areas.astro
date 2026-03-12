@@ -7,6 +7,7 @@ import ArrowRight from '@lucide/astro/icons/arrow-right';
 import { site } from '../config/site';
 import { practiceAreas } from '../data/practiceAreas';
 import { caseTypes } from '../data/caseTypes';
+import Card from '@/src/components/Card.astro';
 
 const iconMap = {
   'scale': Scale,
@@ -33,36 +34,25 @@ const iconMap = {
           Array.isArray(area.caseTypeIds) ? area.caseTypeIds.includes(type.id) : false
         );
 
+        const eyebrow = types
+          .slice(0, 3)
+          .map((t) => t.title.replace('Defense', '').trim())
+          .join(' • ');
+
+
         return (
-          <a href={area.href} class="group">
-            <div class="h-full rounded-2xl border border-border bg-card p-8 shadow-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg">
-              <div class="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                <Icon class="h-6 w-6 text-primary" />
-              </div>
-              <h3 class="flex items-center gap-2 text-xl font-semibold text-foreground">
-                {area.name}
-                <ArrowRight class="h-4 w-4 opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
-              </h3>
-              {types.length > 0 && (
-                <p class="mt-2 text-sm text-slate-600">
-                  {types
-                    .slice(0, 3)
-                    .map((t) => t.title.replace('Defense', '').trim())
-                    .join(' • ')}
-                </p>
-              )}
-              <p class="mt-2 text-xs text-muted-foreground">
-                Serving {site.location.city} &amp; {site.location.county}
-              </p>
-              <span class="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary">
-                Learn More
-                <ArrowRight class="h-4 w-4" />
-              </span>
-            </div>
-          </a>
+          <Card
+            href={area.href}
+            title={area.name}
+            icon={Icon}
+            eyebrow={eyebrow}
+            meta={`Serving ${site.location.city} & ${site.location.county}`}
+            ctaLabel="Learn More"
+          >
+            {area.description}
+          </Card>
         );
       })}
     </div>
   </div>
 </section>
-
