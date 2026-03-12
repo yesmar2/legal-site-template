@@ -1,0 +1,234 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '@/src/components/site-header.astro';
+import SiteFooter from '@/src/components/site-footer.astro';
+import User from '@lucide/astro/icons/user';
+import Award from '@lucide/astro/icons/award';
+import MapPin from '@lucide/astro/icons/map-pin';
+import Calendar from '@lucide/astro/icons/calendar';
+import ArrowRight from '@lucide/astro/icons/arrow-right';
+import Phone from '@lucide/astro/icons/phone';
+import { site } from '../config/site';
+import { attorneys } from '../content/attorneys';
+import { courts } from '../content/courts';
+
+const pageTitle = `About ${site.firmName}`;
+const pageDescription = `${site.firmName} is a law firm based in ${site.location.city}, ${site.location.state}, representing clients throughout ${site.location.county}.`;
+
+const yearsExp = site.yearsExperience ?? 20;
+const practiceAreasLabel = 'Criminal • Injury • Family'; // placeholder; can move to config
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <div class="flex min-h-screen flex-col">
+    <SiteHeader />
+    <main>
+      <!-- 1. Hero with authority badges -->
+      <section class="relative isolate overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 pb-24 pt-28 md:pb-28 md:pt-36">
+        <div aria-hidden="true" class="absolute -top-40 left-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-gradient-to-br from-blue-500/30 via-indigo-500/20 to-transparent blur-3xl" />
+        <div aria-hidden="true" class="absolute -bottom-20 right-0 -z-10 h-[350px] w-[350px] rounded-full bg-gradient-to-tl from-blue-600/20 via-cyan-500/10 to-transparent blur-3xl" />
+        <div aria-hidden="true" class="absolute inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:72px_72px]" />
+
+        <div class="relative mx-auto max-w-4xl px-6 lg:px-8">
+          <h1 class="text-balance text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl">
+            About {site.firmName}
+          </h1>
+          <p class="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-slate-400 md:text-xl">
+            {site.firmName} is a law firm based in {site.location.city}, {site.location.state}, representing clients throughout {site.location.county}.
+          </p>
+
+          <!-- Authority badge row -->
+          <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-300 backdrop-blur-sm">
+              <Award class="h-4 w-4 text-blue-300" />
+              {yearsExp}+ Years of Legal Experience
+            </span>
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-300 backdrop-blur-sm">
+              <MapPin class="h-4 w-4 text-emerald-300" />
+              Local Court Representation
+            </span>
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-300 backdrop-blur-sm">
+              <Calendar class="h-4 w-4 text-cyan-300" />
+              {site.consultationText}s
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Firm overview (two paragraphs) -->
+      <section class="about-section border-t border-border bg-background">
+        <div class="about-container">
+          <h2 class="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+            Our Firm
+          </h2>
+          <p class="mt-3 text-lg font-medium text-primary">
+            {site.tagline}
+          </p>
+          <p class="mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground">
+            {site.firmName} represents individuals and families in criminal defense, personal injury, family law, and related matters. Our attorneys focus on protecting clients' rights and achieving the best possible outcomes in {site.location.city} and across {site.location.county}.
+          </p>
+          <p class="mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground">
+            The firm regularly represents clients in local courts throughout {site.location.county}, {site.location.state}. We understand local procedures and work to provide responsive, effective representation close to home.
+          </p>
+        </div>
+      </section>
+
+      <!-- 3. Attorneys -->
+      <section class="about-section border-t border-border bg-muted">
+        <div class="about-container">
+          <h2 class="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+            Our Attorneys
+          </h2>
+          <p class="mt-3 max-w-2xl text-muted-foreground">
+            Meet the attorneys representing clients throughout {site.location.city} and {site.location.county}.
+          </p>
+
+          <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {attorneys.map((attorney) => {
+              const att = attorney as typeof attorney & { experience?: string; education?: string; focusList?: string[]; image?: string };
+              return (
+                <a href={attorney.href} class="group">
+                  <div class="h-full rounded-2xl border border-border bg-card p-6 text-center shadow-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg">
+                    {att.image ? (
+                      <img src={att.image} alt={attorney.name} class="mx-auto mb-4 h-24 w-24 rounded-full object-cover" />
+                    ) : (
+                      <div class="mx-auto mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-accent/20">
+                        <User class="h-10 w-10 text-primary" />
+                      </div>
+                    )}
+                    <h3 class="text-xl font-semibold text-foreground">{attorney.name}</h3>
+                    {att.experience && (
+                      <p class="mt-1 text-sm text-muted-foreground">{att.experience}</p>
+                    )}
+                    <p class="mt-2 text-sm font-medium text-primary">{attorney.title}</p>
+                    <p class="mt-4 text-base leading-relaxed text-muted-foreground">
+                      {attorney.focus}
+                    </p>
+                    {att.focusList && att.focusList.length > 0 && (
+                      <ul class="mt-3 list-disc space-y-1 pl-5 text-left text-sm text-muted-foreground">
+                        {att.focusList.map((item) => (
+                          <li>{item}</li>
+                        ))}
+                      </ul>
+                    )}
+                    <span class="mt-6 inline-flex items-center justify-center gap-2 text-sm font-medium text-primary">
+                      View profile
+                      <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                    </span>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Experience & credentials (stat cards) -->
+      <section class="about-section border-t border-border bg-background">
+        <div class="about-container">
+          <h2 class="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+            Experience & Credentials
+          </h2>
+          <div class="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <div class="rounded-2xl border border-border bg-card p-6 text-center shadow-sm">
+              <span class="text-3xl font-bold text-primary">{yearsExp}+</span>
+              <p class="mt-2 text-sm font-medium text-muted-foreground">Years of Legal Experience</p>
+            </div>
+            <div class="rounded-2xl border border-border bg-card p-6 text-center shadow-sm">
+              <span class="text-2xl font-bold text-foreground">Licensed</span>
+              <p class="mt-2 text-sm font-medium text-muted-foreground">{site.location.state}</p>
+            </div>
+            <div class="rounded-2xl border border-border bg-card p-6 text-center shadow-sm">
+              <span class="text-2xl font-bold text-foreground">Local Courts</span>
+              <p class="mt-2 text-sm font-medium text-muted-foreground">{site.location.county}</p>
+            </div>
+            <div class="rounded-2xl border border-border bg-card p-6 text-center shadow-sm">
+              <span class="text-2xl font-bold text-foreground">Focused Practice</span>
+              <p class="mt-2 text-sm font-medium text-muted-foreground">{practiceAreasLabel}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Courts & community (card grid) -->
+      <section class="about-section border-t border-border bg-muted">
+        <div class="about-container">
+          <h2 class="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+            Courts & Community
+          </h2>
+          <p class="mt-3 max-w-2xl text-muted-foreground">
+            {site.firmName} regularly appears in local courts throughout {site.location.county}.
+          </p>
+          <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {courts.map((court) => (
+              <a href={`/courts/${court.slug}`} class="group">
+                <div class="h-full rounded-2xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg">
+                  <h3 class="text-lg font-semibold text-foreground">{court.name}</h3>
+                  <p class="mt-2 text-sm leading-relaxed text-muted-foreground line-clamp-3">
+                    {court.cardDescription}
+                  </p>
+                  <span class="mt-4 inline-flex items-center gap-2 text-sm font-medium text-primary">
+                    View court
+                    <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. Contact CTA -->
+      <section class="about-section border-t border-border bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+        <div class="about-container text-center">
+          <h2 class="text-2xl font-bold tracking-tight text-white md:text-3xl">
+            Speak With a Local Attorney
+          </h2>
+          <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-300">
+            If you need legal representation in {site.location.city} or throughout {site.location.county}, contact {site.firmName} to schedule a consultation.
+          </p>
+          <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <a
+              href="/contact"
+              class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-base font-semibold text-slate-900 shadow-sm transition-colors hover:bg-slate-100"
+            >
+              Contact Us
+              <ArrowRight class="h-4 w-4" />
+            </a>
+            {site.phone && (
+              <a
+                href={`tel:${site.phone.replace(/[^0-9+]/g, '')}`}
+                class="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-transparent px-6 py-3 text-base font-semibold text-white hover:bg-white/10"
+              >
+                <Phone class="h-5 w-5" />
+                Call {site.phone}
+              </a>
+            )}
+          </div>
+        </div>
+      </section>
+    </main>
+    <SiteFooter />
+  </div>
+</BaseLayout>
+
+<style>
+  .about-section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  @media (min-width: 768px) {
+    .about-section {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+  }
+
+  .about-container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 65rem; /* ~1040px */
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+</style>
