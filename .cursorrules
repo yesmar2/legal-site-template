@@ -259,7 +259,6 @@ These relationships improve AI citation probability.
 ## WHEN GENERATING CODE
 
 Always:
-
 1. Follow template architecture.
 2. Avoid hardcoding firm data.
 3. Use configuration and content models.
