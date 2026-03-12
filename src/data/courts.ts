@@ -221,6 +221,82 @@ export const courts = [
       { title: 'Felony Defense', href: '/jamestown-criminal-defense-lawyer' },
       { title: 'Drug Charges', href: '/jamestown-criminal-defense-lawyer' }
     ]
+  },
+  {
+    slug: 'ellicott-town-court',
+    name: 'Ellicott Town Court',
+    cardDescription:
+      'Local town court serving Ellicott and nearby communities for traffic, criminal, and town-level matters.',
+    href: '/courts/ellicott-town-court',
+    page: {
+      title: 'Ellicott Town Court | Local Court Information',
+      description:
+        'Information about Ellicott Town Court in Chautauqua County, New York, including common case types and what to expect at your court appearance.'
+    },
+    aboutParagraphs: [
+      'Ellicott Town Court handles local matters for the Town of Ellicott and surrounding communities in Chautauqua County, New York. Cases may include traffic violations, misdemeanor criminal matters, small claims disputes, and landlord-tenant proceedings within the court\'s jurisdiction.',
+      'For many clients, a case in town court is the first step in resolving a legal problem locally. Understanding the court\'s procedures, scheduling expectations, and filing requirements can make a meaningful difference in how a case moves forward.',
+      'Our attorneys represent clients in courts throughout Chautauqua County, including Ellicott Town Court, and provide guidance on what to expect before each appearance.'
+    ],
+    location: {
+      name: 'Ellicott Town Court',
+      address: 'Court information available by appointment',
+      city: 'Ellicott, NY',
+      phone: 'Call for current court contact information',
+      hours: {
+        days: 'Court hours vary',
+        times: 'Please confirm your appearance time in advance'
+      }
+    },
+    caseTypes: [
+      {
+        icon: Scale,
+        title: 'Misdemeanor Criminal Charges',
+        description:
+          'Town court criminal matters such as misdemeanors, arraignments, and related appearances within local jurisdiction.'
+      },
+      {
+        icon: Car,
+        title: 'Traffic Violations',
+        description:
+          'Speeding tickets, driving offenses, and other vehicle and traffic law matters heard at the local court level.'
+      },
+      {
+        icon: FileText,
+        title: 'Preliminary Hearings',
+        description:
+          'Initial court appearances and preliminary proceedings before a case moves forward.'
+      },
+      {
+        icon: Users,
+        title: 'Small Claims Cases',
+        description:
+          'Civil claims and local disputes that fall within the court\'s monetary jurisdiction.'
+      },
+      {
+        icon: Home,
+        title: 'Landlord-Tenant Matters',
+        description:
+          'Local housing disputes, including evictions and lease-related issues.'
+      }
+    ],
+    beforeAppearance: [
+      { text: 'Review your court notice carefully and confirm the date, time, and courtroom' },
+      { text: 'Bring your paperwork, identification, and any documents related to your case' },
+      { text: 'Arrive early to allow time for check-in and courtroom procedures' },
+      { text: 'Speak with your attorney in advance about what to expect at the appearance' }
+    ],
+    duringAppearance: [
+      { text: 'Address the judge respectfully and follow courtroom instructions' },
+      { text: 'Speak only when asked and keep your answers brief and clear' },
+      { text: 'If represented, allow your attorney to address legal issues on your behalf' },
+      { text: 'Make note of all next dates, requirements, or documents requested by the court' }
+    ],
+    relatedAreas: [
+      { title: 'Criminal Defense', href: '/practice/criminal-defense' },
+      { title: 'Traffic Violations', href: '/practice/criminal-defense' },
+      { title: 'Real Estate Law', href: '/practice/real-estate-law' }
+    ]
   }
 ];
 

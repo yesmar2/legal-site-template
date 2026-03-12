@@ -4,12 +4,13 @@ import HeartPulse from '@lucide/astro/icons/heart-pulse';
 import Heart from '@lucide/astro/icons/heart';
 import Building2 from '@lucide/astro/icons/building-2';
 import ArrowRight from '@lucide/astro/icons/arrow-right';
-import Calendar from '@lucide/astro/icons/calendar';
+import Phone from '@lucide/astro/icons/phone';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '@/src/components/site-header.astro';
 import SiteFooter from '@/src/components/site-footer.astro';
 import { site } from '@/src/config/site';
 import { practiceAreas } from '../content/practiceAreas';
+import { courts } from '../content/courts';
 import { caseTypes } from '@/src/data/caseTypes';
 
 const iconMap = {
@@ -21,6 +22,24 @@ const iconMap = {
 
 const pageTitle = `${site.firmName} Practice Areas`;
 const pageDescription = `${site.firmName} represents clients throughout ${site.location.county} in criminal defense, personal injury, family law, real estate law, and other legal matters.`;
+const formatCaseTypeLabel = (title: string) =>
+  title
+    .replace('DUI / DWI Defense', 'DUI Defense')
+    .replace('Slip & Fall', 'Slip and Fall')
+    .replace('Assault Charges', 'Assault Defense')
+    .replace('Landlord–Tenant Matters', 'Landlord Tenant Issues');
+const featuredCourtSlugs = [
+  'jamestown-city-court',
+  'chautauqua-county-court',
+  'dunkirk-city-court',
+  'ellicott-town-court'
+] as const;
+const featuredCourts = featuredCourtSlugs
+  .map((slug) => courts.find((court) => court.slug === slug))
+  .filter((court): court is (typeof courts)[number] => Boolean(court));
+const jamestownCourt = featuredCourts.find((court) => court?.slug === 'jamestown-city-court');
+const countyCourt = featuredCourts.find((court) => court?.slug === 'chautauqua-county-court');
+const phoneHref = `tel:${site.phone.replace(/[^0-9+]/g, '')}`;
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
@@ -33,7 +52,19 @@ const pageDescription = `${site.firmName} represents clients throughout ${site.l
             Practice Areas
           </h1>
           <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
-            {site.firmName} represents clients throughout {site.location.county} in a wide range of legal matters including criminal defense, personal injury, family law, and real estate law.
+            {site.firmName} provides legal representation throughout {site.location.city} and {site.location.county}, {site.location.state} in several practice areas including criminal defense, personal injury, family law, and real estate law. Our attorneys regularly represent clients in local courts such as{' '}
+            {jamestownCourt && (
+              <a href={jamestownCourt.href} class="font-medium text-primary hover:underline">
+                {jamestownCourt.name}
+              </a>
+            )}
+            {' '}and{' '}
+            {countyCourt && (
+              <a href={countyCourt.href} class="font-medium text-primary hover:underline">
+                {countyCourt.name}
+              </a>
+            )}
+            , representing clients in a wide range of legal matters.
           </p>
         </div>
       </section>
@@ -43,13 +74,13 @@ const pageDescription = `${site.firmName} represents clients throughout ${site.l
           <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {practiceAreas.map((area) => {
               const Icon = iconMap[area.icon as keyof typeof iconMap];
-              const types = caseTypes.filter((type) =>
-                Array.isArray(area.caseTypeIds) ? area.caseTypeIds.includes(type.id) : false
+              const relatedCaseTypes = caseTypes.filter((caseType) =>
+                Array.isArray(area.caseTypeIds) ? area.caseTypeIds.includes(caseType.id) : false
               );
 
               return (
-                <a href={`/practice/${area.slug}`} class="group">
-                  <div class="h-full rounded-2xl border border-border bg-card p-8 shadow-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg">
+                <a href={`/practice/${area.slug}`} class="group block">
+                  <div class="h-full rounded-2xl border border-border bg-card p-8 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg">
                     <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
                       {Icon && <Icon class="h-6 w-6 text-primary" />}
                     </div>
@@ -57,11 +88,10 @@ const pageDescription = `${site.firmName} represents clients throughout ${site.l
                       {area.name}
                       <ArrowRight class="h-4 w-4 opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
                     </h2>
-                    {types.length > 0 && (
+                    {relatedCaseTypes.length > 0 && (
                       <p class="mt-2 text-sm text-slate-600">
-                        {types
-                          .slice(0, 3)
-                          .map((type) => type.title.replace('Defense', '').trim())
+                        {relatedCaseTypes
+                          .map((caseType) => formatCaseTypeLabel(caseType.title))
                           .join(' • ')}
                       </p>
                     )}
@@ -83,20 +113,59 @@ const pageDescription = `${site.firmName} represents clients throughout ${site.l
         </div>
       </section>
 
-      <section class="bg-muted py-20">
+      <section class="bg-muted py-24">
+        <div class="mx-auto max-w-6xl px-6">
+          <div class="mx-auto max-w-3xl text-center">
+            <h2 class="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+              Courts We Regularly Appear In
+            </h2>
+            <p class="mt-4 text-lg text-muted-foreground">
+              Our attorneys regularly represent clients in several courts throughout {site.location.county}.
+            </p>
+          </div>
+
+          <div class="mt-10 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+            {featuredCourts.map((court) => (
+              <a href={court.href} class="group block">
+                <div class="h-full rounded-2xl border border-border bg-card p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg">
+                  <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+                    <Building2 class="h-6 w-6 text-primary" />
+                  </div>
+                  <h3 class="flex items-center gap-2 text-lg font-semibold text-foreground">
+                    {court.name}
+                    <ArrowRight class="h-4 w-4 opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
+                  </h3>
+                  <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary">
+                    View Court Page
+                    <ArrowRight class="h-4 w-4" />
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-background py-20">
         <div class="mx-auto max-w-4xl px-6 text-center">
           <h2 class="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
             Need Help With a Legal Matter?
           </h2>
           <p class="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
             Speak with an attorney today about your case.
+            Free consultations are available for many legal matters.
           </p>
+          <div class="mt-4 flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground">
+            <span>✓ Free Consultation</span>
+            <span>✓ Local Attorneys</span>
+            <span>✓ Serving {site.location.city} &amp; {site.location.county}</span>
+          </div>
           <a
-            href="/contact"
+            href={phoneHref}
             class="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-blue-700"
           >
-            <Calendar class="h-5 w-5" />
-            Schedule {site.consultationText}
+            <Phone class="h-5 w-5" />
+            Call Now For a Free Consultation
           </a>
         </div>
       </section>
