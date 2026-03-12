@@ -1,0 +1,77 @@
+---
+import Scale from '@lucide/astro/icons/scale';
+import HeartPulse from '@lucide/astro/icons/heart-pulse';
+import Heart from '@lucide/astro/icons/heart';
+import Building2 from '@lucide/astro/icons/building-2';
+import { site } from '@/src/config/site';
+import Card from '@/src/components/Card.astro';
+import { caseTypes } from '@/src/data/caseTypes';
+
+type Variant = 'home' | 'list' | 'feature';
+
+const iconMap = {
+  scale: Scale,
+  'heart-pulse': HeartPulse,
+  heart: Heart,
+  'building-2': Building2,
+} as const;
+
+interface Props {
+  practiceArea: {
+    slug: string;
+    name: string;
+    title?: string;
+    description: string;
+    homeCardDescription?: string;
+    href?: string;
+    icon?: string;
+    caseTypeIds?: string[];
+  };
+  variant?: Variant;
+}
+
+const { practiceArea, variant = 'list' } = Astro.props as Props;
+
+const href = practiceArea.href ?? `/practice/${practiceArea.slug}`;
+const Icon =
+  practiceArea.icon && iconMap[practiceArea.icon as keyof typeof iconMap]
+    ? iconMap[practiceArea.icon as keyof typeof iconMap]
+    : undefined;
+
+const relatedCaseTypes = Array.isArray(practiceArea.caseTypeIds)
+  ? caseTypes.filter((caseType) => practiceArea.caseTypeIds!.includes(caseType.id))
+  : [];
+
+const eyebrow =
+  relatedCaseTypes.length > 0
+    ? relatedCaseTypes
+        .slice(0, 3)
+        .map((caseType) =>
+          caseType.title
+            .replace('DUI / DWI Defense', 'DUI Defense')
+            .replace('Slip & Fall', 'Slip and Fall')
+            .replace('Assault Charges', 'Assault Defense')
+            .replace('Landlord–Tenant Matters', 'Landlord Tenant Issues')
+        )
+        .join(' • ')
+    : undefined;
+
+const fullDescription = practiceArea.description;
+const homeDescription = practiceArea.homeCardDescription ?? fullDescription;
+
+const showEyebrow = variant === 'home' ? undefined : eyebrow;
+const meta =
+  variant === 'home' ? undefined : `Serving ${site.location.city} & ${site.location.county}`;
+---
+
+<Card
+  href={href}
+  title={variant === 'feature' ? practiceArea.title ?? practiceArea.name : practiceArea.name}
+  icon={Icon}
+  eyebrow={showEyebrow}
+  meta={meta}
+  ctaLabel={variant === 'feature' ? 'Explore This Practice Area' : 'Learn More'}
+>
+  {variant === 'home' ? homeDescription : fullDescription}
+</Card>
+

@@ -13,6 +13,8 @@ export const practiceAreas = [
     title: 'Jamestown Criminal Defense Lawyers',
     description:
       'Defense representation for DUI, assault, theft, and other criminal charges in Jamestown and Chautauqua County.',
+    homeCardDescription:
+       'Defense for DUI, assault, theft, and other criminal charges in Jamestown and Chautauqua County.',
     href: '/practice/criminal-defense',
     icon: 'scale',
     courts: ['jamestown-city-court', 'dunkirk-city-court', 'chautauqua-county-court'],
@@ -33,6 +35,8 @@ export const practiceAreas = [
     title: 'Jamestown Personal Injury Lawyers',
     description:
       'Legal representation for injury victims involved in car accidents, slip and fall cases, and other negligence claims.',
+    homeCardDescription:
+       'Injury representation for car accidents, slip and fall, and other negligence claims.',
     href: '/practice/personal-injury',
     icon: 'heart-pulse',
     courts: ['jamestown-city-court', 'dunkirk-city-court', 'chautauqua-county-court'],
@@ -45,6 +49,8 @@ export const practiceAreas = [
     title: 'Jamestown Family Law Lawyers',
     description:
       'Guidance and representation for divorce, custody, and other family law matters.',
+    homeCardDescription:
+       'Guidance for divorce, custody, and other family law matters.',
     href: '/practice/family-law',
     icon: 'heart',
     courts: ['jamestown-city-court', 'chautauqua-county-court'],
@@ -57,6 +63,8 @@ export const practiceAreas = [
     title: 'Jamestown Real Estate Lawyers',
     description:
       'Legal assistance with residential and commercial real estate transactions and property matters.',
+    homeCardDescription:
+       'Help with residential and commercial real estate transactions and property matters.',
     href: '/practice/real-estate-law',
     icon: 'building-2',
     courts: ['jamestown-city-court', 'dunkirk-city-court', 'ellicott-town-court'],

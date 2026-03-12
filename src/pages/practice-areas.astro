@@ -1,7 +1,4 @@
 ---
-import Scale from '@lucide/astro/icons/scale';
-import HeartPulse from '@lucide/astro/icons/heart-pulse';
-import Heart from '@lucide/astro/icons/heart';
 import Building2 from '@lucide/astro/icons/building-2';
 import ArrowRight from '@lucide/astro/icons/arrow-right';
 import Phone from '@lucide/astro/icons/phone';
@@ -12,13 +9,7 @@ import { site } from '@/src/config/site';
 import { practiceAreas } from '../content/practiceAreas';
 import { courts } from '../content/courts';
 import { caseTypes } from '@/src/data/caseTypes';
-
-const iconMap = {
-  scale: Scale,
-  'heart-pulse': HeartPulse,
-  heart: Heart,
-  'building-2': Building2
-} as const;
+import PracticeAreaCard from '@/src/components/PracticeAreaCard.astro';
 
 const pageTitle = `${site.firmName} Practice Areas`;
 const pageDescription = `${site.firmName} represents clients throughout ${site.location.county} in criminal defense, personal injury, family law, real estate law, and other legal matters.`;
@@ -73,41 +64,7 @@ const phoneHref = `tel:${site.phone.replace(/[^0-9+]/g, '')}`;
         <div class="mx-auto max-w-6xl px-6">
           <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {practiceAreas.map((area) => {
-              const Icon = iconMap[area.icon as keyof typeof iconMap];
-              const relatedCaseTypes = caseTypes.filter((caseType) =>
-                Array.isArray(area.caseTypeIds) ? area.caseTypeIds.includes(caseType.id) : false
-              );
-
-              return (
-                <a href={`/practice/${area.slug}`} class="group block">
-                  <div class="h-full rounded-2xl border border-border bg-card p-8 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg">
-                    <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                      {Icon && <Icon class="h-6 w-6 text-primary" />}
-                    </div>
-                    <h2 class="flex items-center gap-2 text-xl font-semibold text-foreground">
-                      {area.name}
-                      <ArrowRight class="h-4 w-4 opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
-                    </h2>
-                    {relatedCaseTypes.length > 0 && (
-                      <p class="mt-2 text-sm text-slate-600">
-                        {relatedCaseTypes
-                          .map((caseType) => formatCaseTypeLabel(caseType.title))
-                          .join(' • ')}
-                      </p>
-                    )}
-                    <p class="mt-4 text-base leading-relaxed text-muted-foreground">
-                      {area.description}
-                    </p>
-                    <p class="mt-4 text-xs text-muted-foreground">
-                      Serving {site.location.city} &amp; {site.location.county}
-                    </p>
-                    <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary">
-                      Learn More
-                      <ArrowRight class="h-4 w-4" />
-                    </span>
-                  </div>
-                </a>
-              );
+              return <PracticeAreaCard practiceArea={area} variant="list" />;
             })}
           </div>
         </div>
