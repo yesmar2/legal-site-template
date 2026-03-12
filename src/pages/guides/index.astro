@@ -2,10 +2,12 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SiteHeader from '@/src/components/site-header.astro';
 import SiteFooter from '@/src/components/site-footer.astro';
-import GuideCard from '@/src/components/GuideCard.astro';
 import { guides } from '@/src/content/guides';
 import { site } from '@/src/config/site';
-import Calendar from '@lucide/astro/icons/calendar';
+import { courts } from '@/src/content/courts';
+import Phone from '@lucide/astro/icons/phone';
+import BookOpen from '@lucide/astro/icons/book-open';
+import ArrowRight from '@lucide/astro/icons/arrow-right';
 
 const pageTitle = `Legal Guides | ${site.firmName}`;
 const pageDescription = `Practical legal guides from ${site.firmName} to help people throughout ${site.location.county} understand common legal issues and local court processes.`;
@@ -15,6 +17,12 @@ const practiceLabels: Record<string, string> = {
   "family-law": "Family Law",
   "personal-injury": "Personal Injury",
   "real-estate-law": "Real Estate Law",
+};
+const phoneHref = `tel:${site.phone.replace(/[^0-9+]/g, '')}`;
+
+const getPrimaryCourt = (guide: (typeof guides)[number]) => {
+  const slug = Array.isArray(guide.courts) && guide.courts.length > 0 ? guide.courts[0] : undefined;
+  return slug ? courts.find((court) => court.slug === slug) : undefined;
 };
 ---
 <BaseLayout
@@ -30,7 +38,14 @@ const practiceLabels: Record<string, string> = {
             Legal Guides
           </h1>
           <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
-            Explore practical legal guides from {site.firmName} covering common legal situations, local court procedures, and what to expect throughout {site.location.county}.
+            Our legal guides explain common legal situations in {site.location.city} and throughout {site.location.county}, {site.address.state}. These resources cover topics such as DUI arrests, criminal court procedures, and family law matters, including what to expect in local courts like{' '}
+            <a href="/courts/jamestown-city-court" class="font-medium text-primary hover:underline">
+              Jamestown City Court
+            </a>
+            {' '}and{' '}
+            <a href="/courts/chautauqua-county-court" class="font-medium text-primary hover:underline">
+              Chautauqua County Court
+            </a>
           </p>
         </div>
       </section>
@@ -38,14 +53,47 @@ const practiceLabels: Record<string, string> = {
       <section class="bg-background pb-20">
         <div class="mx-auto max-w-6xl px-6">
           <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {guides.map((guide) => (
-              <GuideCard
-                title={guide.title}
-                description={guide.description}
-                slug={guide.slug}
-                category={practiceLabels[guide.practiceArea] ?? guide.practiceArea}
-              />
-            ))}
+            {guides.map((guide) => {
+              const primaryCourt = getPrimaryCourt(guide);
+
+              return (
+                <a href={`/guides/${guide.slug}`} class="group block h-full">
+                  <article class="flex h-full flex-col rounded-2xl border border-border bg-card p-8 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg">
+                    <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+                      <BookOpen class="h-6 w-6 text-primary" />
+                    </div>
+                    <p class="text-sm font-medium text-blue-600">
+                      {practiceLabels[guide.practiceArea] ?? guide.practiceArea}
+                    </p>
+                    <h2 class="mt-1 flex items-center gap-2 text-xl font-semibold text-foreground">
+                      {guide.title}
+                      <ArrowRight class="h-4 w-4 opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
+                    </h2>
+                    <p class="mt-4 text-base leading-relaxed text-muted-foreground">
+                      {guide.description}
+                    </p>
+                    {primaryCourt && (
+                      <p class="mt-2 text-sm text-slate-500">
+                        <span class="underline decoration-from-font">
+                          {primaryCourt.name}
+                        </span>
+                        {' '}
+                        • {site.location.county} {site.address.state}
+                      </p>
+                    )}
+                    {guide.lastReviewed && (
+                      <p class="mt-1 text-xs text-slate-400">
+                        Last Reviewed: {guide.lastReviewed}
+                      </p>
+                    )}
+                    <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary">
+                      Read Guide
+                      <ArrowRight class="h-4 w-4" />
+                    </span>
+                  </article>
+                </a>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -59,11 +107,11 @@ const practiceLabels: Record<string, string> = {
             Speak with an attorney today about your case and the legal process.
           </p>
           <a
-            href="/contact"
+            href={phoneHref}
             class="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-blue-700"
           >
-            <Calendar class="h-5 w-5" />
-            Schedule {site.consultationText}
+            <Phone class="h-5 w-5" />
+            Call Now For a Free Consultation
           </a>
         </div>
       </section>

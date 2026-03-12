@@ -1,26 +1,39 @@
 ---
 import ArrowRight from '@lucide/astro/icons/arrow-right';
 import BookOpen from '@lucide/astro/icons/book-open';
+import { courts as allCourts } from '@/src/content/courts';
+import { site } from '@/src/config/site';
 
 interface Props {
   title: string;
   description: string;
   slug: string;
   category?: string;
+  practiceAreaSlug?: string;
+  courts?: string[];
+  lastReviewed?: string;
 }
 
-const { title, description, slug, category } = Astro.props;
+const { title, description, slug, category, practiceAreaSlug, courts, lastReviewed } = Astro.props as Props;
+
+const primaryCourtSlug = Array.isArray(courts) && courts.length > 0 ? courts[0] : undefined;
+const primaryCourt = primaryCourtSlug
+  ? allCourts.find((court) => court.slug === primaryCourtSlug)
+  : undefined;
 ---
 
-<a href={`/guides/${slug}`} class="group block h-full">
-  <article class="flex h-full flex-col rounded-2xl border border-border bg-card p-8 shadow-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg">
+<a href={`/guides/${slug}`} class="group">
+  <article class="flex h-full flex-col rounded-2xl border border-border bg-card p-8 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg">
     <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
       <BookOpen class="h-6 w-6 text-primary" />
     </div>
-    {category && (
-      <p class="text-sm text-slate-600">
+    {category && practiceAreaSlug && (
+      <a
+        href={`/practice/${practiceAreaSlug}`}
+        class="text-sm font-medium text-blue-600 hover:underline"
+      >
         {category}
-      </p>
+      </a>
     )}
     <h3 class="flex items-center gap-2 text-xl font-semibold text-foreground">
       {title}
@@ -29,6 +42,23 @@ const { title, description, slug, category } = Astro.props;
     <p class="mt-4 text-base leading-relaxed text-muted-foreground">
       {description}
     </p>
+    {primaryCourt && (
+      <p class="mt-2 text-sm text-slate-500">
+        <a
+          href={`/courts/${primaryCourt.slug}`}
+          class="hover:underline"
+        >
+          {primaryCourt.name}
+        </a>
+        {' '}
+        • {site.location.county} {site.address.state}
+      </p>
+    )}
+    {lastReviewed && (
+      <p class="mt-1 text-xs text-slate-400">
+        Last Reviewed: {lastReviewed}
+      </p>
+    )}
     <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary">
       Read Guide
       <ArrowRight class="h-4 w-4" />

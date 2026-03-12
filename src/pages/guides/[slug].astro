@@ -12,7 +12,18 @@ export async function getStaticPaths() {
   }));
 }
 
-const { guide } = Astro.props;
+const { guide } = Astro.props as { guide: (typeof guides)[number] };
+
+const relatedGuides = guides.filter(
+  (g) => g.practiceArea === guide.practiceArea && g.slug !== guide.slug
+);
+
+const practiceLabels: Record<string, string> = {
+  "criminal-defense": "Criminal Defense",
+  "family-law": "Family Law",
+  "personal-injury": "Personal Injury",
+  "real-estate-law": "Real Estate Law",
+};
 
 const courtLabels: Record<string, string> = {
   "jamestown-city-court": "Jamestown City Court",
@@ -42,6 +53,33 @@ const courtLabels: Record<string, string> = {
           <p class="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-slate-400 md:text-xl">
             {guide.description}
           </p>
+          <div class="mt-4 flex flex-wrap items-center gap-3 text-sm text-slate-300">
+            <span>
+              Practice Area:{' '}
+              <a
+                href={`/practice/${guide.practiceArea}`}
+                class="font-medium text-blue-300 hover:text-white hover:underline"
+              >
+                {practiceLabels[guide.practiceArea] ?? guide.practiceArea}
+              </a>
+            </span>
+            {guide.court && (
+              <span>
+                • Court:{' '}
+                <a
+                  href={`/courts/${guide.court}`}
+                  class="font-medium text-blue-300 hover:text-white hover:underline"
+                >
+                  {courtLabels[guide.court] ?? guide.court}
+                </a>
+              </span>
+            )}
+            {guide.city && guide.county && (
+              <span>
+                • Location: {guide.city}, {guide.county}
+              </span>
+            )}
+          </div>
         </div>
       </section>
 
@@ -67,7 +105,7 @@ const courtLabels: Record<string, string> = {
             <section class="guide-section">
               <h2>Overview</h2>
               <p>
-                This guide explains the legal process related to this situation in {site.location.city} and {site.location.county} courts.
+                This guide explains the legal process related to this situation in {guide.city ?? site.location.city} and {guide.county ?? site.location.county} courts.
               </p>
             </section>
 
@@ -81,7 +119,7 @@ const courtLabels: Record<string, string> = {
             <section class="guide-section">
               <h2>Local Court Information</h2>
               <p>
-                Explain how this situation is handled in local courts such as {site.location.city} City Court or {site.location.county} Court.
+                Explain how this situation is handled in local courts such as {site.location.city} City Court or {site.location.county} Court, including {guide.court && courtLabels[guide.court] ? courtLabels[guide.court] : 'the primary court for this guide'}.
               </p>
             </section>
 
@@ -104,6 +142,27 @@ const courtLabels: Record<string, string> = {
                 Contact {site.firmName}
               </a>
             </section>
+
+            {relatedGuides.length > 0 && (
+              <section class="guide-section">
+                <h2>Other Guides for {practiceLabels[guide.practiceArea] ?? guide.practiceArea}</h2>
+                <div class="mt-4 grid gap-4 md:grid-cols-2">
+                  {relatedGuides.map((related) => (
+                    <a
+                      href={`/guides/${related.slug}`}
+                      class="group block rounded-2xl border border-border bg-card p-4 text-sm shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg"
+                    >
+                      <h3 class="font-semibold text-foreground group-hover:text-primary">
+                        {related.title}
+                      </h3>
+                      <p class="mt-2 text-xs text-muted-foreground">
+                        {related.description}
+                      </p>
+                    </a>
+                  ))}
+                </div>
+              </section>
+            )}
           </article>
         </div>
       </section>
