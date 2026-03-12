@@ -1,0 +1,77 @@
+---
+import Briefcase from '@lucide/astro/icons/briefcase';
+import Scale from '@lucide/astro/icons/scale';
+import Award from '@lucide/astro/icons/award';
+import ArrowRight from '@lucide/astro/icons/arrow-right';
+import { site } from '../../config/site';
+import { attorneys } from '@/src/data/attorneys';
+
+interface Practice {
+  slug: string;
+  name: string;
+  attorneySlugs?: string[];
+}
+
+const { practice } = Astro.props as { practice: Practice };
+
+const practiceAttorneys =
+  practice.attorneySlugs && practice.attorneySlugs.length > 0
+    ? practice.attorneySlugs
+        .map((slug) => attorneys.find((attorney) => attorney.slug === slug))
+        .filter((attorney): attorney is (typeof attorneys)[number] => Boolean(attorney))
+    : [];
+
+const selectedAttorney =
+  practiceAttorneys.length > 0
+    ? practiceAttorneys[
+        Math.abs(
+          practice.slug.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0)
+        ) % practiceAttorneys.length
+      ]
+    : undefined;
+---
+
+{selectedAttorney && (
+  <section class="border-t border-border py-16">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="flex flex-col items-center gap-8 md:flex-row md:items-start">
+        <div class="relative h-32 w-32 shrink-0 overflow-hidden rounded-xl bg-gradient-to-br from-primary/20 to-accent/20">
+          <div class="absolute inset-0 flex items-center justify-center">
+            <Briefcase class="h-10 w-10 text-primary" />
+          </div>
+        </div>
+
+        <div class="flex-1 text-center md:text-left">
+          <h2 class="text-xl font-semibold text-foreground">
+            Attorney <span class="text-primary">{selectedAttorney.name}</span>
+          </h2>
+
+          <p class="mt-3 text-muted-foreground">
+            {selectedAttorney.focus ??
+              `With over ${site.yearsExperience} years of experience in ${site.location.city} and ${site.location.county}, our attorneys bring local insight to every case and are committed to protecting your rights.`}
+          </p>
+
+          <div class="mt-4 flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground md:justify-start">
+            <span class="flex items-center gap-1.5">
+              <Scale class="h-4 w-4 text-primary" />
+              Former Prosecutor
+            </span>
+            <span class="flex items-center gap-1.5">
+              <Award class="h-4 w-4 text-primary" />
+              {site.yearsExperience}+ Years Experience
+            </span>
+          </div>
+
+          <a
+            href={selectedAttorney.href}
+            class="mt-5 inline-flex items-center justify-center gap-2 rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground shadow-sm transition-colors hover:bg-muted"
+          >
+            View Full Profile
+            <ArrowRight class="h-3 w-3" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+

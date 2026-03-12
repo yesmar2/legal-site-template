@@ -1,0 +1,37 @@
+---
+import { site } from '../../config/site';
+
+interface Practice {
+  slug: string;
+  name: string;
+  title?: string;
+  description?: string;
+  heroDescription?: string;
+  introParagraphs?: string[];
+}
+
+const { practice } = Astro.props as { practice: Practice };
+
+const rawParagraphs =
+  practice.introParagraphs && practice.introParagraphs.length > 0
+    ? practice.introParagraphs
+    : [practice.heroDescription ?? practice.description ?? ''];
+
+const paragraphs = rawParagraphs.map((p) =>
+  p.replace(/\{\{firmName\}\}/g, site.firmName)
+);
+---
+
+<section class="bg-background py-16 md:py-24">
+  <div class="mx-auto max-w-4xl px-6">
+    <h2 class="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+      {practice.name} Representation in {site.location.city}
+    </h2>
+
+    <div class="mt-8 space-y-6 text-lg leading-relaxed text-muted-foreground">
+      {paragraphs.map((p) => (
+        <p>{p}</p>
+      ))}
+    </div>
+  </div>
+</section>

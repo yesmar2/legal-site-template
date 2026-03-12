@@ -9,6 +9,7 @@ interface Practice {
   name: string;
   title: string;
   description: string;
+  heroDescription?: string;
 }
 
 const { practice } = Astro.props as { practice: Practice };
@@ -46,7 +47,7 @@ const { practice } = Astro.props as { practice: Practice };
       </h1>
 
       <p class="mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-slate-400">
-        {practice.description}
+        {practice.heroDescription ?? practice.description}
       </p>
 
       <div class="mt-10 flex flex-col gap-4 sm:flex-row sm:gap-5">

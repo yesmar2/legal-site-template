@@ -1,72 +1,40 @@
 ---
-import FileText from '@lucide/astro/icons/file-text';
-import Scale from '@lucide/astro/icons/scale';
-import Building2 from '@lucide/astro/icons/building-2';
-import Landmark from '@lucide/astro/icons/landmark';
-import ArrowRight from '@lucide/astro/icons/arrow-right';
+import { guides } from '@/src/content/guides';
+import { courts } from '@/src/content/courts';
+import GuideCard from '@/src/components/GuideCard.astro';
+import CourtCard from '@/src/components/CourtCard.astro';
+import { site } from '@/src/config/site';
 
-const resources = [
-  {
-    icon: FileText,
-    title: 'Criminal Case Process in New York',
-    description:
-      'Learn what to expect at each stage of a criminal case in New York State.',
-    href: '/guides/criminal-case-process-new-york'
-  },
-  {
-    icon: Scale,
-    title: 'What Happens After a DUI Arrest',
-    description:
-      'Step-by-step guide to the DUI process in New York, from arrest to resolution.',
-    href: '/guides/dui-arrest-new-york'
-  },
-  {
-    icon: Building2,
-    title: 'Jamestown City Court',
-    description:
-      'Information about Jamestown City Court including location, hours, and case types.',
-    href: '/courts/jamestown-city-court'
-  },
-  {
-    icon: Landmark,
-    title: 'Chautauqua County Court',
-    description:
-      'Learn about felony cases and appeals at Chautauqua County Court in Mayville.',
-    href: '/courts/chautauqua-county-court'
-  }
-];
+const relatedGuides = guides.filter((guide) => guide.practiceArea === 'criminal-defense');
+const relatedCourts = courts.filter((court) =>
+  ['jamestown-city-court', 'dunkirk-city-court', 'chautauqua-county-court'].includes(court.slug)
+);
 ---
 <section class="py-16 md:py-20">
   <div class="mx-auto max-w-6xl px-6">
     <h2 class="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
-      Resources &amp; Legal Guides
+      Related Legal Guides
     </h2>
     <p class="mt-3 max-w-2xl text-muted-foreground">
-      Learn more about the criminal justice process in Jamestown and Chautauqua County.
+      Learn more about criminal defense procedures and legal processes in {site.location.city} and throughout {site.location.county}.
     </p>
 
-    <div class="mt-10 grid gap-4 sm:grid-cols-2">
-      {resources.map((resource) => (
-        <a href={resource.href}>
-          <article class="group h-full rounded-2xl border border-border bg-card p-5 shadow-sm transition-all hover:border-primary/50 hover:shadow-md">
-            <header class="flex items-start gap-4 pb-3">
-              <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
-                <resource.icon class="h-5 w-5 text-primary" />
-              </div>
-              <div class="flex-1">
-                <h3 class="flex items-center gap-2 text-base font-semibold text-foreground">
-                  {resource.title}
-                  <ArrowRight class="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary" />
-                </h3>
-                <p class="mt-1 text-sm text-muted-foreground">
-                  {resource.description}
-                </p>
-              </div>
-            </header>
-          </article>
-        </a>
-      ))}
-    </div>
+    {relatedGuides.length > 0 && (
+      <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {relatedGuides.map((guide) => (
+          <GuideCard
+            title={guide.title}
+            description={guide.description}
+            slug={guide.slug}
+            category="Criminal Defense"
+            practiceAreaSlug={guide.practiceArea}
+            courts={guide.courts}
+            lastReviewed={guide.lastReviewed}
+          />
+        ))}
+      </div>
+    )}
   </div>
 </section>
+
 

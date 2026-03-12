@@ -3,7 +3,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import SiteHeader from '@/src/components/site-header.astro';
 import SiteFooter from '@/src/components/site-footer.astro';
 import PracticeHero from '@/src/components/practice-hero.astro';
+import PracticeAreaIntro from '@/src/components/practice/PracticeAreaIntro.astro';
 import PracticeAreaCourts from '@/src/components/practice/PracticeAreaCourts.astro';
+import PracticeCaseTypes from '@/src/components/practice-case-types.astro';
+import PracticeAreaFAQ from '@/src/components/practice/PracticeAreaFAQ.astro';
+import PracticeAreaGuides from '@/src/components/practice/PracticeAreaGuides.astro';
+import PracticeAreaAttorney from '@/src/components/practice/PracticeAreaAttorney.astro';
+import PracticeAreaCTA from '@/src/components/practice/PracticeAreaCTA.astro';
+import CriminalDefensePenalties from '@/src/components/criminal-defense/penalties.astro';
 import { practiceAreas } from '../../data/practiceAreas';
 
 export async function getStaticPaths() {
@@ -22,12 +29,20 @@ const practice = Astro.props;
     <main>
       <PracticeHero practice={practice} />
 
-      {practice.sections?.map((section) => {
-        const Section = section;
-        return <Section practice={practice} />;
-      })}
+      <PracticeAreaIntro practice={practice} />
+      <PracticeCaseTypes practice={practice} />
+
+      {practice.slug === 'criminal-defense' && <CriminalDefensePenalties />}
 
       <PracticeAreaCourts practiceArea={practice} />
+
+      <PracticeAreaFAQ practice={practice} />
+
+      <PracticeAreaGuides practice={practice} />
+
+      <PracticeAreaAttorney practice={practice} />
+
+      <PracticeAreaCTA practice={practice} />
     </main>
     <SiteFooter />
   </div>
