@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import SiteHeader from '@/src/components/site-header.astro';
 import SiteFooter from '@/src/components/site-footer.astro';
 import PracticeHero from '@/src/components/practice-hero.astro';
+import PracticeAreaCourts from '@/src/components/practice/PracticeAreaCourts.astro';
 import { practiceAreas } from '../../data/practiceAreas';
 
 export async function getStaticPaths() {
@@ -25,6 +26,8 @@ const practice = Astro.props;
         const Section = section;
         return <Section practice={practice} />;
       })}
+
+      <PracticeAreaCourts practiceArea={practice} />
     </main>
     <SiteFooter />
   </div>

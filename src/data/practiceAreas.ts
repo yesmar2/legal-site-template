@@ -15,6 +15,7 @@ export const practiceAreas = [
       'Defense representation for DUI, assault, theft, and other criminal charges in Jamestown and Chautauqua County.',
     href: '/practice/criminal-defense',
     icon: 'scale',
+    courts: ['jamestown-city-court', 'dunkirk-city-court', 'chautauqua-county-court'],
     caseTypeIds: ['dui-dwi-defense', 'drug-charges', 'assault-charges', 'domestic-violence', 'theft-crimes'],
     sections: [
       CriminalDefenseOverview,
@@ -34,6 +35,7 @@ export const practiceAreas = [
       'Legal representation for injury victims involved in car accidents, slip and fall cases, and other negligence claims.',
     href: '/practice/personal-injury',
     icon: 'heart-pulse',
+    courts: ['jamestown-city-court', 'dunkirk-city-court', 'chautauqua-county-court'],
     caseTypeIds: ['car-accidents', 'slip-and-fall', 'wrongful-death'],
     sections: [PracticeCaseTypes]
   },
@@ -45,6 +47,7 @@ export const practiceAreas = [
       'Guidance and representation for divorce, custody, and other family law matters.',
     href: '/practice/family-law',
     icon: 'heart',
+    courts: ['jamestown-city-court', 'chautauqua-county-court'],
     caseTypeIds: ['divorce', 'child-custody', 'child-support'],
     sections: [PracticeCaseTypes]
   },
@@ -56,6 +59,7 @@ export const practiceAreas = [
       'Legal assistance with residential and commercial real estate transactions and property matters.',
     href: '/practice/real-estate-law',
     icon: 'building-2',
+    courts: ['jamestown-city-court', 'dunkirk-city-court', 'ellicott-town-court'],
     caseTypeIds: ['residential-closings', 'commercial-transactions', 'landlord-tenant'],
     sections: [PracticeCaseTypes]
   }
