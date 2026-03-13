@@ -3,6 +3,7 @@ import Building2 from '@lucide/astro/icons/building-2';
 import ArrowRight from '@lucide/astro/icons/arrow-right';
 import { courts } from '@/src/content/courts';
 import CourtCard from '@/src/components/CourtCard.astro';
+import CardGrid from '@/src/components/layout/CardGrid.astro';
 
 const { practiceArea } = Astro.props;
 
@@ -24,11 +25,11 @@ const relatedCourts = Array.isArray(practiceArea.courts)
         </p>
       </div>
 
-      <div class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <CardGrid class="mt-10" gapClass="gap-8">
         {relatedCourts.map((court) => (
           <CourtCard court={court} variant="summary" />
         ))}
-      </div>
+      </CardGrid>
     </div>
   </section>
 )}

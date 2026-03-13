@@ -9,6 +9,7 @@ import SiteFooter from '@/src/components/site-footer.astro';
 import { site } from '@/src/config/site';
 import { courts } from '../content/courts';
 import CourtCard from '@/src/components/CourtCard.astro';
+import CardGrid from '@/src/components/layout/CardGrid.astro';
 
 const pageTitle = `Courts We Serve | ${site.firmName}`;
 const pageDescription = `Learn about the courts throughout ${site.location.county} where ${site.firmName} regularly represents clients.`;
@@ -31,11 +32,11 @@ const pageDescription = `Learn about the courts throughout ${site.location.count
 
       <section class="bg-background">
         <div class="mx-auto max-w-6xl px-6 pb-20">
-          <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <CardGrid gapClass="gap-8">
             {courts.map((court) => (
               <CourtCard court={court} variant="full" />
             ))}
-          </div>
+          </CardGrid>
         </div>
       </section>
 

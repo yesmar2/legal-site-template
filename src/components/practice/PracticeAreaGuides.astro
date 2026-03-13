@@ -1,6 +1,7 @@
 ---
 import { guides } from '@/src/content/guides';
 import GuideCard from '@/src/components/GuideCard.astro';
+import CardGrid from '@/src/components/layout/CardGrid.astro';
 import { site } from '@/src/config/site';
 
 interface Practice {
@@ -23,11 +24,11 @@ const relatedGuides = guides.filter((guide) => guide.practiceArea === practice.s
         Learn more about {practice.name.toLowerCase()} matters and how cases are handled in {site.location.city} and throughout {site.location.county}.
       </p>
 
-      <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <CardGrid class="mt-8">
         {relatedGuides.map((guide) => (
           <GuideCard guide={guide} />
         ))}
-      </div>
+      </CardGrid>
     </div>
   </section>
 )}

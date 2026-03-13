@@ -10,6 +10,7 @@ import { practiceAreas } from '../content/practiceAreas';
 import { courts } from '../content/courts';
 import { caseTypes } from '@/src/data/caseTypes';
 import PracticeAreaCard from '@/src/components/PracticeAreaCard.astro';
+import CardGrid from '@/src/components/layout/CardGrid.astro';
 
 const pageTitle = `${site.firmName} Practice Areas`;
 const pageDescription = `${site.firmName} represents clients throughout ${site.location.county} in criminal defense, personal injury, family law, real estate law, and other legal matters.`;
@@ -62,11 +63,11 @@ const phoneHref = `tel:${site.phone.replace(/[^0-9+]/g, '')}`;
 
       <section class="bg-background pb-20">
         <div class="mx-auto max-w-6xl px-6">
-          <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <CardGrid gapClass="gap-8">
             {practiceAreas.map((area) => {
               return <PracticeAreaCard practiceArea={area} variant="list" />;
             })}
-          </div>
+          </CardGrid>
         </div>
       </section>
 

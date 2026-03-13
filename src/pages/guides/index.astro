@@ -9,6 +9,7 @@ import Phone from '@lucide/astro/icons/phone';
 import BookOpen from '@lucide/astro/icons/book-open';
 import ArrowRight from '@lucide/astro/icons/arrow-right';
 import Card from '@/src/components/Card.astro';
+import CardGrid from '@/src/components/layout/CardGrid.astro';
 
 const pageTitle = `Legal Guides | ${site.firmName}`;
 const pageDescription = `Practical legal guides from ${site.firmName} to help people throughout ${site.location.county} understand common legal issues and local court processes.`;
@@ -53,7 +54,7 @@ const getPrimaryCourt = (guide: (typeof guides)[number]) => {
 
       <section class="bg-background pb-20">
         <div class="mx-auto max-w-6xl px-6">
-          <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <CardGrid gapClass="gap-8">
             {guides.map((guide) => {
               const primaryCourt = getPrimaryCourt(guide);
 
@@ -74,7 +75,7 @@ const getPrimaryCourt = (guide: (typeof guides)[number]) => {
                 </Card>
               );
             })}
-          </div>
+          </CardGrid>
         </div>
       </section>
 
