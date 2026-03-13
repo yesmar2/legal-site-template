@@ -1,4 +1,6 @@
-export const practiceAreas = [
+import type { PracticeArea } from '@/src/types/practice';
+
+export const practiceAreas: PracticeArea[] = [
   {
     slug: 'criminal-defense',
     name: 'Criminal Defense',
