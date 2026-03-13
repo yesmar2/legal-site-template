@@ -7,25 +7,11 @@ import Calendar from '@lucide/astro/icons/calendar';
 import Phone from '@lucide/astro/icons/phone';
 import { site } from '../config/site';
 ---
-<section class="relative isolate flex min-h-[85vh] max-h-screen items-center overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
-  <!-- Decorative gradient orbs -->
+<section class="relative isolate flex min-h-[85vh] max-h-screen items-center overflow-hidden" style="background-image: url('/jamestown-cityscape.jpg'); background-size: cover; background-position: center;">
+  <!-- Dark overlay for text readability -->
   <div
     aria-hidden="true"
-    class="absolute -top-40 left-1/2 -z-10 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-gradient-to-br from-blue-500/30 via-indigo-500/20 to-transparent blur-3xl" 
-  />
-  <div
-    aria-hidden="true"
-    class="absolute -bottom-20 right-0 -z-10 h-[400px] w-[400px] rounded-full bg-gradient-to-tl from-blue-600/20 via-cyan-500/10 to-transparent blur-3xl" 
-  />
-  <div
-    aria-hidden="true"
-    class="absolute bottom-0 left-0 -z-10 h-[300px] w-[300px] rounded-full bg-gradient-to-tr from-indigo-600/15 to-transparent blur-3xl" 
-  />
-
-  <!-- Subtle grid pattern -->
-  <div
-    aria-hidden="true"
-    class="absolute inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:72px_72px]" 
+    class="absolute inset-0 -z-10 bg-gradient-to-b from-slate-950/90 via-slate-900/85 to-slate-950/90"
   />
 
   <div class="relative mx-auto flex w-full max-w-7xl flex-col px-6 py-12 lg:px-8 2xl:py-16">
