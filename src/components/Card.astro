@@ -21,9 +21,12 @@ const {
 ---
 
 <a href={href} class="group block h-full">
-  <article class="flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg">
+  <article class="relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg">
+    <!-- Subtle top accent line -->
+    <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary/60 via-accent/40 to-primary/60 opacity-0 transition-opacity duration-200 group-hover:opacity-100"></div>
+    
     {Icon && (
-      <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+      <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 transition-colors duration-200 group-hover:bg-primary/15">
         <Icon class="h-6 w-6 text-primary" />
       </div>
     )}
