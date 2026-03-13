@@ -3,18 +3,9 @@ import Calendar from '@lucide/astro/icons/calendar';
 import Phone from '@lucide/astro/icons/phone';
 import ArrowRight from '@lucide/astro/icons/arrow-right';
 import { site } from '../../config/site';
+import type { PracticeArea } from '@/src/types/practice';
 
-interface Practice {
-  slug: string;
-  name: string;
-  cta?: {
-    headline: string;
-    subheadline?: string;
-    body: string;
-  };
-}
-
-const { practice } = Astro.props as { practice: Practice };
+const { practice } = Astro.props as { practice: PracticeArea };
 
 const headline = practice.cta?.headline ?? `Need Help With ${practice.name}?`;
 const subheadline = practice.cta?.subheadline ?? 'Contact Us Today';

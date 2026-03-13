@@ -4,8 +4,9 @@ import ArrowRight from '@lucide/astro/icons/arrow-right';
 import { courts } from '@/src/content/courts';
 import CourtCard from '@/src/components/CourtCard.astro';
 import CardGrid from '@/src/components/layout/CardGrid.astro';
+import type { PracticeArea } from '@/src/types/practice';
 
-const { practiceArea } = Astro.props;
+const { practiceArea } = Astro.props as { practiceArea: PracticeArea };
 
 const relatedCourts = Array.isArray(practiceArea.courts)
   ? courts.filter((court) => practiceArea.courts.includes(court.slug))

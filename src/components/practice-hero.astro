@@ -3,16 +3,9 @@ import Calendar from '@lucide/astro/icons/calendar';
 import Phone from '@lucide/astro/icons/phone';
 import ArrowRight from '@lucide/astro/icons/arrow-right';
 import { site } from '../config/site';
+import type { PracticeArea } from '@/src/types/practice';
 
-interface Practice {
-  slug: string;
-  name: string;
-  title: string;
-  description: string;
-  heroDescription?: string;
-}
-
-const { practice } = Astro.props as { practice: Practice };
+const { practice } = Astro.props as { practice: PracticeArea };
 ---
 
 <section class="relative isolate overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 pb-20 pt-32 md:pb-24 md:pt-40">

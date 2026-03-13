@@ -1,16 +1,8 @@
 ---
 import { site } from '../../config/site';
+import type { PracticeArea } from '@/src/types/practice';
 
-interface Practice {
-  slug: string;
-  name: string;
-  title?: string;
-  description?: string;
-  heroDescription?: string;
-  introParagraphs?: string[];
-}
-
-const { practice } = Astro.props as { practice: Practice };
+const { practice } = Astro.props as { practice: PracticeArea };
 
 const rawParagraphs =
   practice.introParagraphs && practice.introParagraphs.length > 0

@@ -5,14 +5,9 @@ import Award from '@lucide/astro/icons/award';
 import ArrowRight from '@lucide/astro/icons/arrow-right';
 import { site } from '../../config/site';
 import { attorneys } from '@/src/data/attorneys';
+import type { PracticeArea } from '@/src/types/practice';
 
-interface Practice {
-  slug: string;
-  name: string;
-  attorneySlugs?: string[];
-}
-
-const { practice } = Astro.props as { practice: Practice };
+const { practice } = Astro.props as { practice: PracticeArea };
 
 const practiceAttorneys =
   practice.attorneySlugs && practice.attorneySlugs.length > 0

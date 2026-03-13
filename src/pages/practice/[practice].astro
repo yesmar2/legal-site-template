@@ -12,6 +12,7 @@ import PracticeAreaAttorney from '@/src/components/practice/PracticeAreaAttorney
 import PracticeAreaCTA from '@/src/components/practice/PracticeAreaCTA.astro';
 import CriminalDefensePenalties from '@/src/components/criminal-defense/penalties.astro';
 import { practiceAreas } from '../../data/practiceAreas';
+import type { PracticeArea } from '@/src/types/practice';
 
 export async function getStaticPaths() {
   return practiceAreas.map((practice) => ({
@@ -20,7 +21,7 @@ export async function getStaticPaths() {
   }));
 }
 
-const practice = Astro.props;
+const practice = Astro.props as PracticeArea;
 ---
 
 <BaseLayout title={practice.title} description={practice.description}>

@@ -1,20 +1,10 @@
 ---
 import { site } from '../../config/site';
+import type { PracticeArea, PracticeFaq } from '@/src/types/practice';
 
-interface FAQItem {
-  question: string;
-  answer: string;
-}
+const { practice } = Astro.props as { practice: PracticeArea };
 
-interface Practice {
-  slug: string;
-  name: string;
-  faqs?: FAQItem[];
-}
-
-const { practice } = Astro.props as { practice: Practice };
-
-const faqs: FAQItem[] = Array.isArray(practice.faqs) ? practice.faqs : [];
+const faqs: PracticeFaq[] = Array.isArray(practice.faqs) ? practice.faqs : [];
 ---
 {faqs.length > 0 && (
   <section class="bg-background py-20 md:py-28">
