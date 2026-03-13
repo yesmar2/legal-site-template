@@ -38,12 +38,12 @@ const phoneHref = `tel:${site.phone.replace(/[^0-9+]/g, '')}`;
   <div class="flex min-h-screen flex-col">
     <SiteHeader />
     <main>
-      <section class="bg-background py-20">
+      <section class="bg-background py-20 md:py-24">
         <div class="mx-auto max-w-4xl px-6 text-center">
           <h1 class="text-4xl font-bold tracking-tight text-foreground md:text-5xl">
             Practice Areas
           </h1>
-          <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
+          <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground md:text-lg">
             {site.firmName} provides legal representation throughout {site.location.city} and {site.location.county}, {site.location.state} in several practice areas including criminal defense, personal injury, family law, and real estate law. Our attorneys regularly represent clients in local courts such as{' '}
             {jamestownCourt && (
               <a href={jamestownCourt.href} class="font-medium text-primary hover:underline">
@@ -71,13 +71,13 @@ const phoneHref = `tel:${site.phone.replace(/[^0-9+]/g, '')}`;
         </div>
       </section>
 
-      <section class="bg-muted py-24">
+      <section class="bg-muted py-20 md:py-24">
         <div class="mx-auto max-w-6xl px-6">
           <div class="mx-auto max-w-3xl text-center">
             <h2 class="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
               Courts We Regularly Appear In
             </h2>
-            <p class="mt-4 text-lg text-muted-foreground">
+            <p class="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
               Our attorneys regularly represent clients in several courts throughout {site.location.county}.
             </p>
           </div>
@@ -104,23 +104,23 @@ const phoneHref = `tel:${site.phone.replace(/[^0-9+]/g, '')}`;
         </div>
       </section>
 
-      <section class="bg-background py-20">
+      <section class="bg-background py-20 md:py-24">
         <div class="mx-auto max-w-4xl px-6 text-center">
           <h2 class="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
             Need Help With a Legal Matter?
           </h2>
-          <p class="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
+          <p class="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
             Speak with an attorney today about your case.
             Free consultations are available for many legal matters.
           </p>
-          <div class="mt-4 flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground">
-            <span>✓ Free Consultation</span>
-            <span>✓ Local Attorneys</span>
-            <span>✓ Serving {site.location.city} &amp; {site.location.county}</span>
+          <div class="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
+            <span class="flex items-center gap-1.5"><span class="text-primary">&#10003;</span> Free Consultation</span>
+            <span class="flex items-center gap-1.5"><span class="text-primary">&#10003;</span> Local Attorneys</span>
+            <span class="flex items-center gap-1.5"><span class="text-primary">&#10003;</span> Serving {site.location.city} &amp; {site.location.county}</span>
           </div>
           <a
             href={phoneHref}
-            class="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-blue-700"
+            class="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-base font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
           >
             <Phone class="h-5 w-5" />
             Call Now For a Free Consultation

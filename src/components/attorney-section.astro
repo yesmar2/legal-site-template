@@ -3,18 +3,18 @@ import User from '@lucide/astro/icons/user';
 import { site } from '../config/site';
 import { attorneys } from '../data/attorneys';
 ---
-<section class="bg-muted pt-10 pb-20 md:pt-14 md:pb-24" id="attorney">
+<section class="bg-muted py-20 md:py-24" id="attorney">
   <div class="mx-auto max-w-6xl px-6">
     <div class="text-center">
       <h2 class="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
         Our Attorneys
       </h2>
-      <p class="mx-auto mt-4 max-w-2xl text-muted-foreground">
+      <p class="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
         Meet the attorneys representing clients throughout {site.location.city} and {site.location.county}.
       </p>
     </div>
 
-    <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {attorneys.map((attorney) => (
         <a href={attorney.href} class="group">
           <div class="h-full rounded-2xl border border-border bg-card p-6 text-center shadow-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg">

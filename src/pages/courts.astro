@@ -19,20 +19,20 @@ const pageDescription = `Learn about the courts throughout ${site.location.count
   <div class="flex min-h-screen flex-col">
     <SiteHeader />
     <main>
-      <section class="bg-background py-20">
+      <section class="bg-background py-20 md:py-24">
         <div class="mx-auto max-w-4xl px-6 text-center">
           <h1 class="text-4xl font-bold tracking-tight text-foreground md:text-5xl">
             Courts We Serve
           </h1>
-          <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
+          <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground md:text-lg">
             {site.copy.localCourtsLead.replace('{{county}}', site.location.county)} including Jamestown City Court and Chautauqua County Court.
           </p>
         </div>
       </section>
 
-      <section class="bg-background">
-        <div class="mx-auto max-w-6xl px-6 pb-20">
-          <CardGrid gapClass="gap-8">
+      <section class="bg-background pb-20 md:pb-24">
+        <div class="mx-auto max-w-6xl px-6">
+          <CardGrid gapClass="gap-6">
             {courts.map((court) => (
               <CourtCard court={court} variant="full" />
             ))}
@@ -40,28 +40,28 @@ const pageDescription = `Learn about the courts throughout ${site.location.count
         </div>
       </section>
 
-      <section class="bg-muted py-20">
+      <section class="bg-muted py-20 md:py-24">
         <div class="mx-auto max-w-3xl px-6 text-center">
           <h2 class="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
             Local Court Experience Matters
           </h2>
-          <p class="mt-4 text-lg leading-relaxed text-muted-foreground">
+          <p class="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
             Every court has its own procedures, prosecutors, and judges. Our firm represents clients in courts throughout {site.location.county} and understands how cases move through the local court system.
           </p>
         </div>
       </section>
 
-      <section class="bg-background py-20">
+      <section class="bg-background py-20 md:py-24">
         <div class="mx-auto max-w-4xl px-6 text-center">
           <h2 class="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
             Facing a Case in One of These Courts?
           </h2>
-          <p class="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
+          <p class="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
             Contact our office today to discuss your situation with an attorney.
           </p>
           <a
             href="/contact"
-            class="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-blue-700"
+            class="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-base font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
           >
             <Calendar class="h-5 w-5" />
             Schedule {site.consultationText}

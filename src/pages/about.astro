@@ -34,10 +34,10 @@ const practiceAreasLabel = 'Criminal • Injury • Family'; // placeholder; can
           <h1 class="text-balance text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl">
             About {site.firmName}
           </h1>
-          <p class="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-slate-200 md:text-xl">
+          <p class="mx-auto mt-4 max-w-2xl text-pretty text-base leading-relaxed text-slate-200 md:text-lg">
             {site.firmName} is a law firm based in {site.location.city}, {site.location.state}, representing clients throughout {site.location.county}.
           </p>
-          <p class="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-slate-300 md:text-base">
+          <p class="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-slate-400">
             {site.firmName} represents clients throughout {site.location.city} and {site.location.county}, regularly handling matters in local courts across {site.location.county}.
           </p>
 
@@ -87,7 +87,7 @@ const practiceAreasLabel = 'Criminal • Injury • Family'; // placeholder; can
             Meet the attorneys representing clients throughout {site.location.city} and {site.location.county}.
           </p>
 
-          <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {attorneys.map((attorney) => {
               const att = attorney as typeof attorney & { experience?: string; education?: string; focusList?: string[]; image?: string };
               return (
@@ -251,7 +251,7 @@ const practiceAreasLabel = 'Criminal • Injury • Family'; // placeholder; can
   .about-container {
     margin-left: auto;
     margin-right: auto;
-    max-width: 65rem; /* ~1040px */
+    max-width: 72rem;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }

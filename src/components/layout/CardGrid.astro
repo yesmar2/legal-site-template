@@ -9,7 +9,7 @@ const { class: extraClass, gapClass } = Astro.props as Props;
 const gap = gapClass ?? 'gap-6';
 ---
 
-<div class={`grid ${gap} md:grid-cols-2 lg:grid-cols-3 ${extraClass ?? ''}`}>
+<div class:list={['grid', gap, 'sm:grid-cols-2 lg:grid-cols-3', extraClass]}>
   <slot />
 </div>
 

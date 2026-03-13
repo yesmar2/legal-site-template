@@ -34,12 +34,12 @@ const getPrimaryCourt = (guide: (typeof guides)[number]) => {
   <div class="flex min-h-screen flex-col">
     <SiteHeader />
     <main>
-      <section class="bg-background py-20">
+      <section class="bg-background py-20 md:py-24">
         <div class="mx-auto max-w-4xl px-6 text-center">
           <h1 class="text-4xl font-bold tracking-tight text-foreground md:text-5xl">
             Legal Guides
           </h1>
-          <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
+          <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground md:text-lg">
             Our legal guides explain common legal situations in {site.location.city} and throughout {site.location.county}, {site.address.state}. These resources cover topics such as DUI arrests, criminal court procedures, and family law matters, including what to expect in local courts like{' '}
             <a href="/courts/jamestown-city-court" class="font-medium text-primary hover:underline">
               Jamestown City Court
@@ -52,9 +52,9 @@ const getPrimaryCourt = (guide: (typeof guides)[number]) => {
         </div>
       </section>
 
-      <section class="bg-background pb-20">
+      <section class="bg-background pb-20 md:pb-24">
         <div class="mx-auto max-w-6xl px-6">
-          <CardGrid gapClass="gap-8">
+          <CardGrid gapClass="gap-6">
             {guides.map((guide) => {
               const primaryCourt = getPrimaryCourt(guide);
 
@@ -79,17 +79,17 @@ const getPrimaryCourt = (guide: (typeof guides)[number]) => {
         </div>
       </section>
 
-      <section class="bg-muted py-20">
+      <section class="bg-muted py-20 md:py-24">
         <div class="mx-auto max-w-4xl px-6 text-center">
           <h2 class="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
             Questions About Your Situation?
           </h2>
-          <p class="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
+          <p class="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
             Speak with an attorney today about your case and the legal process.
           </p>
           <a
             href={phoneHref}
-            class="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-blue-700"
+            class="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-base font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
           >
             <Phone class="h-5 w-5" />
             Call Now For a Free Consultation
