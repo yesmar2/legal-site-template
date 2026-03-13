@@ -1,6 +1,7 @@
 import { site } from '@/src/config/site';
+import type { Guide } from '@/src/types/content';
 
-export const guides = [
+export const guides: Guide[] = [
   {
     title: `What Happens After a DUI Arrest in ${site.location.city} ${site.address.state}`,
     slug: "what-happens-after-dui-arrest-jamestown",
@@ -82,6 +83,23 @@ export const guides = [
       headline: `Charged with a DUI in ${site.location.city}?`,
       body:
         `A criminal defense lawyer can explain your options, appear with you in local courts, and work to protect your record and driving privileges. Call ${site.phone} for a confidential consultation with ${site.firmName}.`
+    },
+    sidebar: {
+      highlightTitle: 'Charged with a DUI?',
+      highlightBody:
+        `If you’ve been arrested for DUI or another criminal charge in ${site.location.city} or anywhere in ${site.location.county}, speaking with a local defense attorney early can help protect your record and driving privileges.`,
+      highlightCtaLabel: 'Schedule Consultation',
+      practiceLinks: [
+        { label: 'Criminal Defense', href: '/practice/criminal-defense', icon: 'scale' },
+        { label: 'DUI Defense', href: '/practice/criminal-defense', icon: 'car' },
+        { label: 'Drug Charges', href: '/practice/criminal-defense', icon: 'pill' },
+        { label: 'Assault Charges', href: '/practice/criminal-defense', icon: 'gavel' }
+      ],
+      courtLinks: [
+        { label: 'Jamestown City Court', href: '/courts/jamestown-city-court', icon: 'building-2' },
+        { label: 'Dunkirk City Court', href: '/courts/dunkirk-city-court', icon: 'building-2' },
+        { label: 'Chautauqua County Court', href: '/courts/chautauqua-county-court', icon: 'building-2' }
+      ]
     }
   },
   {

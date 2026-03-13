@@ -5,6 +5,7 @@ import SiteFooter from '@/src/components/site-footer.astro';
 import { guides } from '@/src/content/guides';
 import { courts } from '@/src/content/courts';
 import { site } from '@/src/config/site';
+import { practiceLabels, courtLabels } from '@/src/config/labels';
 import Building2 from '@lucide/astro/icons/building-2';
 import Check from '@lucide/astro/icons/check';
 import Scale from '@lucide/astro/icons/scale';
@@ -12,6 +13,7 @@ import Car from '@lucide/astro/icons/car';
 import Pill from '@lucide/astro/icons/pill';
 import Gavel from '@lucide/astro/icons/gavel';
 import GuideCard from '@/src/components/GuideCard.astro';
+import type { Guide } from '@/src/types/content';
 
 export async function getStaticPaths() {
   return guides.map((guide) => ({
@@ -20,7 +22,7 @@ export async function getStaticPaths() {
   }));
 }
 
-const { guide } = Astro.props as { guide: (typeof guides)[number] };
+const { guide } = Astro.props as { guide: Guide };
 
 const relatedGuides = guides.filter(
   (g) => g.practiceArea === guide.practiceArea && g.slug !== guide.slug
@@ -34,20 +36,6 @@ const relevantCourts = Array.isArray(guide.courts)
 
 const processSteps = Array.isArray(guide.processSteps) ? guide.processSteps : [];
 const faqs = Array.isArray(guide.faqs) ? guide.faqs : [];
-
-const practiceLabels: Record<string, string> = {
-  "criminal-defense": "Criminal Defense",
-  "family-law": "Family Law",
-  "personal-injury": "Personal Injury",
-  "real-estate-law": "Real Estate Law",
-};
-
-const courtLabels: Record<string, string> = {
-  "jamestown-city-court": "Jamestown City Court",
-  "chautauqua-county-court": "Chautauqua County Court",
-  "chautauqua-county-family-court": "Chautauqua County Family Court",
-  "dunkirk-city-court": "Dunkirk City Court",
-};
 ---
 
 <BaseLayout
@@ -77,7 +65,7 @@ const courtLabels: Record<string, string> = {
                 href={`/practice/${guide.practiceArea}`}
                 class="font-medium text-blue-300 hover:text-white hover:underline"
               >
-                {practiceLabels[guide.practiceArea] ?? guide.practiceArea}
+                {practiceLabels[guide.practiceArea as keyof typeof practiceLabels] ?? guide.practiceArea}
               </a>
             </span>
             {guide.court && (
@@ -234,7 +222,7 @@ const courtLabels: Record<string, string> = {
             )}
 
             <section class="guide-section" id="why-choose-local">
-              <h2>Why Choose a Local {practiceLabels[guide.practiceArea] ?? guide.practiceArea} Lawyer</h2>
+              <h2>Why Choose a Local {practiceLabels[guide.practiceArea as keyof typeof practiceLabels] ?? guide.practiceArea} Lawyer</h2>
               <ul class="mt-4 grid gap-3 sm:grid-cols-1" role="list">
                 <li class="flex items-start gap-3 rounded-lg border border-border bg-card px-4 py-3">
                   <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary" aria-hidden="true">
@@ -307,7 +295,7 @@ const courtLabels: Record<string, string> = {
 
             {relatedGuides.length > 0 && (
               <section class="guide-section">
-                <h2>Other Guides for {practiceLabels[guide.practiceArea] ?? guide.practiceArea}</h2>
+                <h2>Other Guides for {practiceLabels[guide.practiceArea as keyof typeof practiceLabels] ?? guide.practiceArea}</h2>
                 <div class="mt-4 grid grid-cols-1 gap-6 md:grid-cols-2">
                   {relatedGuides.slice(0, 3).map((related) => (
                     <GuideCard guide={related} />

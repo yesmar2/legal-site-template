@@ -1,3 +1,9 @@
+export type PracticeAreaSlug =
+  | 'criminal-defense'
+  | 'personal-injury'
+  | 'family-law'
+  | 'real-estate-law';
+
 export interface PracticeFaq {
   question: string;
   answer: string;
@@ -10,7 +16,7 @@ export interface PracticeCta {
 }
 
 export interface PracticeArea {
-  slug: string;
+  slug: PracticeAreaSlug;
   name: string;
   title: string;
   description: string;

@@ -1,6 +1,7 @@
 import { Scale, Car, FileText, Users, Home, Gavel, AlertTriangle, Briefcase } from 'lucide-react';
+import type { Court } from '@/src/types/content';
 
-export const courts = [
+export const courts: Court[] = [
   {
     slug: 'jamestown-city-court',
     name: 'Jamestown City Court',
