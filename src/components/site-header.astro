@@ -5,6 +5,20 @@ import Menu from '@lucide/astro/icons/menu';
 import { site } from '../config/site';
 ---
 <header class="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+  <style>
+    #menu-toggle {
+      display: none;
+    }
+    
+    #mobile-menu-panel {
+      display: none;
+    }
+    
+    #menu-toggle:checked ~ #mobile-menu-panel {
+      display: block;
+    }
+  </style>
+  
   <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
     <!-- Logo -->
     <a href="/" class="flex items-center gap-2">
@@ -48,14 +62,13 @@ import { site } from '../config/site';
       </a>
 
       <!-- Mobile menu toggle (below lg) -->
-      <button
-        type="button"
-        id="mobile-menu-toggle"
-        class="inline-flex items-center justify-center rounded-lg border border-input bg-background p-2 text-muted-foreground hover:bg-muted hover:text-foreground lg:hidden"
+      <label
+        for="menu-toggle"
+        class="inline-flex items-center justify-center rounded-lg border border-input bg-background p-2 text-muted-foreground hover:bg-muted hover:text-foreground lg:hidden cursor-pointer"
         aria-label="Toggle navigation menu"
       >
         <Menu class="h-5 w-5" />
-      </button>
+      </label>
 
       <!-- Desktop phone + CTA (lg and up) -->
       <div class="hidden items-center gap-6 lg:flex">
@@ -76,10 +89,13 @@ import { site } from '../config/site';
     </div>
   </nav>
 
+  <!-- Mobile menu checkbox (hidden) -->
+  <input type="checkbox" id="menu-toggle" />
+
   <!-- Mobile navigation panel -->
   <div
     id="mobile-menu-panel"
-    class="hidden border-t bg-background px-4 pb-4 pt-2 text-sm lg:hidden"
+    class="border-t bg-background px-4 pb-4 pt-2 text-sm lg:hidden"
   >
     <nav class="flex flex-col gap-2">
       <a href="/about" class="py-1 text-muted-foreground hover:text-foreground">
@@ -99,16 +115,5 @@ import { site } from '../config/site';
       </a>
     </nav>
   </div>
-
-  <script>
-    const toggle = document.getElementById('mobile-menu-toggle');
-    const panel = document.getElementById('mobile-menu-panel');
-
-    if (toggle && panel) {
-      toggle.addEventListener('click', () => {
-        panel.classList.toggle('hidden');
-      });
-    }
-  </script>
 </header>
 

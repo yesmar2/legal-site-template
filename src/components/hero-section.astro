@@ -31,7 +31,7 @@ import { site } from '../config/site';
   <div class="relative mx-auto flex w-full max-w-7xl flex-col px-6 py-12 lg:px-8 2xl:py-16">
     <div class="mx-auto max-w-4xl text-center">
       <!-- Eyebrow badge -->
-      <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-slate-300 backdrop-blur-sm">
+      <div class="mb-4 inline-flex items-center gap-2 rounded-modern border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-slate-300 backdrop-blur-sm transition-smooth hover:border-white/20 hover:bg-white/10">
         <span class="flex h-2 w-2 rounded-full bg-emerald-400" />
         Serving {site.location.city} &amp; {site.location.county}
       </div>
@@ -51,15 +51,15 @@ import { site } from '../config/site';
       <div class="mt-5 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4 2xl:mt-8 2xl:gap-5">
         <a
           href="/contact"
-          class="group inline-flex h-12 items-center justify-center gap-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-500 px-6 text-sm font-medium text-white shadow-lg shadow-blue-500/25 transition-all hover:from-blue-500 hover:to-blue-400 hover:shadow-xl hover:shadow-blue-500/30 2xl:h-14 2xl:px-8 2xl:text-base"
+          class="group inline-flex h-12 items-center justify-center gap-3 rounded-modern bg-gradient-to-r from-blue-600 to-blue-500 px-6 text-sm font-medium text-white shadow-lg shadow-blue-500/25 transition-smooth hover:from-blue-500 hover:to-blue-400 hover:shadow-refined-lg hover:shadow-blue-500/30 2xl:h-14 2xl:px-8 2xl:text-base"
         >
           <Calendar class="h-5 w-5" />
           Schedule {site.consultationText}
-          <span class="inline-block text-sm transition-transform group-hover:translate-x-0.5">→</span>
+          <span class="inline-block text-sm transition-smooth group-hover:translate-x-0.5">→</span>
         </a>
         <a href={`tel:${site.phone.replace(/[^0-9+]/g, '')}`}>
           <span 
-            class="inline-flex h-12 items-center justify-center gap-3 rounded-full border border-white/15 bg-white/5 px-6 text-sm font-medium text-white backdrop-blur-sm transition-all hover:border-white/25 hover:bg-white/10 2xl:h-14 2xl:px-8 2xl:text-base"
+            class="inline-flex h-12 items-center justify-center gap-3 rounded-modern border border-white/15 bg-white/5 px-6 text-sm font-medium text-white backdrop-blur-sm transition-smooth hover:border-white/25 hover:bg-white/10 2xl:h-14 2xl:px-8 2xl:text-base"
           >
             <Phone class="h-5 w-5" />
             Call {site.phone}
@@ -71,29 +71,29 @@ import { site } from '../config/site';
     <!-- Trust signals -->
     <div class="mx-auto mt-10 max-w-3xl md:mt-12 2xl:mt-16">
       <div class="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4 2xl:gap-5">
-        <div class="group flex flex-col items-center gap-2 rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 text-center backdrop-blur-sm transition-all hover:border-blue-400/40 hover:bg-white/[0.06] 2xl:gap-3 2xl:px-8 2xl:py-6">
-          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500/25 to-blue-600/20 ring-1 ring-white/15">
+        <div class="group flex flex-col items-center gap-2 rounded-modern border border-white/10 bg-white/[0.03] px-5 py-4 text-center backdrop-blur-sm transition-smooth hover:border-blue-400/40 hover:bg-white/[0.06] 2xl:gap-3 2xl:px-8 2xl:py-6">
+          <div class="flex h-12 w-12 items-center justify-center rounded-modern-sm bg-gradient-to-br from-blue-500/25 to-blue-600/20 ring-1 ring-white/15">
             <Shield class="h-6 w-6 text-blue-300" />
           </div>
           <span class="text-2xl font-semibold text-white 2xl:text-3xl">{site.yearsExperience}+</span>
           <span class="text-xs text-slate-400 2xl:text-sm">Years Experience</span>
         </div>
-        <div class="group flex flex-col items-center gap-2 rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 text-center backdrop-blur-sm transition-all hover:border-emerald-400/40 hover:bg-white/[0.06] 2xl:gap-3 2xl:px-8 2xl:py-6">
-          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500/25 to-emerald-600/20 ring-1 ring-white/15">
+        <div class="group flex flex-col items-center gap-2 rounded-modern border border-white/10 bg-white/[0.03] px-5 py-4 text-center backdrop-blur-sm transition-smooth hover:border-emerald-400/40 hover:bg-white/[0.06] 2xl:gap-3 2xl:px-8 2xl:py-6">
+          <div class="flex h-12 w-12 items-center justify-center rounded-modern-sm bg-gradient-to-br from-emerald-500/25 to-emerald-600/20 ring-1 ring-white/15">
             <MapPin class="h-6 w-6 text-emerald-300" />
           </div>
           <span class="text-2xl font-semibold text-white 2xl:text-3xl">Local</span>
           <span class="text-xs text-slate-400 2xl:text-sm">Chautauqua County</span>
         </div>
-        <div class="group flex flex-col items-center gap-2 rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 text-center backdrop-blur-sm transition-all hover:border-cyan-400/40 hover:bg-white/[0.06] 2xl:gap-3 2xl:px-8 2xl:py-6">
-          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500/25 to-cyan-600/20 ring-1 ring-white/15">
+        <div class="group flex flex-col items-center gap-2 rounded-modern border border-white/10 bg-white/[0.03] px-5 py-4 text-center backdrop-blur-sm transition-smooth hover:border-cyan-400/40 hover:bg-white/[0.06] 2xl:gap-3 2xl:px-8 2xl:py-6">
+          <div class="flex h-12 w-12 items-center justify-center rounded-modern-sm bg-gradient-to-br from-cyan-500/25 to-cyan-600/20 ring-1 ring-white/15">
             <Clock class="h-6 w-6 text-cyan-300" />
           </div>
           <span class="text-2xl font-semibold text-white 2xl:text-3xl">Free</span>
           <span class="text-xs text-slate-400 2xl:text-sm">Initial Consultation</span>
         </div>
-        <div class="group flex flex-col items-center gap-2 rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 text-center backdrop-blur-sm transition-all hover:border-amber-400/40 hover:bg-white/[0.06] 2xl:gap-3 2xl:px-8 2xl:py-6">
-          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500/25 to-amber-600/20 ring-1 ring-white/15">
+        <div class="group flex flex-col items-center gap-2 rounded-modern border border-white/10 bg-white/[0.03] px-5 py-4 text-center backdrop-blur-sm transition-smooth hover:border-amber-400/40 hover:bg-white/[0.06] 2xl:gap-3 2xl:px-8 2xl:py-6">
+          <div class="flex h-12 w-12 items-center justify-center rounded-modern-sm bg-gradient-to-br from-amber-500/25 to-amber-600/20 ring-1 ring-white/15">
             <Scale class="h-6 w-6 text-amber-300" />
           </div>
           <span class="text-2xl font-semibold text-white 2xl:text-3xl">Trial</span>

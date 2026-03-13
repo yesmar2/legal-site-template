@@ -21,16 +21,16 @@ const {
 ---
 
 <a href={href} class="group block h-full">
-  <article class="flex h-full flex-col rounded-2xl border border-border bg-card p-8 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg">
+  <article class="flex h-full flex-col rounded-modern border border-border bg-card p-8 shadow-refined transition-smooth hover:-translate-y-1 hover:border-primary/50 hover:shadow-refined-lg">
     {Icon && (
-      <div class="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+      <div class="mb-2 flex h-12 w-12 items-center justify-center rounded-modern-sm bg-primary/10">
         <Icon class="h-6 w-6 text-primary" />
       </div>
     )}
 
     <h3 class="flex items-center gap-2 text-xl font-semibold text-foreground">
       {title}
-      <ArrowRight class="h-4 w-4 opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
+      <ArrowRight class="h-4 w-4 opacity-0 transition-smooth group-hover:translate-x-1 group-hover:opacity-100" />
     </h3>
 
     {eyebrow && (

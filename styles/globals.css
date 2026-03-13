@@ -123,3 +123,47 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Modern 2026 styling refinements */
+@layer utilities {
+  /* Refined shadow system - subtle, layered */
+  .shadow-refined-sm {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+
+  .shadow-refined {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.04),
+                0 6px 16px 0 rgba(0, 0, 0, 0.06);
+  }
+
+  .shadow-refined-lg {
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.04),
+                0 10px 20px 0 rgba(0, 0, 0, 0.08);
+  }
+
+  /* Softer border radius for 2026 aesthetic */
+  .rounded-modern-sm {
+    border-radius: 0.625rem;
+  }
+
+  .rounded-modern {
+    border-radius: 1rem;
+  }
+
+  .rounded-modern-lg {
+    border-radius: 1.5rem;
+  }
+
+  /* Smooth transitions */
+  .transition-smooth {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 250ms;
+  }
+
+  .transition-smooth-lg {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 350ms;
+  }
+}
