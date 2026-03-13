@@ -12,7 +12,9 @@ import CourtCard from '@/src/components/CourtCard.astro';
         Local Courts We Handle
       </h2>
       <p class="mx-auto mt-4 max-w-2xl text-muted-foreground">
-        Our attorneys regularly represent clients in courts throughout {site.location.city} and {site.location.county}. 
+        {site.copy.localCourtsLeadCityCounty
+          .replace('{{city}}', site.location.city)
+          .replace('{{county}}', site.location.county)}
         Learn more about the courts where criminal and civil cases are handled.
       </p>
     </div>

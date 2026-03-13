@@ -1,10 +1,12 @@
+import { site } from '@/src/config/site';
+
 export const attorneys = [
   {
     slug: 'michael-anderson',
     name: 'Michael J. Anderson',
     title: 'Criminal Defense & Trial Attorney',
     href: '/attorneys/michael-anderson',
-    focus: 'Michael focuses on criminal defense, DUI cases, and trial advocacy throughout Chautauqua County.'
+    focus: `Michael focuses on criminal defense, DUI cases, and trial advocacy throughout ${site.location.county}.`
   },
   {
     slug: 'sarah-mitchell',

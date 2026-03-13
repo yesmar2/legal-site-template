@@ -27,6 +27,12 @@ export const site = {
 
   isTwentyFourSeven: true,
 
-  hasEveningAndWeekendAppointments: true
+  hasEveningAndWeekendAppointments: true,
+
+  copy: {
+    localCourtsLead: 'Our attorneys regularly represent clients in courts throughout {{county}}.',
+    localCourtsLeadCityCounty:
+      'Our attorneys regularly represent clients in courts throughout {{city}} and {{county}}.'
+  }
 };
 

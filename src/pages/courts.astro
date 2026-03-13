@@ -25,7 +25,7 @@ const pageDescription = `Learn about the courts throughout ${site.location.count
             Courts We Serve
           </h1>
           <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
-            Our attorneys regularly represent clients in courts throughout {site.location.county}, including Jamestown City Court and Chautauqua County Court.
+            {site.copy.localCourtsLead.replace('{{county}}', site.location.county)} including Jamestown City Court and Chautauqua County Court.
           </p>
         </div>
       </section>
