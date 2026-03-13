@@ -1,0 +1,84 @@
+---
+import Phone from '@lucide/astro/icons/phone';
+import { site } from '@/src/config/site';
+
+interface Props {
+  title: string;
+  description: string;
+  buttonText?: string;
+  buttonHref?: string;
+  buttonIcon?: astroHTML.JSX.Element;
+  showFeatures?: boolean;
+  variant?: 'gradient' | 'muted';
+}
+
+const {
+  title,
+  description,
+  buttonText = 'Call Now For a Free Consultation',
+  buttonHref = `tel:${site.phone.replace(/[^0-9+]/g, '')}`,
+  showFeatures = false,
+  variant = 'gradient',
+} = Astro.props;
+
+const isGradient = variant === 'gradient';
+---
+
+<section
+  class:list={[
+    'py-20 md:py-24',
+    isGradient && 'relative overflow-hidden bg-gradient-to-br from-primary via-accent to-primary',
+    !isGradient && 'bg-muted',
+  ]}
+>
+  {isGradient && (
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.1),transparent_50%)]"></div>
+  )}
+
+  <div class:list={['mx-auto max-w-4xl px-6 text-center', isGradient && 'relative']}>
+    <h2
+      class:list={[
+        'text-3xl font-bold tracking-tight md:text-4xl',
+        isGradient ? 'text-white' : 'text-foreground',
+      ]}
+    >
+      {title}
+    </h2>
+
+    <p
+      class:list={[
+        'mx-auto mt-4 max-w-2xl text-base leading-relaxed md:text-lg',
+        isGradient ? 'text-white/80' : 'text-muted-foreground',
+      ]}
+    >
+      {description}
+    </p>
+
+    {showFeatures && isGradient && (
+      <div class="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-white/90">
+        <span class="flex items-center gap-1.5">
+          <span class="text-white">&#10003;</span> Free Consultation
+        </span>
+        <span class="flex items-center gap-1.5">
+          <span class="text-white">&#10003;</span> Local Attorneys
+        </span>
+        <span class="flex items-center gap-1.5">
+          <span class="text-white">&#10003;</span> Serving {site.location.city} &amp; {site.location.county}
+        </span>
+      </div>
+    )}
+
+    <a
+      href={buttonHref}
+      class:list={[
+        'mt-8 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-semibold shadow-lg transition-all',
+        isGradient
+          ? 'bg-white text-primary hover:bg-white/90 hover:shadow-xl'
+          : 'bg-primary text-primary-foreground hover:bg-primary/90',
+      ]}
+    >
+      <Phone class="h-5 w-5" />
+      {buttonText}
+    </a>
+  </div>
+</section>

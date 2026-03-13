@@ -1,0 +1,39 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'section'> {
+  title: string;
+  badge?: string;
+}
+
+const { title, badge, class: className, ...rest } = Astro.props;
+---
+
+<section
+  class:list={[
+    'relative overflow-hidden bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 py-20 md:py-28',
+    className,
+  ]}
+  {...rest}
+>
+  <!-- Subtle radial light effects (CSS only, no JS) -->
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.08),transparent_50%)]"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(59,130,246,0.05),transparent_50%)]"></div>
+
+  <div class="relative mx-auto max-w-4xl px-6 text-center">
+    {badge && (
+      <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-800/50 px-4 py-1.5 text-sm text-slate-300">
+        <slot name="badgeIcon" />
+        {badge}
+      </div>
+    )}
+
+    <h1 class="text-4xl font-bold tracking-tight text-white md:text-5xl">
+      {title}
+    </h1>
+
+    <div class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-300 md:text-lg">
+      <slot />
+    </div>
+  </div>
+</section>

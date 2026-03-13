@@ -2,10 +2,11 @@
 import Scale from '@lucide/astro/icons/scale';
 import Building2 from '@lucide/astro/icons/building-2';
 import ArrowRight from '@lucide/astro/icons/arrow-right';
-import Phone from '@lucide/astro/icons/phone';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '@/src/components/site-header.astro';
 import SiteFooter from '@/src/components/site-footer.astro';
+import PageHero from '@/src/components/layout/PageHero.astro';
+import PageCTA from '@/src/components/layout/PageCTA.astro';
 import { site } from '@/src/config/site';
 import { practiceAreas } from '../data/practiceAreas';
 import { courts } from '../data/courts';
@@ -32,44 +33,30 @@ const featuredCourts = featuredCourtSlugs
   .filter((court): court is (typeof courts)[number] => Boolean(court));
 const jamestownCourt = featuredCourts.find((court) => court?.slug === 'jamestown-city-court');
 const countyCourt = featuredCourts.find((court) => court?.slug === 'chautauqua-county-court');
-const phoneHref = `tel:${site.phone.replace(/[^0-9+]/g, '')}`;
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
   <div class="flex min-h-screen flex-col">
     <SiteHeader />
     <main>
-      <!-- Hero with subtle gradient background -->
-      <section class="relative overflow-hidden bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 py-20 md:py-28">
-        <!-- Subtle pattern overlay -->
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.08),transparent_50%)]"></div>
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(59,130,246,0.05),transparent_50%)]"></div>
-        
-        <div class="relative mx-auto max-w-4xl px-6 text-center">
-          <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-800/50 px-4 py-1.5 text-sm text-slate-300">
-            <Scale class="h-4 w-4 text-blue-400" />
-            Legal Services in {site.location.county}
-          </div>
-          <h1 class="text-4xl font-bold tracking-tight text-white md:text-5xl">
-            Practice Areas
-          </h1>
-          <p class="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-300 md:text-lg">
-            {site.firmName} provides legal representation throughout {site.location.city} and {site.location.county}, {site.location.state} in several practice areas including criminal defense, personal injury, family law, and real estate law. Our attorneys regularly represent clients in local courts such as{' '}
-            {jamestownCourt && (
-              <a href={jamestownCourt.href} class="font-medium text-blue-400 hover:text-blue-300 hover:underline">
-                {jamestownCourt.name}
-              </a>
-            )}
-            {' '}and{' '}
-            {countyCourt && (
-              <a href={countyCourt.href} class="font-medium text-blue-400 hover:text-blue-300 hover:underline">
-                {countyCourt.name}
-              </a>
-            )}
-            , representing clients in a wide range of legal matters.
-          </p>
-        </div>
-      </section>
+      <PageHero title="Practice Areas" badge={`Legal Services in ${site.location.county}`}>
+        <Scale slot="badgeIcon" class="h-4 w-4 text-blue-400" />
+        <p>
+          {site.firmName} provides legal representation throughout {site.location.city} and {site.location.county}, {site.location.state} in several practice areas including criminal defense, personal injury, family law, and real estate law. Our attorneys regularly represent clients in local courts such as{' '}
+          {jamestownCourt && (
+            <a href={jamestownCourt.href} class="font-medium text-blue-400 hover:text-blue-300 hover:underline">
+              {jamestownCourt.name}
+            </a>
+          )}
+          {' '}and{' '}
+          {countyCourt && (
+            <a href={countyCourt.href} class="font-medium text-blue-400 hover:text-blue-300 hover:underline">
+              {countyCourt.name}
+            </a>
+          )}
+          , representing clients in a wide range of legal matters.
+        </p>
+      </PageHero>
 
       <!-- Practice Area Cards with warm accent borders -->
       <section class="bg-background py-20 md:py-24">
@@ -120,31 +107,11 @@ const phoneHref = `tel:${site.phone.replace(/[^0-9+]/g, '')}`;
         </div>
       </section>
 
-      <!-- CTA Section with gradient -->
-      <section class="relative overflow-hidden bg-gradient-to-br from-primary via-accent to-primary py-20 md:py-24">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.1),transparent_50%)]"></div>
-        <div class="relative mx-auto max-w-4xl px-6 text-center">
-          <h2 class="text-3xl font-bold tracking-tight text-white md:text-4xl">
-            Need Help With a Legal Matter?
-          </h2>
-          <p class="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/80 md:text-lg">
-            Speak with an attorney today about your case.
-            Free consultations are available for many legal matters.
-          </p>
-          <div class="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-white/90">
-            <span class="flex items-center gap-1.5"><span class="text-white">&#10003;</span> Free Consultation</span>
-            <span class="flex items-center gap-1.5"><span class="text-white">&#10003;</span> Local Attorneys</span>
-            <span class="flex items-center gap-1.5"><span class="text-white">&#10003;</span> Serving {site.location.city} &amp; {site.location.county}</span>
-          </div>
-          <a
-            href={phoneHref}
-            class="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-base font-semibold text-primary shadow-lg transition-all hover:bg-white/90 hover:shadow-xl"
-          >
-            <Phone class="h-5 w-5" />
-            Call Now For a Free Consultation
-          </a>
-        </div>
-      </section>
+      <PageCTA
+        title="Need Help With a Legal Matter?"
+        description="Speak with an attorney today about your case. Free consultations are available for many legal matters."
+        showFeatures={true}
+      />
     </main>
     <SiteFooter />
   </div>
