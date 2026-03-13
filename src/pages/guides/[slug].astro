@@ -101,6 +101,14 @@ const faqs = Array.isArray(guide.faqs) ? guide.faqs : [];
         <div class="mx-auto max-w-6xl px-6 lg:px-8">
           <div class="grid gap-10 lg:grid-cols-10">
             <article class="guide-article lg:col-span-7">
+              {guide.quickAnswer && (
+                <div class="mb-6 rounded-2xl border border-border bg-card/60 p-4 text-sm text-muted-foreground">
+                  <p>
+                    <span class="font-semibold text-foreground">Quick Answer:</span>{' '}
+                    {guide.quickAnswer}
+                  </p>
+                </div>
+              )}
             <section id="overview" class="guide-section scroll-mt-24">
               <h2>Overview</h2>
               <p>

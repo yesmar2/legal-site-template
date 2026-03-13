@@ -7,6 +7,8 @@ export const guides: Guide[] = [
     slug: "what-happens-after-dui-arrest-jamestown",
     description:
       `Step-by-step explanation of what happens after a DUI arrest in ${site.location.city} including arraignment in ${site.location.city} City Court.`,
+    quickAnswer:
+      'After a DUI arrest in Jamestown, most people are arraigned in Jamestown City Court within about 24 hours or the next business day.',
     practiceArea: "criminal-defense",
     court: "jamestown-city-court",
     city: site.location.city,
@@ -107,6 +109,8 @@ export const guides: Guide[] = [
     slug: "jamestown-city-court-arraignment",
     description:
       `Learn what to expect during an arraignment in ${site.location.city} City Court and the next steps in a criminal case.`,
+    quickAnswer:
+      `At an arraignment in ${site.location.city} City Court, the judge explains the charges and your rights, takes your plea, and sets bail or release conditions.`,
     practiceArea: "criminal-defense",
     court: "jamestown-city-court",
     city: site.location.city,
@@ -168,6 +172,8 @@ export const guides: Guide[] = [
     slug: "chautauqua-county-divorce-process",
     description:
       `Overview of the divorce process in ${site.location.county} Family Court.`,
+    quickAnswer:
+      `A divorce in ${site.location.county} typically involves filing, temporary orders, financial disclosure, negotiations or conferences, and then either a settlement or trial before the court enters a final judgment.`,
     practiceArea: "family-law",
     court: "chautauqua-county-family-court",
     city: site.location.county,

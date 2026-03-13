@@ -36,6 +36,7 @@ export interface Guide {
   slug: string;
   title: string;
   description: string;
+  quickAnswer?: string;
   practiceArea: string;
   court?: string;
   city?: string;
@@ -84,5 +85,6 @@ export interface Court {
   beforeAppearance?: { text: string }[];
   duringAppearance?: { text: string }[];
   relatedAreas?: { title: string; href: string }[];
+  sources?: { title: string; url: string }[];
 }
 

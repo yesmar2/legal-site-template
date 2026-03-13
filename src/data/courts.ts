@@ -75,6 +75,12 @@ export const courts: Court[] = [
       { title: 'Criminal Defense', href: '/jamestown-criminal-defense-lawyer' },
       { title: 'DUI Defense', href: '/guides/dui-arrest-new-york' },
       { title: 'Traffic Violations', href: '/jamestown-criminal-defense-lawyer' }
+    ],
+    sources: [
+      {
+        title: 'New York Unified Court System',
+        url: 'https://ww2.nycourts.gov'
+      }
     ]
   },
   {
@@ -149,6 +155,12 @@ export const courts: Court[] = [
       { title: 'Criminal Defense', href: '/jamestown-criminal-defense-lawyer' },
       { title: 'DUI Defense', href: '/guides/dui-arrest-new-york' },
       { title: 'Traffic Violations', href: '/jamestown-criminal-defense-lawyer' }
+    ],
+    sources: [
+      {
+        title: 'New York Unified Court System',
+        url: 'https://ww2.nycourts.gov'
+      }
     ]
   },
   {
@@ -227,6 +239,12 @@ export const courts: Court[] = [
       { title: 'Criminal Defense', href: '/jamestown-criminal-defense-lawyer' },
       { title: 'Felony Defense', href: '/jamestown-criminal-defense-lawyer' },
       { title: 'Drug Charges', href: '/jamestown-criminal-defense-lawyer' }
+    ],
+    sources: [
+      {
+        title: 'New York Unified Court System',
+        url: 'https://ww2.nycourts.gov'
+      }
     ]
   },
   {

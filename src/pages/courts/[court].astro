@@ -9,7 +9,7 @@ import CourtWhatToExpect from '@/src/components/courts/court-what-to-expect.astr
 import CourtRelatedAreas from '@/src/components/courts/court-related-areas.astro';
 import CourtCTA from '@/src/components/courts/court-cta.astro';
 import { courts } from '../../data/courts';
-import { guides } from '../../content/guides';
+import { guides } from '../../data/guides';
 
 export async function getStaticPaths() {
   return courts.map((court) => ({
@@ -46,6 +46,29 @@ const relatedGuides = guides.filter((guide) =>
         duringAppearance={courtData.duringAppearance}
       />
       <CourtRelatedAreas areas={courtData.relatedAreas} />
+      {Array.isArray(courtData.sources) && courtData.sources.length > 0 && (
+        <section class="border-t border-border bg-background py-10">
+          <div class="mx-auto max-w-6xl px-6">
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+              Official Sources
+            </h3>
+            <ul class="mt-3 space-y-1 text-sm text-muted-foreground">
+              {courtData.sources.map((source) => (
+                <li>
+                  <a
+                    href={source.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-primary hover:underline"
+                  >
+                    {source.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
       {relatedGuides.length > 0 && (
         <section class="border-t border-border bg-background py-16 md:py-20">
           <div class="mx-auto max-w-6xl px-6">

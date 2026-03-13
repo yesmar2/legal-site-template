@@ -25,6 +25,11 @@ import { attorneys } from '../data/attorneys';
             <p class="mt-1 text-sm font-medium text-primary">
               {attorney.title}
             </p>
+            {typeof attorney.yearsExperience === 'number' && attorney.yearsExperience > 0 && (
+              <p class="mt-1 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                {attorney.yearsExperience}+ Years Experience
+              </p>
+            )}
             <p class="mt-4 text-base leading-relaxed text-muted-foreground">
               {attorney.focus}
             </p>
