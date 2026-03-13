@@ -3,12 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '@/src/components/site-header.astro';
 import SiteFooter from '@/src/components/site-footer.astro';
 import User from '@lucide/astro/icons/user';
-import Award from '@lucide/astro/icons/award';
-import MapPin from '@lucide/astro/icons/map-pin';
-import Calendar from '@lucide/astro/icons/calendar';
 import ArrowRight from '@lucide/astro/icons/arrow-right';
 import Phone from '@lucide/astro/icons/phone';
-import Scale from '@lucide/astro/icons/scale';
 import { site } from '../config/site';
 import { attorneys } from '../content/attorneys';
 import { courts } from '../content/courts';
@@ -17,109 +13,117 @@ const pageTitle = `About ${site.firmName}`;
 const pageDescription = `${site.firmName} is a law firm based in ${site.location.city}, ${site.location.state}, representing clients throughout ${site.location.county}.`;
 
 const yearsExp = site.yearsExperience ?? 20;
-const practiceAreasLabel = 'Criminal • Injury • Family'; // placeholder; can move to config
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
   <div class="flex min-h-screen flex-col">
     <SiteHeader />
     <main>
-      <!-- 1. Hero with authority badges -->
-      <section class="relative isolate overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 pb-24 pt-28 md:pb-28 md:pt-36">
-        <div aria-hidden="true" class="absolute -top-40 left-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-gradient-to-br from-blue-500/30 via-indigo-500/20 to-transparent blur-3xl" />
-        <div aria-hidden="true" class="absolute -bottom-20 right-0 -z-10 h-[350px] w-[350px] rounded-full bg-gradient-to-tl from-blue-600/20 via-cyan-500/10 to-transparent blur-3xl" />
-        <div aria-hidden="true" class="absolute inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:72px_72px]" />
+      <!-- Hero section -->
+      <section class="relative min-h-[70vh] overflow-hidden bg-foreground">
+        <div class="absolute inset-0">
+          <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-30" />
+          <div class="absolute inset-0 bg-foreground/70" />
+        </div>
 
-        <div class="relative mx-auto max-w-4xl px-6 lg:px-8">
-          <h1 class="text-balance text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl">
-            About {site.firmName}
-          </h1>
-          <p class="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-slate-200 md:text-xl">
-            {site.firmName} is a law firm based in {site.location.city}, {site.location.state}, representing clients throughout {site.location.county}.
-          </p>
-          <p class="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-slate-300 md:text-base">
-            {site.firmName} represents clients throughout {site.location.city} and {site.location.county}, regularly handling matters in local courts across {site.location.county}.
-          </p>
+        <div class="relative z-10 flex min-h-[70vh] flex-col justify-center px-6 py-24 md:px-12 lg:px-20">
+          <div class="mx-auto w-full max-w-6xl">
+            <span class="text-sm uppercase tracking-widest text-primary-foreground/50">About</span>
+            <h1 class="mt-4 max-w-4xl font-serif text-4xl text-primary-foreground sm:text-5xl md:text-6xl lg:text-7xl">
+              {site.firmName}
+            </h1>
+            <p class="mt-6 max-w-xl text-lg text-primary-foreground/70 md:text-xl">
+              A law firm based in {site.location.city}, {site.location.state}, representing clients throughout {site.location.county}.
+            </p>
+          </div>
+        </div>
 
-          <!-- Authority badge row -->
-          <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
-            <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-300 backdrop-blur-sm">
-              <Award class="h-4 w-4 text-blue-300" />
-              {yearsExp}+ Years of Legal Experience
-            </span>
-            <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-300 backdrop-blur-sm">
-              <MapPin class="h-4 w-4 text-emerald-300" />
-              Local Court Representation
-            </span>
-            <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-300 backdrop-blur-sm">
-              <Calendar class="h-4 w-4 text-cyan-300" />
-              {site.consultationText}s
-            </span>
+        <!-- Stats bar -->
+        <div class="relative z-10 border-t border-primary-foreground/10">
+          <div class="mx-auto w-full max-w-6xl px-6 py-8 md:px-12 lg:px-20">
+            <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
+              <div>
+                <div class="font-serif text-3xl text-primary-foreground md:text-4xl">{yearsExp}+</div>
+                <div class="mt-1 text-sm text-primary-foreground/50 uppercase tracking-wider">Years Experience</div>
+              </div>
+              <div>
+                <div class="font-serif text-3xl text-primary-foreground md:text-4xl">Local</div>
+                <div class="mt-1 text-sm text-primary-foreground/50 uppercase tracking-wider">Court Knowledge</div>
+              </div>
+              <div>
+                <div class="font-serif text-3xl text-primary-foreground md:text-4xl">Free</div>
+                <div class="mt-1 text-sm text-primary-foreground/50 uppercase tracking-wider">Consultations</div>
+              </div>
+              <div>
+                <div class="font-serif text-3xl text-primary-foreground md:text-4xl">24/7</div>
+                <div class="mt-1 text-sm text-primary-foreground/50 uppercase tracking-wider">Emergency Line</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- 2. Firm overview (two paragraphs) -->
-      <section class="about-section border-t border-border bg-background">
-        <div class="about-container">
-          <h2 class="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
-            Our Firm
-          </h2>
-          <p class="mt-3 text-lg font-medium text-primary">
-            {site.tagline}
-          </p>
-          <p class="mt-4 max-w-2xl mx-auto text-base leading-relaxed text-muted-foreground">
-            {site.firmName} represents individuals and families in criminal defense, personal injury, family law, and related matters. Our attorneys focus on protecting clients' rights and achieving the best possible outcomes in {site.location.city} and across {site.location.county}.
-          </p>
-          <p class="mt-4 max-w-2xl mx-auto text-base leading-relaxed text-muted-foreground">
-            The firm regularly represents clients in local courts throughout {site.location.county}, {site.location.state}. We understand local procedures and work to provide responsive, effective representation close to home.
-          </p>
+      <!-- Firm overview -->
+      <section class="bg-background py-24 md:py-32">
+        <div class="mx-auto max-w-6xl px-6 md:px-12 lg:px-20">
+          <div class="grid gap-16 lg:grid-cols-2 lg:gap-24">
+            <div>
+              <span class="text-sm uppercase tracking-widest text-muted-foreground">Our Practice</span>
+              <h2 class="mt-4 font-serif text-4xl text-foreground md:text-5xl">
+                {site.tagline}
+              </h2>
+            </div>
+            <div class="flex flex-col justify-end">
+              <p class="text-lg leading-relaxed text-muted-foreground">
+                {site.firmName} represents individuals and families in criminal defense, personal injury, family law, and related matters. Our attorneys focus on protecting clients' rights and achieving the best possible outcomes in {site.location.city} and across {site.location.county}.
+              </p>
+              <p class="mt-6 text-lg leading-relaxed text-muted-foreground">
+                The firm regularly represents clients in local courts throughout {site.location.county}, {site.location.state}. We understand local procedures and work to provide responsive, effective representation close to home.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
-      <!-- 3. Attorneys -->
-      <section class="about-section border-t border-border bg-muted">
-        <div class="about-container">
-          <h2 class="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
-            Our Attorneys
-          </h2>
-          <p class="mt-3 max-w-2xl text-muted-foreground">
-            Meet the attorneys representing clients throughout {site.location.city} and {site.location.county}.
-          </p>
+      <!-- Attorneys -->
+      <section class="bg-muted py-24 md:py-32">
+        <div class="mx-auto max-w-6xl px-6 md:px-12 lg:px-20">
+          <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <span class="text-sm uppercase tracking-widest text-muted-foreground">Our Team</span>
+              <h2 class="mt-2 font-serif text-4xl text-foreground md:text-5xl">
+                Meet Our Attorneys
+              </h2>
+            </div>
+            <p class="max-w-md text-muted-foreground">
+              Experienced attorneys representing clients throughout {site.location.city} and {site.location.county}.
+            </p>
+          </div>
 
-          <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div class="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {attorneys.map((attorney) => {
-              const att = attorney as typeof attorney & { experience?: string; education?: string; focusList?: string[]; image?: string };
+              const att = attorney as typeof attorney & { experience?: string; focusList?: string[] };
               return (
                 <a href={attorney.href} class="group">
-                  <div class="h-full rounded-xl border border-border bg-card p-6 text-center shadow-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg">
-                    {att.image ? (
-                      <img src={att.image} alt={attorney.name} class="mx-auto mb-4 h-24 w-24 rounded-full object-cover" />
-                    ) : (
-                      <div class="mx-auto mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-accent/20">
-                        <User class="h-10 w-10 text-primary" />
-                      </div>
-                    )}
-                    <h3 class="text-xl font-semibold text-foreground">{attorney.name}</h3>
+                  <article class="flex h-full flex-col border border-border bg-card p-8 transition-all duration-300 hover:border-foreground/20">
+                    <div class="mb-6 flex h-20 w-20 items-center justify-center border border-border bg-muted">
+                      <User class="h-8 w-8 text-muted-foreground" />
+                    </div>
+                    <h3 class="font-serif text-2xl text-foreground">{attorney.name}</h3>
                     {att.experience && (
-                      <p class="mt-1 text-sm font-medium text-muted-foreground">{att.experience}</p>
+                      <p class="mt-1 text-sm text-muted-foreground">{att.experience}</p>
                     )}
-                    <p class="mt-2 text-sm font-medium text-primary">{attorney.title}</p>
-                    <p class="mt-4 text-base leading-relaxed text-muted-foreground">
+                    <p class="mt-2 text-sm font-medium uppercase tracking-wider text-muted-foreground">
+                      {attorney.title}
+                    </p>
+                    <p class="mt-4 flex-1 text-base leading-relaxed text-muted-foreground">
                       {attorney.focus}
                     </p>
-                    {att.focusList && att.focusList.length > 0 && (
-                      <ul class="mt-3 list-disc space-y-1 pl-5 text-left text-sm text-muted-foreground">
-                        {att.focusList.map((item) => (
-                          <li>{item}</li>
-                        ))}
-                      </ul>
-                    )}
-                    <span class="mt-6 inline-flex items-center justify-center gap-2 text-sm font-medium text-primary">
-                      View profile
-                      <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                    <span class="mt-6 inline-flex items-center gap-2 text-sm font-medium text-foreground">
+                      View Profile
+                      <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </span>
-                  </div>
+                  </article>
                 </a>
               );
             })}
@@ -127,107 +131,85 @@ const practiceAreasLabel = 'Criminal • Injury • Family'; // placeholder; can
         </div>
       </section>
 
-      <!-- 4. Experience & credentials (stat cards) -->
-      <section class="about-section border-t border-border bg-background">
-        <div class="about-container">
-          <h2 class="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
-            Experience & Credentials
-          </h2>
-          <div class="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            <div class="rounded-xl border border-border bg-card p-6 text-center shadow-sm">
-              <div class="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-                <Award class="h-5 w-5 text-primary" />
-              </div>
-              <span class="text-4xl font-bold text-primary">{yearsExp}+</span>
-              <p class="mt-2 text-sm font-medium text-muted-foreground">Years Experience</p>
+      <!-- Courts section -->
+      <section class="bg-background py-24 md:py-32">
+        <div class="mx-auto max-w-6xl px-6 md:px-12 lg:px-20">
+          <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <span class="text-sm uppercase tracking-widest text-muted-foreground">Local Courts</span>
+              <h2 class="mt-2 font-serif text-4xl text-foreground md:text-5xl">
+                Courts & Community
+              </h2>
             </div>
-            <div class="rounded-xl border border-border bg-card p-6 text-center shadow-sm">
-              <div class="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-                <Scale class="h-5 w-5 text-foreground" />
-              </div>
-              <span class="text-3xl font-bold text-foreground">Licensed</span>
-              <p class="mt-2 text-sm font-medium text-muted-foreground">{site.location.state}</p>
-            </div>
-            <div class="rounded-xl border border-border bg-card p-6 text-center shadow-sm">
-              <div class="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-                <MapPin class="h-5 w-5 text-foreground" />
-              </div>
-              <span class="text-3xl font-bold text-foreground">Local Courts</span>
-              <p class="mt-2 text-sm font-medium text-muted-foreground">{site.location.county}</p>
-            </div>
-            <div class="rounded-xl border border-border bg-card p-6 text-center shadow-sm">
-              <div class="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-                <Calendar class="h-5 w-5 text-foreground" />
-              </div>
-              <span class="text-3xl font-bold text-foreground">Focused Practice</span>
-              <p class="mt-2 text-sm font-medium text-muted-foreground">{practiceAreasLabel}</p>
-            </div>
+            <a 
+              href="/courts" 
+              class="group inline-flex items-center gap-2 text-sm font-medium text-foreground"
+            >
+              View All Courts
+              <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </a>
           </div>
-        </div>
-      </section>
 
-      <!-- 5. Courts & community (card grid) -->
-      <section class="about-section border-t border-border bg-muted">
-        <div class="about-container">
-          <h2 class="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
-            Courts & Community
-          </h2>
-          <p class="mt-3 max-w-2xl text-muted-foreground">
+          <p class="mt-6 max-w-2xl text-muted-foreground">
             {site.firmName} regularly appears in local courts throughout {site.location.county}.
           </p>
-          <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+
+          <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {courts.map((court) => (
               <a href={`/courts/${court.slug}`} class="group">
-                <div class="h-full rounded-xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg">
-                  <h3 class="text-lg font-semibold text-foreground">{court.name}</h3>
+                <article class="flex h-full flex-col border border-border bg-card p-8 transition-all duration-300 hover:border-foreground/20">
+                  <h3 class="font-serif text-xl text-foreground">{court.name}</h3>
                   {('location' in court) && (court as any).location?.city && (
-                    <p class="mt-1 text-xs font-medium text-muted-foreground">
+                    <p class="mt-1 text-sm text-muted-foreground">
                       {(court as any).location.city}
                     </p>
                   )}
-                  <p class="mt-2 text-sm leading-relaxed text-muted-foreground line-clamp-3">
+                  <p class="mt-4 flex-1 text-base leading-relaxed text-muted-foreground line-clamp-3">
                     {court.cardDescription}
                   </p>
-                  <span class="mt-4 inline-flex items-center gap-2 text-sm font-medium text-primary">
-                    View court
-                    <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                  <span class="mt-6 inline-flex items-center gap-2 text-sm font-medium text-foreground">
+                    View Court
+                    <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </span>
-                </div>
+                </article>
               </a>
             ))}
           </div>
         </div>
       </section>
 
-      <!-- 6. Contact CTA -->
-      <section class="about-section border-t border-border bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-        <div class="about-container text-center">
-          <h2 class="text-3xl font-bold tracking-tight text-white md:text-4xl">
-            Speak With a Local Attorney
-          </h2>
-          <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-300">
-            If you need legal representation in {site.location.city} or throughout {site.location.county}, contact {site.firmName} to schedule a consultation.
-          </p>
-          <p class="mx-auto mt-2 max-w-2xl text-sm text-slate-300">
-            Consultations are available by phone or in person.
-          </p>
-          <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <a
-              href="/contact"
-              class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-base font-semibold text-slate-900 shadow-sm transition-colors hover:bg-slate-100"
-            >
-              Contact Us
-              <ArrowRight class="h-4 w-4" />
-            </a>
-            {site.phone && (
-              <a
-                href={`tel:${site.phone.replace(/[^0-9+]/g, '')}`}
-                class="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-transparent px-6 py-3 text-base font-semibold text-white hover:bg-white/10"
+      <!-- CTA section -->
+      <section class="bg-foreground py-24 md:py-32">
+        <div class="mx-auto max-w-6xl px-6 md:px-12 lg:px-20">
+          <div class="flex flex-col gap-12 lg:flex-row lg:items-end lg:justify-between">
+            <div class="max-w-2xl">
+              <span class="text-sm uppercase tracking-widest text-primary-foreground/50">Get Started</span>
+              <h2 class="mt-4 font-serif text-4xl text-primary-foreground md:text-5xl lg:text-6xl">
+                Speak With a Local Attorney
+              </h2>
+              <p class="mt-6 text-lg text-primary-foreground/70">
+                If you need legal representation in {site.location.city} or throughout {site.location.county}, contact {site.firmName} to schedule a consultation.
+              </p>
+            </div>
+
+            <div class="flex flex-col gap-4 sm:flex-row">
+              <a 
+                href="/contact"
+                class="group inline-flex items-center justify-center gap-3 bg-primary-foreground px-8 py-4 text-sm font-medium text-foreground transition-all hover:bg-primary-foreground/90"
               >
-                <Phone class="h-5 w-5" />
-                Call {site.phone}
+                Contact Us
+                <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
-            )}
+              {site.phone && (
+                <a 
+                  href={`tel:${site.phone.replace(/[^0-9+]/g, '')}`}
+                  class="inline-flex items-center justify-center gap-3 border border-primary-foreground/30 px-8 py-4 text-sm font-medium text-primary-foreground transition-all hover:border-primary-foreground/60"
+                >
+                  <Phone class="h-4 w-4" />
+                  {site.phone}
+                </a>
+              )}
+            </div>
           </div>
         </div>
       </section>
@@ -235,24 +217,3 @@ const practiceAreasLabel = 'Criminal • Injury • Family'; // placeholder; can
     <SiteFooter />
   </div>
 </BaseLayout>
-
-<style>
-  .about-section {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-  }
-  @media (min-width: 768px) {
-    .about-section {
-      padding-top: 6rem;
-      padding-bottom: 6rem;
-    }
-  }
-
-  .about-container {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 65rem; /* ~1040px */
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-</style>

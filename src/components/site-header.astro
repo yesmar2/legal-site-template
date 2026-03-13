@@ -1,114 +1,174 @@
 ---
-import Scale from '@lucide/astro/icons/scale';
 import Phone from '@lucide/astro/icons/phone';
 import Menu from '@lucide/astro/icons/menu';
+import X from '@lucide/astro/icons/x';
 import { site } from '../config/site';
 ---
-<header class="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-  <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+<header class="fixed top-0 left-0 right-0 z-50 transition-colors duration-300" id="site-header">
+  <nav class="mx-auto flex items-center justify-between px-6 py-4 md:px-12 lg:px-20">
     <!-- Logo -->
-    <a href="/" class="flex items-center gap-2">
-      <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
-        <Scale class="h-5 w-5 text-primary-foreground" />
-      </div>
-      <div>
-        <span class="text-sm font-bold text-foreground sm:text-base">{site.firmName}</span>
-        <span class="hidden text-xs text-muted-foreground sm:block">{site.location.county}</span>
-      </div>
+    <a href="/" class="relative z-50 flex items-center gap-3">
+      <span class="font-serif text-xl header-text md:text-2xl">{site.firmName}</span>
     </a>
 
     <!-- Desktop navigation -->
-    <div class="hidden items-center gap-6 lg:flex">
-      <a href="/about" class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+    <div class="hidden items-center gap-8 lg:flex">
+      <a href="/about" class="text-sm font-medium header-text-muted transition-colors hover:opacity-100">
         About
       </a>
-      <a href="/practice-areas" class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+      <a href="/practice-areas" class="text-sm font-medium header-text-muted transition-colors hover:opacity-100">
         Practice Areas
       </a>
-      <a href="/courts" class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+      <a href="/courts" class="text-sm font-medium header-text-muted transition-colors hover:opacity-100">
         Local Courts
       </a>
-      <a href="/guides" class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+      <a href="/guides" class="text-sm font-medium header-text-muted transition-colors hover:opacity-100">
         Guides
       </a>
-      <a href="/contact" class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+      <a href="/contact" class="text-sm font-medium header-text-muted transition-colors hover:opacity-100">
         Contact
       </a>
     </div>
 
     <!-- Right-side actions -->
-    <div class="flex items-center gap-2">
-      <!-- Mobile call icon (below lg) -->
-      <a
-        href={`tel:${site.phone.replace(/[^0-9+]/g, '')}`}
-        class="inline-flex items-center justify-center rounded-lg border border-input bg-background p-2 text-muted-foreground hover:bg-muted hover:text-foreground lg:hidden"
-        aria-label={`Call ${site.phone}`}
-      >
-        <Phone class="h-5 w-5 text-primary" />
-      </a>
-
-      <!-- Mobile menu toggle (below lg) -->
-      <button
-        type="button"
-        id="mobile-menu-toggle"
-        class="inline-flex items-center justify-center rounded-lg border border-input bg-background p-2 text-muted-foreground hover:bg-muted hover:text-foreground lg:hidden"
-        aria-label="Toggle navigation menu"
-      >
-        <Menu class="h-5 w-5" />
-      </button>
-
-      <!-- Desktop phone + CTA (lg and up) -->
+    <div class="flex items-center gap-4">
+      <!-- Desktop phone + CTA -->
       <div class="hidden items-center gap-6 lg:flex">
         <a
           href={`tel:${site.phone.replace(/[^0-9+]/g, '')}`}
-          class="flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+          class="flex items-center gap-2 text-sm font-medium header-text-muted transition-colors hover:opacity-100"
         >
-          <Phone class="h-5 w-5 text-primary" />
+          <Phone class="h-4 w-4" />
           {site.phone}
         </a>
         <a
           href="/contact"
-          class="inline-flex items-center justify-center whitespace-nowrap rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-blue-700"
+          class="inline-flex items-center justify-center header-cta px-5 py-2.5 text-sm font-medium transition-colors"
         >
-          Schedule Free Consultation
+          Get Started
         </a>
       </div>
+
+      <!-- Mobile call icon -->
+      <a
+        href={`tel:${site.phone.replace(/[^0-9+]/g, '')}`}
+        class="flex h-10 w-10 items-center justify-center header-text lg:hidden"
+        aria-label={`Call ${site.phone}`}
+      >
+        <Phone class="h-5 w-5" />
+      </a>
+
+      <!-- Mobile menu toggle -->
+      <button
+        type="button"
+        id="mobile-menu-toggle"
+        class="relative z-50 flex h-10 w-10 items-center justify-center header-text lg:hidden"
+        aria-label="Toggle navigation menu"
+      >
+        <Menu class="h-5 w-5" id="menu-icon" />
+        <X class="h-5 w-5 hidden" id="close-icon" />
+      </button>
     </div>
   </nav>
 
   <!-- Mobile navigation panel -->
   <div
     id="mobile-menu-panel"
-    class="hidden border-t bg-background px-4 pb-4 pt-2 text-sm lg:hidden"
+    class="fixed inset-0 z-40 hidden bg-foreground"
   >
-    <nav class="flex flex-col gap-2">
-      <a href="/about" class="py-1 text-muted-foreground hover:text-foreground">
+    <nav class="flex h-full flex-col items-center justify-center gap-8 text-center">
+      <a href="/about" class="font-serif text-3xl text-primary-foreground transition-opacity hover:opacity-70">
         About
       </a>
-      <a href="/practice-areas" class="py-1 text-muted-foreground hover:text-foreground">
+      <a href="/practice-areas" class="font-serif text-3xl text-primary-foreground transition-opacity hover:opacity-70">
         Practice Areas
       </a>
-      <a href="/guides" class="py-1 text-muted-foreground hover:text-foreground">
+      <a href="/courts" class="font-serif text-3xl text-primary-foreground transition-opacity hover:opacity-70">
+        Local Courts
+      </a>
+      <a href="/guides" class="font-serif text-3xl text-primary-foreground transition-opacity hover:opacity-70">
         Guides
       </a>
-      <a href="/courts" class="py-1 text-muted-foreground hover:text-foreground">
-        Courts
-      </a>
-      <a href="/contact" class="py-1 text-muted-foreground hover:text-foreground">
+      <a href="/contact" class="font-serif text-3xl text-primary-foreground transition-opacity hover:opacity-70">
         Contact
       </a>
+      <div class="mt-8 pt-8 border-t border-primary-foreground/10">
+        <a
+          href={`tel:${site.phone.replace(/[^0-9+]/g, '')}`}
+          class="flex items-center gap-2 text-sm text-primary-foreground/60"
+        >
+          <Phone class="h-4 w-4" />
+          {site.phone}
+        </a>
+      </div>
     </nav>
   </div>
-
-  <script>
-    const toggle = document.getElementById('mobile-menu-toggle');
-    const panel = document.getElementById('mobile-menu-panel');
-
-    if (toggle && panel) {
-      toggle.addEventListener('click', () => {
-        panel.classList.toggle('hidden');
-      });
-    }
-  </script>
 </header>
 
+<style>
+  /* Default state - for hero sections with dark backgrounds */
+  .header-text {
+    color: var(--color-primary-foreground);
+  }
+  .header-text-muted {
+    color: rgba(var(--color-primary-foreground), 0.7);
+    opacity: 0.7;
+  }
+  .header-cta {
+    background: var(--color-primary-foreground);
+    color: var(--color-foreground);
+  }
+  .header-cta:hover {
+    opacity: 0.9;
+  }
+
+  /* Scrolled state - solid background */
+  #site-header.scrolled {
+    background: var(--color-background);
+    border-bottom: 1px solid var(--color-border);
+  }
+  #site-header.scrolled .header-text {
+    color: var(--color-foreground);
+  }
+  #site-header.scrolled .header-text-muted {
+    color: var(--color-muted-foreground);
+    opacity: 1;
+  }
+  #site-header.scrolled .header-cta {
+    background: var(--color-foreground);
+    color: var(--color-primary-foreground);
+  }
+</style>
+
+<script>
+  const header = document.getElementById('site-header');
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const panel = document.getElementById('mobile-menu-panel');
+  const menuIcon = document.getElementById('menu-icon');
+  const closeIcon = document.getElementById('close-icon');
+
+  // Scroll handler for header background
+  function handleScroll() {
+    if (header) {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    }
+  }
+
+  window.addEventListener('scroll', handleScroll);
+  handleScroll(); // Check on initial load
+
+  // Mobile menu toggle
+  if (toggle && panel && menuIcon && closeIcon) {
+    toggle.addEventListener('click', () => {
+      const isOpen = !panel.classList.contains('hidden');
+      panel.classList.toggle('hidden');
+      menuIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('hidden');
+      document.body.style.overflow = isOpen ? '' : 'hidden';
+    });
+  }
+</script>

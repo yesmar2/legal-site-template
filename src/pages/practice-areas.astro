@@ -2,24 +2,17 @@
 import Building2 from '@lucide/astro/icons/building-2';
 import ArrowRight from '@lucide/astro/icons/arrow-right';
 import Phone from '@lucide/astro/icons/phone';
+import Plus from '@lucide/astro/icons/plus';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '@/src/components/site-header.astro';
 import SiteFooter from '@/src/components/site-footer.astro';
 import { site } from '@/src/config/site';
 import { practiceAreas } from '../content/practiceAreas';
 import { courts } from '../content/courts';
-import { caseTypes } from '@/src/data/caseTypes';
-import PracticeAreaCard from '@/src/components/PracticeAreaCard.astro';
-import CardGrid from '@/src/components/layout/CardGrid.astro';
 
 const pageTitle = `${site.firmName} Practice Areas`;
 const pageDescription = `${site.firmName} represents clients throughout ${site.location.county} in criminal defense, personal injury, family law, real estate law, and other legal matters.`;
-const formatCaseTypeLabel = (title: string) =>
-  title
-    .replace('DUI / DWI Defense', 'DUI Defense')
-    .replace('Slip & Fall', 'Slip and Fall')
-    .replace('Assault Charges', 'Assault Defense')
-    .replace('Landlord–Tenant Matters', 'Landlord Tenant Issues');
+
 const featuredCourtSlugs = [
   'jamestown-city-court',
   'chautauqua-county-court',
@@ -29,8 +22,7 @@ const featuredCourtSlugs = [
 const featuredCourts = featuredCourtSlugs
   .map((slug) => courts.find((court) => court.slug === slug))
   .filter((court): court is (typeof courts)[number] => Boolean(court));
-const jamestownCourt = featuredCourts.find((court) => court?.slug === 'jamestown-city-court');
-const countyCourt = featuredCourts.find((court) => court?.slug === 'chautauqua-county-court');
+
 const phoneHref = `tel:${site.phone.replace(/[^0-9+]/g, '')}`;
 ---
 
@@ -38,93 +30,122 @@ const phoneHref = `tel:${site.phone.replace(/[^0-9+]/g, '')}`;
   <div class="flex min-h-screen flex-col">
     <SiteHeader />
     <main>
-      <section class="bg-background py-20">
-        <div class="mx-auto max-w-4xl px-6 text-center">
-          <h1 class="text-4xl font-bold tracking-tight text-foreground md:text-5xl">
-            Practice Areas
-          </h1>
-          <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
-            {site.firmName} provides legal representation throughout {site.location.city} and {site.location.county}, {site.location.state} in several practice areas including criminal defense, personal injury, family law, and real estate law. Our attorneys regularly represent clients in local courts such as{' '}
-            {jamestownCourt && (
-              <a href={jamestownCourt.href} class="font-medium text-primary hover:underline">
-                {jamestownCourt.name}
-              </a>
-            )}
-            {' '}and{' '}
-            {countyCourt && (
-              <a href={countyCourt.href} class="font-medium text-primary hover:underline">
-                {countyCourt.name}
-              </a>
-            )}
-            , representing clients in a wide range of legal matters.
-          </p>
+      <!-- Hero -->
+      <section class="relative min-h-[50vh] overflow-hidden bg-foreground">
+        <div class="absolute inset-0">
+          <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-30" />
+          <div class="absolute inset-0 bg-foreground/70" />
         </div>
-      </section>
 
-      <section class="bg-background pb-20">
-        <div class="mx-auto max-w-6xl px-6">
-          <CardGrid gapClass="gap-8">
-            {practiceAreas.map((area) => {
-              return <PracticeAreaCard practiceArea={area} variant="list" />;
-            })}
-          </CardGrid>
-        </div>
-      </section>
-
-      <section class="bg-muted py-24">
-        <div class="mx-auto max-w-6xl px-6">
-          <div class="mx-auto max-w-3xl text-center">
-            <h2 class="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-              Courts We Regularly Appear In
-            </h2>
-            <p class="mt-4 text-lg text-muted-foreground">
-              Our attorneys regularly represent clients in several courts throughout {site.location.county}.
+        <div class="relative z-10 flex min-h-[50vh] flex-col justify-center px-6 py-24 md:px-12 lg:px-20">
+          <div class="mx-auto w-full max-w-6xl">
+            <span class="text-sm uppercase tracking-widest text-primary-foreground/50">Legal Services</span>
+            <h1 class="mt-4 max-w-4xl font-serif text-4xl text-primary-foreground sm:text-5xl md:text-6xl lg:text-7xl">
+              Practice Areas
+            </h1>
+            <p class="mt-6 max-w-xl text-lg text-primary-foreground/70 md:text-xl">
+              {site.firmName} provides legal representation throughout {site.location.city} and {site.location.county}, {site.location.state}.
             </p>
           </div>
+        </div>
+      </section>
 
-          <div class="mt-10 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
-            {featuredCourts.map((court) => (
-              <a href={court.href} class="group block">
-                <div class="h-full rounded-2xl border border-border bg-card p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg">
-                  <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                    <Building2 class="h-6 w-6 text-primary" />
+      <!-- Practice areas list -->
+      <section class="bg-background py-24 md:py-32">
+        <div class="mx-auto max-w-6xl px-6 md:px-12 lg:px-20">
+          <div class="divide-y divide-border border-y border-border">
+            {practiceAreas.map((area, index) => (
+              <a 
+                href={area.href ?? `/practice/${area.slug}`}
+                class="group flex items-center justify-between py-8 transition-colors hover:bg-muted/50 -mx-4 px-4 md:-mx-8 md:px-8"
+              >
+                <div class="flex items-center gap-6 md:gap-12">
+                  <span class="font-mono text-sm text-muted-foreground">0{index + 1}</span>
+                  <div>
+                    <h2 class="font-serif text-2xl text-foreground md:text-3xl lg:text-4xl">{area.name}</h2>
+                    <p class="mt-2 max-w-lg text-sm text-muted-foreground md:text-base">
+                      {area.description}
+                    </p>
                   </div>
-                  <h3 class="flex items-center gap-2 text-lg font-semibold text-foreground">
-                    {court.name}
-                    <ArrowRight class="h-4 w-4 opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
-                  </h3>
-                  <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary">
-                    View Court Page
-                    <ArrowRight class="h-4 w-4" />
-                  </span>
                 </div>
+                <Plus class="h-6 w-6 shrink-0 text-foreground transition-transform group-hover:rotate-45" />
               </a>
             ))}
           </div>
         </div>
       </section>
 
-      <section class="bg-background py-20">
-        <div class="mx-auto max-w-4xl px-6 text-center">
-          <h2 class="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-            Need Help With a Legal Matter?
-          </h2>
-          <p class="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-            Speak with an attorney today about your case.
-            Free consultations are available for many legal matters.
-          </p>
-          <div class="mt-4 flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground">
-            <span>✓ Free Consultation</span>
-            <span>✓ Local Attorneys</span>
-            <span>✓ Serving {site.location.city} &amp; {site.location.county}</span>
+      <!-- Courts section -->
+      <section class="bg-muted py-24 md:py-32">
+        <div class="mx-auto max-w-6xl px-6 md:px-12 lg:px-20">
+          <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <span class="text-sm uppercase tracking-widest text-muted-foreground">Local Courts</span>
+              <h2 class="mt-2 font-serif text-4xl text-foreground md:text-5xl">
+                Courts We Appear In
+              </h2>
+            </div>
+            <a 
+              href="/courts" 
+              class="group inline-flex items-center gap-2 text-sm font-medium text-foreground"
+            >
+              View All Courts
+              <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </a>
           </div>
-          <a
-            href={phoneHref}
-            class="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-blue-700"
-          >
-            <Phone class="h-5 w-5" />
-            Call Now For a Free Consultation
-          </a>
+
+          <p class="mt-6 max-w-2xl text-muted-foreground">
+            Our attorneys regularly represent clients in several courts throughout {site.location.county}.
+          </p>
+
+          <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {featuredCourts.map((court) => (
+              <a href={court.href} class="group">
+                <article class="flex h-full flex-col border border-border bg-card p-8 transition-all duration-300 hover:border-foreground/20">
+                  <div class="mb-6 flex h-12 w-12 items-center justify-center border border-border bg-background">
+                    <Building2 class="h-5 w-5 text-foreground" />
+                  </div>
+                  <h3 class="font-serif text-lg text-foreground">{court.name}</h3>
+                  <span class="mt-4 inline-flex items-center gap-2 text-sm font-medium text-foreground">
+                    View Court
+                    <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </span>
+                </article>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="bg-foreground py-24 md:py-32">
+        <div class="mx-auto max-w-6xl px-6 md:px-12 lg:px-20">
+          <div class="flex flex-col gap-12 lg:flex-row lg:items-end lg:justify-between">
+            <div class="max-w-2xl">
+              <span class="text-sm uppercase tracking-widest text-primary-foreground/50">Get Started</span>
+              <h2 class="mt-4 font-serif text-4xl text-primary-foreground md:text-5xl lg:text-6xl">
+                Need Help With a Legal Matter?
+              </h2>
+              <p class="mt-6 text-lg text-primary-foreground/70">
+                Speak with an attorney today about your case.
+                Free consultations are available for many legal matters.
+              </p>
+              <div class="mt-4 flex flex-wrap gap-6 text-sm text-primary-foreground/50">
+                <span>Free Consultation</span>
+                <span>Local Attorneys</span>
+                <span>Serving {site.location.city} & {site.location.county}</span>
+              </div>
+            </div>
+
+            <a
+              href={phoneHref}
+              class="group inline-flex items-center justify-center gap-3 bg-primary-foreground px-8 py-4 text-sm font-medium text-foreground transition-all hover:bg-primary-foreground/90"
+            >
+              <Phone class="h-4 w-4" />
+              Call For a Free Consultation
+              <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </a>
+          </div>
         </div>
       </section>
     </main>

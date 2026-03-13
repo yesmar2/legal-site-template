@@ -1,40 +1,48 @@
 ---
 import Calendar from '@lucide/astro/icons/calendar';
 import Phone from '@lucide/astro/icons/phone';
+import ArrowRight from '@lucide/astro/icons/arrow-right';
 import { site } from '../config/site';
 ---
-<section class="bg-gradient-to-br from-primary via-accent to-primary py-20 md:py-28">
-  <div class="mx-auto max-w-4xl px-6 text-center">
-    <h2 class="text-3xl font-bold tracking-tight text-primary-foreground md:text-4xl">
-      Ready to Discuss Your Case?
-    </h2>
-    <p class="mx-auto mt-4 max-w-2xl text-lg text-primary-foreground/80">
-      Don't face legal challenges alone. Contact us today for a free, confidential 
-      consultation to discuss your situation and learn about your options.
-    </p>
+<section class="bg-foreground py-24 md:py-32">
+  <div class="mx-auto max-w-6xl px-6 md:px-12 lg:px-20">
+    <div class="flex flex-col gap-12 lg:flex-row lg:items-end lg:justify-between">
+      <div class="max-w-2xl">
+        <span class="text-sm uppercase tracking-widest text-primary-foreground/50">Get Started</span>
+        <h2 class="mt-4 font-serif text-4xl text-primary-foreground md:text-5xl lg:text-6xl">
+          Ready to discuss your case?
+        </h2>
+        <p class="mt-6 text-lg text-primary-foreground/70">
+          Don't face legal challenges alone. Contact us today for a free, confidential 
+          consultation to discuss your situation and learn about your options.
+        </p>
+      </div>
 
-    <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-      <a 
-        href="/contact"
-        class="inline-flex items-center justify-center gap-2 rounded-full bg-primary-foreground px-6 py-3 text-base font-semibold text-primary shadow-sm transition-colors hover:bg-white"
-      >
-        <Calendar class="h-5 w-5" />
-        Schedule {site.consultationText}
-      </a>
-      <a 
-        href={`tel:${site.phone.replace(/[^0-9+]/g, '')}`}
-        class="inline-flex items-center justify-center gap-2 rounded-full border border-primary-foreground/30 bg-transparent px-6 py-3 text-base font-semibold text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"
-      >
-        <Phone class="h-5 w-5" />
-        {site.phone}
-      </a>
+      <div class="flex flex-col gap-4 sm:flex-row">
+        <a 
+          href="/contact"
+          class="group inline-flex items-center justify-center gap-3 bg-primary-foreground px-8 py-4 text-sm font-medium text-foreground transition-all hover:bg-primary-foreground/90"
+        >
+          <Calendar class="h-4 w-4" />
+          Schedule {site.consultationText}
+          <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-1" />
+        </a>
+        <a 
+          href={`tel:${site.phone.replace(/[^0-9+]/g, '')}`}
+          class="inline-flex items-center justify-center gap-3 border border-primary-foreground/30 px-8 py-4 text-sm font-medium text-primary-foreground transition-all hover:border-primary-foreground/60"
+        >
+          <Phone class="h-4 w-4" />
+          {site.phone}
+        </a>
+      </div>
     </div>
 
-    <p class="mt-8 text-sm text-primary-foreground/70">
-      {site.isTwentyFourSeven && site.hasEveningAndWeekendAppointments && 'Available 24/7 for emergencies. Evening and weekend appointments available.'}
-      {site.isTwentyFourSeven && !site.hasEveningAndWeekendAppointments && 'Available 24/7 for emergencies.'}
-      {!site.isTwentyFourSeven && site.hasEveningAndWeekendAppointments && 'Evening and weekend appointments available.'}
-    </p>
+    {(site.isTwentyFourSeven || site.hasEveningAndWeekendAppointments) && (
+      <p class="mt-12 text-sm text-primary-foreground/50">
+        {site.isTwentyFourSeven && site.hasEveningAndWeekendAppointments && 'Available 24/7 for emergencies. Evening and weekend appointments available.'}
+        {site.isTwentyFourSeven && !site.hasEveningAndWeekendAppointments && 'Available 24/7 for emergencies.'}
+        {!site.isTwentyFourSeven && site.hasEveningAndWeekendAppointments && 'Evening and weekend appointments available.'}
+      </p>
+    )}
   </div>
 </section>
-
