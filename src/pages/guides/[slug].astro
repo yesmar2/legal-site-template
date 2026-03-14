@@ -8,10 +8,6 @@ import { site } from '@/src/config/site';
 import { practiceLabels, courtLabels } from '@/src/config/labels';
 import Building2 from '@lucide/astro/icons/building-2';
 import Check from '@lucide/astro/icons/check';
-import Scale from '@lucide/astro/icons/scale';
-import Car from '@lucide/astro/icons/car';
-import Pill from '@lucide/astro/icons/pill';
-import Gavel from '@lucide/astro/icons/gavel';
 import GuideCard from '@/src/components/GuideCard.astro';
 import type { Guide } from '@/src/types/content';
 
@@ -330,38 +326,6 @@ const faqs = Array.isArray(guide.faqs) ? guide.faqs : [];
 
             <div class="rounded-2xl border border-border bg-card p-6 text-sm shadow-sm">
               <h2 class="font-semibold uppercase tracking-wide text-foreground">
-                Related Practice Areas
-              </h2>
-              <ul class="mt-3 space-y-2">
-                <li class="flex items-center gap-2 text-muted-foreground">
-                  <Scale class="h-4 w-4 text-primary" />
-                  <a href="/practice/criminal-defense" class="text-primary hover:underline">
-                    Criminal Defense
-                  </a>
-                </li>
-                <li class="flex items-center gap-2 text-muted-foreground">
-                  <Car class="h-4 w-4 text-primary" />
-                  <a href="/practice/criminal-defense" class="text-primary hover:underline">
-                    DUI Defense
-                  </a>
-                </li>
-                <li class="flex items-center gap-2 text-muted-foreground">
-                  <Pill class="h-4 w-4 text-primary" />
-                  <a href="/practice/criminal-defense" class="text-primary hover:underline">
-                    Drug Charges
-                  </a>
-                </li>
-                <li class="flex items-center gap-2 text-muted-foreground">
-                  <Gavel class="h-4 w-4 text-primary" />
-                  <a href="/practice/criminal-defense" class="text-primary hover:underline">
-                    Assault Charges
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div class="rounded-2xl border border-border bg-card p-6 text-sm shadow-sm">
-              <h2 class="font-semibold uppercase tracking-wide text-foreground">
                 Local Courts
               </h2>
               <ul class="mt-3 space-y-2">
@@ -620,38 +584,6 @@ const faqs = Array.isArray(guide.faqs) ? guide.faqs : [];
               >
                 Schedule Consultation
               </a>
-            </div>
-
-            <div class="rounded-lg border border-border bg-card p-5 text-sm shadow-sm">
-              <h2 class="text-sm font-semibold uppercase tracking-wide text-foreground">
-                Related Practice Areas
-              </h2>
-              <ul class="mt-3 space-y-2 text-sm text-muted-foreground">
-                <li class="flex items-center gap-2">
-                  <Scale class="h-4 w-4 text-primary" />
-                  <a href="/practice/criminal-defense" class="text-primary hover:underline">
-                    Criminal Defense
-                  </a>
-                </li>
-                <li class="flex items-center gap-2">
-                  <Car class="h-4 w-4 text-primary" />
-                  <a href="/practice/criminal-defense" class="text-primary hover:underline">
-                    DUI Defense
-                  </a>
-                </li>
-                <li class="flex items-center gap-2">
-                  <Pill class="h-4 w-4 text-primary" />
-                  <a href="/practice/criminal-defense" class="text-primary hover:underline">
-                    Drug Charges
-                  </a>
-                </li>
-                <li class="flex items-center gap-2">
-                  <Gavel class="h-4 w-4 text-primary" />
-                  <a href="/practice/criminal-defense" class="text-primary hover:underline">
-                    Assault Charges
-                  </a>
-                </li>
-              </ul>
             </div>
 
             <div class="rounded-lg border border-border bg-card p-5 text-sm shadow-sm">

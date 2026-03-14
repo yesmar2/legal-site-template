@@ -72,9 +72,9 @@ export const courts: Court[] = [
       { text: 'If you have an attorney, let them speak on your behalf' }
     ],
     relatedAreas: [
-      { title: 'Criminal Defense', href: '/jamestown-criminal-defense-lawyer' },
+      { title: 'Criminal Defense', href: '/practice/criminal-defense' },
       { title: 'DUI Defense', href: '/guides/dui-arrest-new-york' },
-      { title: 'Traffic Violations', href: '/jamestown-criminal-defense-lawyer' }
+      { title: 'Traffic Violations', href: '/practice/criminal-defense' }
     ],
     sources: [
       {
@@ -152,9 +152,9 @@ export const courts: Court[] = [
       { text: 'If you have an attorney, let them speak on your behalf' }
     ],
     relatedAreas: [
-      { title: 'Criminal Defense', href: '/jamestown-criminal-defense-lawyer' },
+      { title: 'Criminal Defense', href: '/practice/criminal-defense' },
       { title: 'DUI Defense', href: '/guides/dui-arrest-new-york' },
-      { title: 'Traffic Violations', href: '/jamestown-criminal-defense-lawyer' }
+      { title: 'Traffic Violations', href: '/practice/criminal-defense' }
     ],
     sources: [
       {
@@ -236,9 +236,9 @@ export const courts: Court[] = [
       { text: "Follow your attorney's guidance throughout the proceedings" }
     ],
     relatedAreas: [
-      { title: 'Criminal Defense', href: '/jamestown-criminal-defense-lawyer' },
-      { title: 'Felony Defense', href: '/jamestown-criminal-defense-lawyer' },
-      { title: 'Drug Charges', href: '/jamestown-criminal-defense-lawyer' }
+      { title: 'Criminal Defense', href: '/practice/criminal-defense' },
+      { title: 'Felony Defense', href: '/practice/criminal-defense' },
+      { title: 'Drug Charges', href: '/practice/criminal-defense' }
     ],
     sources: [
       {

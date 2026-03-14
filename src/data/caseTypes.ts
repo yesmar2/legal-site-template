@@ -6,7 +6,7 @@ export const caseTypes = [
     title: 'DUI / DWI Defense',
     description:
       'Aggressive defense against drunk driving charges. We challenge traffic stops, breathalyzer accuracy, and field sobriety tests to protect your license and freedom.',
-    href: '/practice-areas/dui-defense',
+    href: '/practice/criminal-defense',
   },
   {
     id: 'drug-charges',
@@ -15,7 +15,7 @@ export const caseTypes = [
     title: 'Drug Charges',
     description:
       'Strategic defense for drug possession, distribution, and trafficking charges. We explore diversion programs, challenge search and seizure procedures, and fight for reduced charges.',
-    href: '/practice-areas/drug-charges',
+    href: '/practice/criminal-defense',
   },
   {
     id: 'assault-charges',
@@ -24,7 +24,7 @@ export const caseTypes = [
     title: 'Assault Charges',
     description:
       'Dedicated representation for simple assault, aggravated assault, and other violent crime accusations. We investigate the circumstances and build strong defenses.',
-    href: '/practice-areas/assault-charges',
+    href: '/practice/criminal-defense',
   },
   {
     id: 'domestic-violence',
@@ -42,7 +42,7 @@ export const caseTypes = [
     title: 'Theft Crimes',
     description:
       'Defense for shoplifting, larceny, burglary, and other theft-related charges. We work to minimize consequences and explore alternatives to conviction.',
-    href: '/practice-areas/theft-crimes',
+    href: '/practice/criminal-defense',
   },
   // Personal Injury
   {
@@ -61,7 +61,7 @@ export const caseTypes = [
     title: 'Slip & Fall',
     description:
       'Claims involving dangerous property conditions, including unsafe walkways, spills, and poor maintenance that lead to falls and injuries.',
-    href: '/practice-areas/slip-and-fall',
+    href: '/practice/personal-injury',
   },
   {
     id: 'wrongful-death',
@@ -70,7 +70,7 @@ export const caseTypes = [
     title: 'Wrongful Death',
     description:
       'Civil claims brought by families after a preventable fatal incident caused by another person or company’s negligence.',
-    href: '/practice-areas/wrongful-death',
+    href: '/practice/personal-injury',
   },
   // Family Law
   {
@@ -89,7 +89,7 @@ export const caseTypes = [
     title: 'Child Custody',
     description:
       'Representation in custody, parenting time, and visitation matters focused on protecting the best interests of your children.',
-    href: '/practice-areas/child-custody',
+    href: '/practice/family-law',
   },
   {
     id: 'child-support',
@@ -98,7 +98,7 @@ export const caseTypes = [
     title: 'Child Support',
     description:
       'Assistance with establishing, modifying, and enforcing child support orders in local courts.',
-    href: '/practice-areas/child-support',
+    href: '/practice/family-law',
   },
   // Real Estate
   {
@@ -108,7 +108,7 @@ export const caseTypes = [
     title: 'Residential Closings',
     description:
       'Review and preparation of purchase agreements, title documents, and closing papers for home buyers and sellers.',
-    href: '/practice-areas/residential-closings',
+    href: '/practice/real-estate-law',
   },
   {
     id: 'commercial-transactions',
@@ -126,7 +126,7 @@ export const caseTypes = [
     title: 'Landlord–Tenant Matters',
     description:
       'Representation in lease disputes, evictions, and related landlord–tenant issues in local courts.',
-    href: '/practice-areas/landlord-tenant',
+    href: '/practice/real-estate-law',
   },
 ];
 

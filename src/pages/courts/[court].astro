@@ -10,6 +10,7 @@ import CourtRelatedAreas from '@/src/components/courts/court-related-areas.astro
 import CourtCTA from '@/src/components/courts/court-cta.astro';
 import { courts } from '../../data/courts';
 import { guides } from '../../data/guides';
+import { practiceAreas } from '../../data/practiceAreas';
 
 export async function getStaticPaths() {
   return courts.map((court) => ({
@@ -28,6 +29,13 @@ if (!courtData) {
 const relatedGuides = guides.filter((guide) =>
   guide.courts?.includes(slug)
 );
+
+// Practice areas that list this court in their courts[] — real practice pages to link to
+const relatedPracticeAreas = practiceAreas.filter((p) => p.courts?.includes(slug));
+const relatedAreasForSection = relatedPracticeAreas.map((p) => ({
+  title: p.name,
+  href: p.href ?? `/practice/${p.slug}`
+}));
 ---
 
 <BaseLayout title={courtData.page.title} description={courtData.page.description}>
@@ -45,7 +53,9 @@ const relatedGuides = guides.filter((guide) =>
         beforeAppearance={courtData.beforeAppearance}
         duringAppearance={courtData.duringAppearance}
       />
-      <CourtRelatedAreas areas={courtData.relatedAreas} />
+      {relatedAreasForSection.length > 0 && (
+        <CourtRelatedAreas areas={relatedAreasForSection} />
+      )}
       {Array.isArray(courtData.sources) && courtData.sources.length > 0 && (
         <section class="border-t border-border bg-background py-10">
           <div class="mx-auto max-w-6xl px-6">
