@@ -51,14 +51,22 @@ const faqs = Array.isArray(guide.faqs) ? guide.faqs : [];
         <div aria-hidden="true" class="absolute -bottom-20 right-0 -z-10 h-[350px] w-[350px] rounded-full bg-gradient-to-tl from-blue-600/20 via-cyan-500/10 to-transparent blur-3xl" />
         <div aria-hidden="true" class="absolute inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:72px_72px]" />
 
-        <div class="relative mx-auto max-w-4xl px-6 text-center lg:px-8">
-          <h1 class="text-balance text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
+        <div class="relative mx-auto max-w-6xl px-6">
+          <nav class="mb-5 flex items-center gap-2 text-sm text-slate-400">
+            <a href="/" class="transition-colors hover:text-white">Home</a>
+            <span>/</span>
+            <a href="/guides" class="transition-colors hover:text-white">Guides</a>
+            <span>/</span>
+            <span class="text-slate-300">{guide.title}</span>
+          </nav>
+
+          <h1 class="max-w-3xl text-balance text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
             {guide.title}
           </h1>
-          <p class="mx-auto mt-4 max-w-3xl text-pretty text-base leading-relaxed text-slate-300 md:text-lg">
+          <p class="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-slate-300 md:text-lg">
             {guide.description}
           </p>
-          <div class="mt-6 flex flex-wrap items-center justify-center gap-4 text-sm text-slate-300">
+          <div class="mt-5 flex flex-wrap items-center gap-4 text-sm text-slate-400">
             <span>
               Practice Area:{' '}
               <a
@@ -70,7 +78,7 @@ const faqs = Array.isArray(guide.faqs) ? guide.faqs : [];
             </span>
             {guide.court && (
               <span>
-                • Court:{' '}
+                · Court:{' '}
                 <a
                   href={`/courts/${guide.court}`}
                   class="font-medium text-blue-400 hover:text-blue-300 hover:underline"
@@ -80,25 +88,16 @@ const faqs = Array.isArray(guide.faqs) ? guide.faqs : [];
               </span>
             )}
             {guide.city && guide.county && (
-              <span>
-                • Location: {guide.city}, {guide.county}
-              </span>
+              <span>· {guide.city}, {guide.county}</span>
             )}
+            <span>· Last reviewed: {guide.lastReviewed ?? 'March 2026'}</span>
           </div>
-          <p class="mt-3 text-xs text-slate-400">
-            Last reviewed: {guide.lastReviewed ?? 'March 2026'}
-          </p>
-          {guide.reviewedBy && (
-            <p class="mt-1 text-xs text-slate-400">
-              Reviewed by: {guide.reviewedBy}
-            </p>
-          )}
         </div>
       </section>
 
       <!-- Guide content -->
       <section class="bg-background py-20 md:py-24">
-        <div class="mx-auto max-w-6xl px-6 lg:px-8">
+        <div class="mx-auto max-w-6xl px-6">
           <div class="grid gap-10 lg:grid-cols-10">
             <article class="guide-article lg:col-span-7">
               {guide.quickAnswer && (
