@@ -16,7 +16,7 @@ import { attorneys } from '../data/attorneys';
 
     <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {attorneys.map((attorney) => (
-        <a href={attorney.href} class="group">
+        <div class="group">
           <div class="h-full rounded-2xl border border-border bg-card p-6 text-center shadow-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg">
             <div class="mx-auto mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-accent/20">
               <User class="h-10 w-10 text-primary" />
@@ -33,12 +33,8 @@ import { attorneys } from '../data/attorneys';
             <p class="mt-4 text-base leading-relaxed text-muted-foreground">
               {attorney.focus}
             </p>
-            <span class="mt-6 inline-flex items-center justify-center gap-2 text-sm font-medium text-primary">
-              View Profile
-              <span class="text-xs transition-transform group-hover:translate-x-0.5">→</span>
-            </span>
           </div>
-        </a>
+        </div>
       ))}
     </div>
   </div>

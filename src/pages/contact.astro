@@ -3,10 +3,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '@/src/components/site-header.astro';
 import SiteFooter from '@/src/components/site-footer.astro';
 import Phone from '@lucide/astro/icons/phone';
-import MapPin from '@lucide/astro/icons/map-pin';
 import { site } from '../config/site';
 
 const telHref = `tel:${site.phone.replace(/[^0-9+]/g, '')}`;
+const mapQuery = encodeURIComponent(
+  `${site.address.street}, ${site.address.city}, ${site.address.state} ${site.address.zip}`
+);
 ---
 
 <BaseLayout
@@ -67,24 +69,23 @@ const telHref = `tel:${site.phone.replace(/[^0-9+]/g, '')}`;
         </div>
       </section>
 
-      <!-- OfficeInfo -->
-      <section class="bg-background py-20 md:py-24">
-        <div class="mx-auto max-w-6xl px-6 text-center">
-          <h2 class="text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
-            Office Location
+      <!-- Map -->
+      <section class="bg-muted py-12 md:py-16">
+        <div class="mx-auto max-w-6xl px-6">
+          <h2 class="text-center text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
+            Our Office Location
           </h2>
-          <div class="mt-8 flex flex-col items-center gap-4">
-            <div class="inline-flex items-center gap-2 rounded-full bg-muted px-4 py-1.5 text-sm font-medium text-muted-foreground">
-              <MapPin class="h-4 w-4 text-primary" />
-              Office Address
-            </div>
-            <div class="text-base leading-relaxed text-muted-foreground">
-              <p>{site.address.street}</p>
-              <p>{site.address.city}, {site.address.state} {site.address.zip}</p>
-            </div>
-            <p class="mt-2 max-w-md text-sm text-muted-foreground">
-              Serving clients throughout {site.location.county}, including {site.location.city} and the surrounding communities.
-            </p>
+          <div class="mt-8 w-full overflow-hidden rounded-xl">
+            <iframe
+              src={`https://www.google.com/maps?q=${mapQuery}&output=embed`}
+              width="100%"
+              height="450"
+              style="border: 0;"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+              title="Office location map"
+            />
           </div>
         </div>
       </section>

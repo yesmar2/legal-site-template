@@ -2,8 +2,16 @@
 import MapPin from '@lucide/astro/icons/map-pin';
 import { site } from '../config/site';
 import { practiceAreas } from '../data/practiceAreas';
+import { courts } from '../data/courts';
 
 const practiceAreaNames = practiceAreas.map((area) => area.name).join(', ');
+const courtNames = courts.slice(0, 3).map((c) => c.name);
+const courtsList =
+  courtNames.length === 1
+    ? courtNames[0]
+    : courtNames.length === 2
+      ? `${courtNames[0]} and ${courtNames[1]}`
+      : `${courtNames.slice(0, -1).join(', ')}, and ${courtNames[courtNames.length - 1]}`;
 ---
 <section class="border-y border-border bg-muted/30 py-16 md:py-20">
   <div class="mx-auto max-w-6xl px-6">

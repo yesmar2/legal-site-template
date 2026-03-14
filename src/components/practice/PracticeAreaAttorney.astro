@@ -2,7 +2,6 @@
 import Briefcase from '@lucide/astro/icons/briefcase';
 import Scale from '@lucide/astro/icons/scale';
 import Award from '@lucide/astro/icons/award';
-import ArrowRight from '@lucide/astro/icons/arrow-right';
 import { site } from '../../config/site';
 import { attorneys } from '@/src/data/attorneys';
 import type { PracticeArea } from '@/src/types/practice';
@@ -56,14 +55,6 @@ const selectedAttorney =
               {site.yearsExperience}+ Years Experience
             </span>
           </div>
-
-          <a
-            href={selectedAttorney.href}
-            class="mt-5 inline-flex items-center justify-center gap-2 rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground shadow-sm transition-colors hover:bg-muted"
-          >
-            View Full Profile
-            <ArrowRight class="h-3 w-3" />
-          </a>
         </div>
       </div>
     </div>

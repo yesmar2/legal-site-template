@@ -73,7 +73,10 @@ const practiceAreasLabel = 'Criminal • Injury • Family'; // placeholder; can
               {site.firmName} represents individuals and families in criminal defense, personal injury, family law, and related matters. Our attorneys focus on protecting clients' rights and achieving the best possible outcomes in {site.location.city} and across {site.location.county}.
             </p>
             <p class="mt-4 text-base leading-relaxed text-muted-foreground">
-              The firm regularly represents clients in local courts throughout {site.location.county}, {site.location.state}. We understand local procedures and work to provide responsive, effective representation close to home.
+              The firm regularly represents clients in local courts throughout {site.location.county}, {site.location.state}, including{' '}
+              <a href="/courts/jamestown-city-court" class="font-medium text-primary underline-offset-2 hover:underline">Jamestown City Court</a>,{' '}
+              <a href="/courts/dunkirk-city-court" class="font-medium text-primary underline-offset-2 hover:underline">Dunkirk City Court</a>, and{' '}
+              <a href="/courts/chautauqua-county-court" class="font-medium text-primary underline-offset-2 hover:underline">Chautauqua County Court</a>. We understand local procedures and work to provide responsive, effective representation close to home.
             </p>
           </div>
         </div>
@@ -95,7 +98,7 @@ const practiceAreasLabel = 'Criminal • Injury • Family'; // placeholder; can
             {attorneys.map((attorney) => {
               const att = attorney as typeof attorney & { experience?: string; education?: string; focusList?: string[]; image?: string };
               return (
-                <a href={attorney.href} class="group block h-full">
+                <div class="group block h-full">
                   <div class="flex h-full flex-col rounded-2xl border border-border bg-card p-6 text-center shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg">
                     {att.image ? (
                       <img src={att.image} alt={attorney.name} class="mx-auto mb-4 h-24 w-24 rounded-full object-cover" />
@@ -119,12 +122,8 @@ const practiceAreasLabel = 'Criminal • Injury • Family'; // placeholder; can
                         ))}
                       </ul>
                     )}
-                    <span class="mt-4 inline-flex items-center justify-center gap-1.5 text-sm font-medium text-primary">
-                      View profile
-                      <ArrowRight class="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-                    </span>
                   </div>
-                </a>
+                </div>
               );
             })}
           </div>
