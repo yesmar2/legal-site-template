@@ -11,12 +11,12 @@ const practiceAreaNames = practiceAreas.map((area) => area.name).join(', ');
       <h2 class="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
         Serving {site.location.city} &amp; {site.location.county}
       </h2>
-      <p class="mx-auto mt-3 max-w-xl text-muted-foreground">
+      <p class="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
         We represent clients throughout {site.location.county} in {practiceAreaNames.toLowerCase()} matters.
       </p>
     </div>
 
-    <div class="mt-10 flex flex-wrap items-center justify-center gap-3 md:gap-4">
+    <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
       {site.serviceAreas.map((city) => (
         <div class="flex items-center gap-2 rounded-full border border-border bg-background px-5 py-2.5 text-sm font-medium text-foreground shadow-sm transition-colors hover:border-primary/50 hover:bg-primary/5">
           <MapPin class="h-4 w-4 text-primary" />

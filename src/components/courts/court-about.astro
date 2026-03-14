@@ -22,14 +22,14 @@ interface Props {
 
 const { courtName, paragraphs, location } = Astro.props as Props;
 ---
-<section class="py-16 md:py-20">
+<section class="py-20 md:py-24">
   <div class="mx-auto max-w-6xl px-6">
-    <div class="grid gap-12 lg:grid-cols-3">
+    <div class="grid gap-10 lg:grid-cols-3 lg:gap-12">
       <div class="lg:col-span-2">
         <h2 class="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
           About {courtName}
         </h2>
-        <div class="mt-6 space-y-4 text-muted-foreground">
+        <div class="mt-6 space-y-4 text-base leading-relaxed text-muted-foreground">
           {paragraphs.map((paragraph) => (
             <p>{paragraph}</p>
           ))}

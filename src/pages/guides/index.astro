@@ -2,12 +2,12 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SiteHeader from '@/src/components/site-header.astro';
 import SiteFooter from '@/src/components/site-footer.astro';
+import PageHero from '@/src/components/layout/PageHero.astro';
+import PageCTA from '@/src/components/layout/PageCTA.astro';
 import { guides } from '@/src/data/guides';
 import { site } from '@/src/config/site';
 import { courts } from '@/src/data/courts';
-import Phone from '@lucide/astro/icons/phone';
 import BookOpen from '@lucide/astro/icons/book-open';
-import ArrowRight from '@lucide/astro/icons/arrow-right';
 import Card from '@/src/components/Card.astro';
 import CardGrid from '@/src/components/layout/CardGrid.astro';
 
@@ -20,7 +20,6 @@ const practiceLabels: Record<string, string> = {
   "personal-injury": "Personal Injury",
   "real-estate-law": "Real Estate Law",
 };
-const phoneHref = `tel:${site.phone.replace(/[^0-9+]/g, '')}`;
 
 const getPrimaryCourt = (guide: (typeof guides)[number]) => {
   const slug = Array.isArray(guide.courts) && guide.courts.length > 0 ? guide.courts[0] : undefined;
@@ -34,27 +33,23 @@ const getPrimaryCourt = (guide: (typeof guides)[number]) => {
   <div class="flex min-h-screen flex-col">
     <SiteHeader />
     <main>
-      <section class="bg-background py-20">
-        <div class="mx-auto max-w-4xl px-6 text-center">
-          <h1 class="text-4xl font-bold tracking-tight text-foreground md:text-5xl">
-            Legal Guides
-          </h1>
-          <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
-            Our legal guides explain common legal situations in {site.location.city} and throughout {site.location.county}, {site.address.state}. These resources cover topics such as DUI arrests, criminal court procedures, and family law matters, including what to expect in local courts like{' '}
-            <a href="/courts/jamestown-city-court" class="font-medium text-primary hover:underline">
-              Jamestown City Court
-            </a>
-            {' '}and{' '}
-            <a href="/courts/chautauqua-county-court" class="font-medium text-primary hover:underline">
-              Chautauqua County Court
-            </a>
-          </p>
-        </div>
-      </section>
+      <PageHero title="Legal Guides" badge="Resources &amp; Information">
+        <BookOpen slot="badgeIcon" class="h-4 w-4 text-blue-400" />
+        <p>
+          Our legal guides explain common legal situations in {site.location.city} and throughout {site.location.county}, {site.address.state}. These resources cover topics such as DUI arrests, criminal court procedures, and family law matters, including what to expect in local courts like{' '}
+          <a href="/courts/jamestown-city-court" class="font-medium text-blue-400 hover:text-blue-300 hover:underline">
+            Jamestown City Court
+          </a>
+          {' '}and{' '}
+          <a href="/courts/chautauqua-county-court" class="font-medium text-blue-400 hover:text-blue-300 hover:underline">
+            Chautauqua County Court
+          </a>.
+        </p>
+      </PageHero>
 
-      <section class="bg-background pb-20">
+      <section class="bg-background py-20 md:py-24">
         <div class="mx-auto max-w-6xl px-6">
-          <CardGrid gapClass="gap-8">
+          <CardGrid gapClass="gap-6">
             {guides.map((guide) => {
               const primaryCourt = getPrimaryCourt(guide);
 
@@ -79,23 +74,10 @@ const getPrimaryCourt = (guide: (typeof guides)[number]) => {
         </div>
       </section>
 
-      <section class="bg-muted py-20">
-        <div class="mx-auto max-w-4xl px-6 text-center">
-          <h2 class="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-            Questions About Your Situation?
-          </h2>
-          <p class="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-            Speak with an attorney today about your case and the legal process.
-          </p>
-          <a
-            href={phoneHref}
-            class="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-blue-700"
-          >
-            <Phone class="h-5 w-5" />
-            Call Now For a Free Consultation
-          </a>
-        </div>
-      </section>
+      <PageCTA
+        title="Questions About Your Situation?"
+        description="Speak with an attorney today about your case and the legal process."
+      />
     </main>
     <SiteFooter />
   </div>

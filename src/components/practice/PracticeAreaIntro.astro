@@ -14,13 +14,13 @@ const paragraphs = rawParagraphs.map((p) =>
 );
 ---
 
-<section class="bg-background py-16 md:py-24">
-  <div class="mx-auto max-w-4xl px-6">
+<section class="bg-background py-20 md:py-24">
+  <div class="mx-auto max-w-6xl px-6">
     <h2 class="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
       {practice.name} Representation in {site.location.city}
     </h2>
 
-    <div class="mt-8 space-y-6 text-lg leading-relaxed text-muted-foreground">
+    <div class="mt-6 space-y-5 text-base leading-relaxed text-muted-foreground md:text-lg">
       {paragraphs.map((p) => (
         <p>{p}</p>
       ))}

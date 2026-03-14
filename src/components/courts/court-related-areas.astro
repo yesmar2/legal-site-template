@@ -17,11 +17,11 @@ const { areas } = Astro.props as Props;
     <h2 class="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
       Related Practice Areas
     </h2>
-    <p class="mt-3 max-w-2xl text-muted-foreground">
+    <p class="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
       If you are facing charges at this court, we can help.
     </p>
 
-    <div class="mt-8 flex flex-wrap gap-4">
+    <div class="mt-8 flex flex-wrap gap-3">
       {areas.map((area) => (
         <a
           href={area.href}

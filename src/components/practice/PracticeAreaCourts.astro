@@ -14,19 +14,19 @@ const relatedCourts = Array.isArray(practiceArea.courts)
 ---
 
 {relatedCourts.length > 0 && (
-  <section class="bg-muted py-16 md:py-24">
+  <section class="bg-muted py-20 md:py-24">
     <div class="mx-auto max-w-6xl px-6">
       <div class="mx-auto max-w-3xl text-center">
         <h2 class="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
           {practiceArea.courtsHeading ?? `Courts Where We Handle ${practiceArea.name} Cases`}
         </h2>
-        <p class="mt-4 text-lg text-muted-foreground">
+        <p class="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
           {practiceArea.courtsDescription ??
             `Our attorneys regularly represent clients in ${practiceArea.name.toLowerCase()} cases in several courts throughout Chautauqua County.`}
         </p>
       </div>
 
-      <CardGrid class="mt-10" gapClass="gap-8">
+      <CardGrid class="mt-12" gapClass="gap-6">
         {relatedCourts.map((court) => (
           <CourtCard court={court} variant="summary" />
         ))}
