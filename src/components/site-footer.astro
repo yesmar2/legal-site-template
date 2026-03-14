@@ -4,35 +4,45 @@ import MapPin from '@lucide/astro/icons/map-pin';
 import Phone from '@lucide/astro/icons/phone';
 import Mail from '@lucide/astro/icons/mail';
 import Clock from '@lucide/astro/icons/clock';
+import Twitter from '@lucide/astro/icons/twitter';
+import Linkedin from '@lucide/astro/icons/linkedin';
 import { site } from '../config/site';
 import { practiceAreas } from '../data/practiceAreas';
 
 const year = new Date().getFullYear();
 ---
-<footer class="border-t bg-foreground text-background">
-  <div class="mx-auto max-w-6xl px-6 py-12 md:py-16">
-    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+<footer class="border-t border-border bg-muted/30">
+  <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+    <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
       <!-- Firm info -->
       <div class="lg:col-span-1">
-        <a href="/" class="flex items-center gap-2">
-          <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
+        <a href="/" class="flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary">
             <Scale class="h-5 w-5 text-primary-foreground" />
           </div>
-          <span class="font-bold">{site.firmName}</span>
+          <span class="text-lg font-bold text-foreground">{site.firmName}</span>
         </a>
-        <p class="mt-4 text-sm text-background/70 leading-relaxed">
+        <p class="mt-4 text-sm leading-relaxed text-muted-foreground">
           Providing over {site.yearsExperience} years of experienced legal representation to individuals and families 
           throughout {site.location.county}.
         </p>
+        <div class="mt-6 flex gap-3">
+          <a href="#" class="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground transition-colors hover:border-primary/30 hover:bg-primary/5 hover:text-primary">
+            <Twitter class="h-4 w-4" />
+          </a>
+          <a href="#" class="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground transition-colors hover:border-primary/30 hover:bg-primary/5 hover:text-primary">
+            <Linkedin class="h-4 w-4" />
+          </a>
+        </div>
       </div>
 
-      <!-- Practice Areas -->
+      <!-- Services -->
       <div>
-        <h3 class="font-semibold">Practice Areas</h3>
-        <ul class="mt-4 space-y-2">
+        <h3 class="text-sm font-semibold uppercase tracking-wide text-foreground">Services</h3>
+        <ul class="mt-4 space-y-3">
           {practiceAreas.map((area) => (
             <li>
-              <a href={area.href} class="text-sm text-background/70 transition-colors hover:text-background">
+              <a href={area.href} class="text-sm text-muted-foreground transition-colors hover:text-primary">
                 {area.name}
               </a>
             </li>
@@ -40,58 +50,58 @@ const year = new Date().getFullYear();
         </ul>
       </div>
 
-      <!-- Quick Links -->
+      <!-- Company -->
       <div>
-        <h3 class="font-semibold">Quick Links</h3>
-        <ul class="mt-4 space-y-2">
+        <h3 class="text-sm font-semibold uppercase tracking-wide text-foreground">Company</h3>
+        <ul class="mt-4 space-y-3">
           <li>
-            <a href="/about" class="text-sm text-background/70 transition-colors hover:text-background">
+            <a href="/about" class="text-sm text-muted-foreground transition-colors hover:text-primary">
               About Us
             </a>
           </li>
           <li>
-            <a href="/guides" class="text-sm text-background/70 transition-colors hover:text-background">
+            <a href="/guides" class="text-sm text-muted-foreground transition-colors hover:text-primary">
               Guides
             </a>
           </li>
           <li>
-            <a href="/practice-areas" class="text-sm text-background/70 transition-colors hover:text-background">
+            <a href="/practice-areas" class="text-sm text-muted-foreground transition-colors hover:text-primary">
               Practice Areas
             </a>
           </li>
           <li>
-            <a href="/courts" class="text-sm text-background/70 transition-colors hover:text-background">
+            <a href="/courts" class="text-sm text-muted-foreground transition-colors hover:text-primary">
               Local Courts
             </a>
           </li>
           <li>
-            <a href="/contact" class="text-sm text-background/70 transition-colors hover:text-background">
+            <a href="/contact" class="text-sm text-muted-foreground transition-colors hover:text-primary">
               Contact
             </a>
           </li>
         </ul>
       </div>
 
-      <!-- Contact Info -->
+      <!-- Get In Touch -->
       <div>
-        <h3 class="font-semibold">Contact Us</h3>
-        <ul class="mt-4 space-y-3">
-          <li class="flex items-start gap-3 text-sm text-background/70">
-            <MapPin class="mt-0.5 h-4 w-4 shrink-0" />
+        <h3 class="text-sm font-semibold uppercase tracking-wide text-foreground">Get In Touch</h3>
+        <ul class="mt-4 space-y-4">
+          <li class="flex items-start gap-3 text-sm text-muted-foreground">
+            <MapPin class="mt-0.5 h-4 w-4 shrink-0 text-primary" />
             <span>{site.address.street}, Suite 200<br />{site.address.city}, {site.address.state} {site.address.zip}</span>
           </li>
-          <li class="flex items-center gap-3 text-sm text-background/70">
-            <Phone class="h-4 w-4 shrink-0" />
-            <span>{site.phone}</span>
+          <li class="flex items-center gap-3 text-sm text-muted-foreground">
+            <Phone class="h-4 w-4 shrink-0 text-primary" />
+            <a href={`tel:${site.phone.replace(/[^0-9+]/g, '')}`} class="transition-colors hover:text-primary">{site.phone}</a>
           </li>
-          <li class="flex items-center gap-3 text-sm text-background/70">
-            <Mail class="h-4 w-4 shrink-0" />
-            <span>{site.email}</span>
+          <li class="flex items-center gap-3 text-sm text-muted-foreground">
+            <Mail class="h-4 w-4 shrink-0 text-primary" />
+            <a href={`mailto:${site.email}`} class="transition-colors hover:text-primary">{site.email}</a>
           </li>
-          <li class="flex items-start gap-3 text-sm text-background/70">
-            <Clock class="mt-0.5 h-4 w-4 shrink-0" />
+          <li class="flex items-start gap-3 text-sm text-muted-foreground">
+            <Clock class="mt-0.5 h-4 w-4 shrink-0 text-primary" />
             <span>
-              Mon–Fri: 9AM–5PM
+              Mon-Fri: 9AM-5PM
               {site.isTwentyFourSeven && <><br />24/7 Emergency Line</>}
             </span>
           </li>
@@ -100,12 +110,12 @@ const year = new Date().getFullYear();
     </div>
 
     <!-- Bottom bar -->
-    <div class="mt-12 border-t border-background/20 pt-8">
-      <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <p class="text-xs text-background/60">
+    <div class="mt-12 border-t border-border pt-8">
+      <div class="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+        <p class="text-sm text-muted-foreground">
           © {year} {site.firmName}. All rights reserved.
         </p>
-        <p class="max-w-3xl text-xs leading-relaxed text-background/60">
+        <p class="max-w-2xl text-xs leading-relaxed text-muted-foreground">
           <strong>Legal Disclaimer:</strong> The information on this website is for general informational purposes only. 
           Nothing on this site should be taken as legal advice for any individual case or situation. 
           This information is not intended to create an attorney-client relationship.
@@ -114,4 +124,3 @@ const year = new Date().getFullYear();
     </div>
   </div>
 </footer>
-

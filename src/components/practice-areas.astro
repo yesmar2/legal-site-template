@@ -2,18 +2,20 @@
 import { practiceAreas } from '@/src/content/practiceAreas';
 import PracticeAreaCard from '@/src/components/PracticeAreaCard.astro';
 ---
-<section class="bg-background py-20 md:py-28" id="practice-areas">
-  <div class="mx-auto max-w-6xl px-6">
-    <div class="text-center">
-      <h2 class="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-        Practice Areas
+<section class="bg-muted/50 py-20 md:py-28" id="practice-areas">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <!-- Section header -->
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="mb-3 text-sm font-semibold uppercase tracking-wide text-primary">Our Services</p>
+      <h2 class="text-pretty text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
+        Comprehensive Legal Services
       </h2>
-      <p class="mx-auto mt-4 max-w-2xl text-muted-foreground">
+      <p class="mt-4 text-lg leading-relaxed text-muted-foreground">
         Comprehensive legal services tailored to protect your rights and achieve the best possible outcome for your case.
       </p>
     </div>
 
-    <div class="mt-14 grid gap-5 sm:grid-cols-2">
+    <div class="mt-16 grid gap-6 sm:grid-cols-2">
       {practiceAreas.map((practiceArea) => (
         <PracticeAreaCard practiceArea={practiceArea} variant="home" />
       ))}

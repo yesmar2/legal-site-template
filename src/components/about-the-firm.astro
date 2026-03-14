@@ -4,75 +4,113 @@ import Users from '@lucide/astro/icons/users';
 import Clock from '@lucide/astro/icons/clock';
 import Award from '@lucide/astro/icons/award';
 import ArrowRight from '@lucide/astro/icons/arrow-right';
+import CheckCircle from '@lucide/astro/icons/check-circle-2';
 import { site } from '../config/site';
 ---
-<section class="bg-muted pt-16 pb-8 md:pt-20 md:pb-10">
-  <div class="mx-auto max-w-6xl px-6">
-    <div class="text-center">
-      <h2 class="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-        About Our Firm
-      </h2>
-      <p class="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-        {site.firmName} represents clients throughout {site.location.city} and {site.location.county}, providing counsel in matters that affect their families, futures, and livelihoods in local courts across {site.location.county}.
-      </p>
-      <a
-        href="/about"
-        class="mt-4 inline-flex items-center justify-center gap-1.5 text-sm font-medium text-primary hover:underline"
-      >
-        Learn more about {site.firmName}
-        <ArrowRight class="h-3 w-3" />
-      </a>
-    </div>
-
-    <div class="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-      <div class="text-center">
-        <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10">
-          <Shield class="h-7 w-7 text-primary" />
-        </div>
-        <h3 class="mt-4 text-lg font-semibold text-foreground">
-          {site.yearsExperience}+ Years Experience
-        </h3>
-        <p class="mt-2 text-sm leading-relaxed text-muted-foreground">
-          Decades of legal experience representing clients in {site.location.city} and throughout {site.location.county}.
+<section class="bg-background py-20 md:py-28">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      <!-- Left side content -->
+      <div>
+        <p class="mb-3 text-sm font-semibold uppercase tracking-wide text-primary">Why Choose Us</p>
+        <h2 class="text-pretty text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
+          Dedicated Legal Representation for Law Firms
+        </h2>
+        <p class="mt-6 text-lg leading-relaxed text-muted-foreground">
+          {site.firmName} represents clients throughout {site.location.city} and {site.location.county}, providing counsel in matters that affect their families, futures, and livelihoods in local courts across {site.location.county}.
         </p>
+
+        <!-- Feature list -->
+        <ul class="mt-8 space-y-4">
+          <li class="flex items-start gap-3">
+            <CheckCircle class="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+            <div>
+              <p class="font-semibold text-foreground">Local Court Experience</p>
+              <p class="text-sm text-muted-foreground">We practice exclusively in {site.location.county}, understanding every local court's procedures.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <CheckCircle class="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+            <div>
+              <p class="font-semibold text-foreground">Client-First Approach</p>
+              <p class="text-sm text-muted-foreground">Every case receives individual attention so clients work directly with their attorney.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <CheckCircle class="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+            <div>
+              <p class="font-semibold text-foreground">Transparent Results</p>
+              <p class="text-sm text-muted-foreground">Track your case progress with clear communication and regular updates.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <CheckCircle class="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+            <div>
+              <p class="font-semibold text-foreground">Proven Track Record</p>
+              <p class="text-sm text-muted-foreground">We continuously monitor case outcomes to ensure optimal strategies for your situation.</p>
+            </div>
+          </li>
+        </ul>
+
+        <a
+          href="/about"
+          class="mt-8 inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-base font-semibold text-primary-foreground shadow-sm transition-all hover:bg-primary/90"
+        >
+          Learn More About Us
+          <ArrowRight class="h-4 w-4" />
+        </a>
       </div>
 
-      <div class="text-center">
-        <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10">
-          <Users class="h-7 w-7 text-primary" />
+      <!-- Right side - Stats grid -->
+      <div class="grid gap-6 sm:grid-cols-2">
+        <div class="rounded-2xl border border-border bg-card p-8 text-center shadow-sm transition-all hover:border-primary/30 hover:shadow-md">
+          <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10">
+            <Shield class="h-7 w-7 text-primary" />
+          </div>
+          <h3 class="text-lg font-semibold text-foreground">
+            {site.yearsExperience}+ Years Experience
+          </h3>
+          <p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+            Decades of legal experience representing clients in {site.location.city}.
+          </p>
         </div>
-        <h3 class="mt-4 text-lg font-semibold text-foreground">
-          Personalized Attention
-        </h3>
-        <p class="mt-2 text-sm leading-relaxed text-muted-foreground">
-          Every case receives individual attention so clients work directly with their attorney from start to finish.
-        </p>
-      </div>
 
-      <div class="text-center">
-        <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10">
-          <Clock class="h-7 w-7 text-primary" />
+        <div class="rounded-2xl border border-border bg-card p-8 text-center shadow-sm transition-all hover:border-primary/30 hover:shadow-md">
+          <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10">
+            <Users class="h-7 w-7 text-primary" />
+          </div>
+          <h3 class="text-lg font-semibold text-foreground">
+            Personalized Attention
+          </h3>
+          <p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+            Every case receives individual attention from start to finish.
+          </p>
         </div>
-        <h3 class="mt-4 text-lg font-semibold text-foreground">
-          Local Court Knowledge
-        </h3>
-        <p class="mt-2 text-sm leading-relaxed text-muted-foreground">
-          Regularly appearing in courts across {site.location.county}, with insight into local procedures and expectations.
-        </p>
-      </div>
 
-      <div class="text-center">
-        <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10">
-          <Award class="h-7 w-7 text-primary" />
+        <div class="rounded-2xl border border-border bg-card p-8 text-center shadow-sm transition-all hover:border-primary/30 hover:shadow-md">
+          <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10">
+            <Clock class="h-7 w-7 text-primary" />
+          </div>
+          <h3 class="text-lg font-semibold text-foreground">
+            Local Court Knowledge
+          </h3>
+          <p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+            Insight into local procedures and expectations across {site.location.county}.
+          </p>
         </div>
-        <h3 class="mt-4 text-lg font-semibold text-foreground">
-          Consultations Available
-        </h3>
-        <p class="mt-2 text-sm leading-relaxed text-muted-foreground">
-          {site.consultationText}s are available to help clients understand their options before making important decisions.
-        </p>
+
+        <div class="rounded-2xl border border-border bg-card p-8 text-center shadow-sm transition-all hover:border-primary/30 hover:shadow-md">
+          <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10">
+            <Award class="h-7 w-7 text-primary" />
+          </div>
+          <h3 class="text-lg font-semibold text-foreground">
+            Consultations Available
+          </h3>
+          <p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+            {site.consultationText}s help clients understand their options.
+          </p>
+        </div>
       </div>
     </div>
   </div>
 </section>
-

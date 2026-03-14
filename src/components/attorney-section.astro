@@ -1,41 +1,43 @@
 ---
 import User from '@lucide/astro/icons/user';
+import ArrowRight from '@lucide/astro/icons/arrow-right';
 import { site } from '../config/site';
 import { attorneys } from '../data/attorneys';
 ---
-<section class="bg-muted pt-10 pb-20 md:pt-14 md:pb-24" id="attorney">
-  <div class="mx-auto max-w-6xl px-6">
-    <div class="text-center">
-      <h2 class="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-        Our Attorneys
+<section class="bg-muted/50 py-20 md:py-28" id="attorney">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <!-- Section header -->
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="mb-3 text-sm font-semibold uppercase tracking-wide text-primary">Our Team</p>
+      <h2 class="text-pretty text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
+        Meet Our Attorneys
       </h2>
-      <p class="mx-auto mt-4 max-w-2xl text-muted-foreground">
+      <p class="mt-4 text-lg leading-relaxed text-muted-foreground">
         Meet the attorneys representing clients throughout {site.location.city} and {site.location.county}.
       </p>
     </div>
 
-    <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {attorneys.map((attorney) => (
-        <a href={attorney.href} class="group">
-          <div class="h-full rounded-2xl border border-border bg-card p-6 text-center shadow-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg">
-            <div class="mx-auto mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-accent/20">
-              <User class="h-10 w-10 text-primary" />
+        <a href={attorney.href} class="group block">
+          <article class="h-full rounded-2xl border border-border bg-card p-8 text-center shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg">
+            <div class="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-primary/5">
+              <User class="h-12 w-12 text-primary" />
             </div>
-            <h3 class="text-xl font-semibold text-foreground">{attorney.name}</h3>
-            <p class="mt-1 text-sm font-medium text-primary">
+            <h3 class="text-xl font-bold text-foreground">{attorney.name}</h3>
+            <p class="mt-1 text-sm font-semibold text-primary">
               {attorney.title}
             </p>
             <p class="mt-4 text-base leading-relaxed text-muted-foreground">
               {attorney.focus}
             </p>
-            <span class="mt-6 inline-flex items-center justify-center gap-2 text-sm font-medium text-primary">
+            <span class="mt-6 inline-flex items-center justify-center gap-2 text-sm font-semibold text-primary">
               View Profile
-              <span class="text-xs transition-transform group-hover:translate-x-0.5">→</span>
+              <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </span>
-          </div>
+          </article>
         </a>
       ))}
     </div>
   </div>
 </section>
-

@@ -4,43 +4,57 @@ import Quote from '@lucide/astro/icons/quote';
 import { site } from '../config/site';
 import { testimonials } from '../data/testimonials';
 ---
-<section class="bg-muted pt-12 pb-20 md:pt-16 md:pb-24">
-  <div class="mx-auto max-w-6xl px-6">
-    <div class="text-center">
-      <h2 class="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-        What Our Clients Say
+<section class="bg-background py-20 md:py-28">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <!-- Section header -->
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="mb-3 text-sm font-semibold uppercase tracking-wide text-primary">Testimonials</p>
+      <h2 class="text-pretty text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
+        Trusted by Leading Clients
       </h2>
-      <p class="mx-auto mt-4 max-w-2xl text-muted-foreground">
-        Real results for real people. Read what our clients have to say about their experience working with us.
+      <p class="mt-4 text-lg leading-relaxed text-muted-foreground">
+        See what our clients have to say about their experience working with us.
       </p>
     </div>
 
-    <div class="mt-12 grid gap-8 md:grid-cols-3">
+    <div class="mt-16 grid gap-8 md:grid-cols-3">
       {testimonials.map((t) => (
-        <article class="relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card p-8 shadow-sm">
-          <Quote class="absolute -top-4 right-4 h-16 w-16 text-primary/10" />
-          <div class="mb-4 flex gap-0.5">
-            <Star class="h-4 w-4 fill-primary text-primary" />
-            <Star class="h-4 w-4 fill-primary text-primary" />
-            <Star class="h-4 w-4 fill-primary text-primary" />
-            <Star class="h-4 w-4 fill-primary text-primary" />
-            <Star class="h-4 w-4 fill-primary text-primary" />
+        <article class="relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card p-8 shadow-sm transition-all hover:border-primary/30 hover:shadow-md">
+          <!-- Large quote mark -->
+          <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+            <span class="text-2xl font-bold text-primary">"</span>
           </div>
-          <p class="relative z-10 leading-relaxed text-muted-foreground">
+          
+          <!-- Star rating -->
+          <div class="mb-4 flex gap-0.5">
+            <Star class="h-5 w-5 fill-primary text-primary" />
+            <Star class="h-5 w-5 fill-primary text-primary" />
+            <Star class="h-5 w-5 fill-primary text-primary" />
+            <Star class="h-5 w-5 fill-primary text-primary" />
+            <Star class="h-5 w-5 fill-primary text-primary" />
+          </div>
+          
+          <p class="flex-1 text-base leading-relaxed text-muted-foreground">
             "{t.quote.replace('{{firmName}}', site.firmName)}"
           </p>
-          <div class="mt-6 flex items-center justify-between border-t pt-4 text-sm">
-            <div>
-              <p class="font-semibold text-foreground">{t.name}</p>
-              <p class="text-xs text-muted-foreground">{t.role}</p>
+          
+          <div class="mt-6 flex items-center justify-between border-t border-border pt-6">
+            <div class="flex items-center gap-3">
+              <div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
+                <span class="text-sm font-bold text-primary">{t.name.charAt(0)}</span>
+              </div>
+              <div>
+                <p class="font-semibold text-foreground">{t.name}</p>
+                <p class="text-xs text-muted-foreground">{t.role}</p>
+              </div>
             </div>
             <a
               href={t.url}
               target="_blank"
               rel="noreferrer"
-              class="text-xs font-medium uppercase tracking-wide text-primary hover:underline"
+              class="text-xs font-semibold uppercase tracking-wide text-primary transition-colors hover:text-primary/80"
             >
-              Review on Google
+              Google
             </a>
           </div>
         </article>
@@ -48,4 +62,3 @@ import { testimonials } from '../data/testimonials';
     </div>
   </div>
 </section>
-

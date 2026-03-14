@@ -21,25 +21,25 @@ const {
 ---
 
 <a href={href} class="group block h-full">
-  <article class="flex h-full flex-col rounded-2xl border border-border bg-card p-8 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg">
+  <article class="flex h-full flex-col rounded-2xl border border-border bg-card p-8 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg">
     {Icon && (
-      <div class="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+      <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
         <Icon class="h-6 w-6 text-primary" />
       </div>
     )}
 
-    <h3 class="flex items-center gap-2 text-xl font-semibold text-foreground">
+    <h3 class="flex items-center gap-2 text-xl font-bold text-foreground">
       {title}
-      <ArrowRight class="h-4 w-4 opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
+      <ArrowRight class="h-4 w-4 opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100 text-primary" />
     </h3>
 
     {eyebrow && (
-      <p class="mt-2 text-sm text-slate-600">
+      <p class="mt-2 text-sm font-medium text-muted-foreground">
         {eyebrow}
       </p>
     )}
 
-    <p class="mt-4 text-base leading-relaxed text-muted-foreground">
+    <p class="mt-4 flex-1 text-base leading-relaxed text-muted-foreground">
       <slot />
     </p>
 
@@ -50,11 +50,10 @@ const {
     )}
 
     {ctaLabel && (
-      <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary">
+      <span class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
         {ctaLabel}
-        <ArrowRight class="h-4 w-4" />
+        <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-1" />
       </span>
     )}
   </article>
 </a>
-
