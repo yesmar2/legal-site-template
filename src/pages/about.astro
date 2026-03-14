@@ -12,6 +12,7 @@ import Scale from '@lucide/astro/icons/scale';
 import { site } from '../config/site';
 import { attorneys } from '../data/attorneys';
 import { courts } from '../data/courts';
+import CourtCard from '@/src/components/CourtCard.astro';
 
 const pageTitle = `About ${site.firmName}`;
 const pageDescription = `${site.firmName} is a law firm based in ${site.location.city}, ${site.location.state}, representing clients throughout ${site.location.county}.`;
@@ -184,23 +185,7 @@ const practiceAreasLabel = 'Criminal • Injury • Family'; // placeholder; can
           </div>
           <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {courts.map((court) => (
-              <a href={`/courts/${court.slug}`} class="group block h-full">
-                <div class="flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg">
-                  <h3 class="text-lg font-semibold text-foreground">{court.name}</h3>
-                  {('location' in court) && (court as any).location?.city && (
-                    <p class="mt-1 text-sm text-muted-foreground">
-                      {(court as any).location.city}
-                    </p>
-                  )}
-                  <p class="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground line-clamp-3">
-                    {court.cardDescription}
-                  </p>
-                  <span class="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
-                    View court
-                    <ArrowRight class="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-                  </span>
-                </div>
-              </a>
+              <CourtCard court={court} variant="summary" ctaLabel="View court" />
             ))}
           </div>
         </div>

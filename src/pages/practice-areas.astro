@@ -1,7 +1,6 @@
 ---
 import Scale from '@lucide/astro/icons/scale';
 import Building2 from '@lucide/astro/icons/building-2';
-import ArrowRight from '@lucide/astro/icons/arrow-right';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '@/src/components/site-header.astro';
 import SiteFooter from '@/src/components/site-footer.astro';
@@ -13,6 +12,7 @@ import { courts } from '../data/courts';
 import { caseTypes } from '@/src/data/caseTypes';
 import PracticeAreaCard from '@/src/components/PracticeAreaCard.astro';
 import CardGrid from '@/src/components/layout/CardGrid.astro';
+import CourtCard from '@/src/components/CourtCard.astro';
 
 const pageTitle = `${site.firmName} Practice Areas`;
 const pageDescription = `${site.firmName} represents clients throughout ${site.location.county} in criminal defense, personal injury, family law, real estate law, and other legal matters.`;
@@ -87,21 +87,7 @@ const countyCourt = featuredCourts.find((court) => court?.slug === 'chautauqua-c
 
           <div class="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
             {featuredCourts.map((court) => (
-              <a href={court.href} class="group block">
-                <div class="h-full rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg">
-                  <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100">
-                    <Building2 class="h-5 w-5 text-slate-600" />
-                  </div>
-                  <h3 class="flex items-center gap-2 text-base font-semibold text-foreground">
-                    {court.name}
-                    <ArrowRight class="h-4 w-4 text-primary opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
-                  </h3>
-                  <span class="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary">
-                    View Court Page
-                    <ArrowRight class="h-3.5 w-3.5" />
-                  </span>
-                </div>
-              </a>
+              <CourtCard court={court} variant="summary" ctaLabel="View Court Page" />
             ))}
           </div>
         </div>

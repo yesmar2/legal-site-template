@@ -19,9 +19,10 @@ interface Props {
     homeCardDescription?: string;
   };
   variant?: Variant;
+  ctaLabel?: string;
 }
 
-const { court, variant = 'summary' } = Astro.props as Props;
+const { court, variant = 'summary', ctaLabel: ctaLabelOverride } = Astro.props as Props;
 
 const city = court.location.city;
 const county = court.location.county ?? site.location.county;
@@ -29,6 +30,7 @@ const state = court.location.state ?? site.address.state;
 const fullDescription = court.cardDescription ?? court.description;
 const homeDescription = court.homeCardDescription ?? fullDescription;
 const href = `/courts/${court.slug}`;
+const ctaLabel = ctaLabelOverride ?? (variant === 'full' ? 'View Court Details' : 'Learn More');
 ---
 
 <Card
@@ -37,7 +39,7 @@ const href = `/courts/${court.slug}`;
   icon={Building2}
   eyebrow={`${city}${county ? ` • ${county}` : ''}`}
   meta={variant === 'full' ? `${county} ${state}` : undefined}
-  ctaLabel={variant === 'full' ? 'View Court Details' : 'Learn More'}
+  ctaLabel={ctaLabel}
 >
   {variant === 'home' ? homeDescription : fullDescription}
 </Card>

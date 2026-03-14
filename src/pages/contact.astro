@@ -55,16 +55,64 @@ const mapQuery = encodeURIComponent(
         </div>
       </section>
 
-      <!-- FormPlaceholder -->
+      <!-- Contact form -->
       <section class="bg-muted py-20 md:py-24">
         <div class="mx-auto max-w-6xl px-6">
-          <div class="mx-auto max-w-2xl rounded-2xl border border-border bg-card p-8 text-center shadow-sm">
-            <h2 class="text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
+          <div class="mx-auto max-w-2xl rounded-2xl border border-border bg-card p-8 shadow-sm">
+            <h2 class="text-center text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
               Send Us a Message
             </h2>
-            <p class="mt-4 text-base leading-relaxed text-muted-foreground">
-              Online consultation requests will be available soon. For now, please call our office directly to speak with an attorney about your situation.
-            </p>
+            <form
+              action="https://formspree.io/f/REPLACE_WITH_FORM_ID"
+              method="POST"
+              class="mx-auto mt-6 space-y-4 max-w-xl"
+            >
+              <div>
+                <label for="name" class="block text-sm font-medium text-foreground">Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  required
+                  class="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-base text-foreground"
+                />
+              </div>
+              <div>
+                <label for="email" class="block text-sm font-medium text-foreground">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  required
+                  class="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-base text-foreground"
+                />
+              </div>
+              <div>
+                <label for="phone" class="block text-sm font-medium text-foreground">Phone</label>
+                <input
+                  type="tel"
+                  name="phone"
+                  id="phone"
+                  class="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-base text-foreground"
+                />
+              </div>
+              <div>
+                <label for="message" class="block text-sm font-medium text-foreground">How can we help?</label>
+                <textarea
+                  name="message"
+                  id="message"
+                  rows="4"
+                  required
+                  class="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-base text-foreground"
+                />
+              </div>
+              <button
+                type="submit"
+                class="w-full rounded-md bg-primary px-6 py-3 font-medium text-primary-foreground hover:bg-primary/90 sm:w-auto"
+              >
+                Send Message
+              </button>
+            </form>
           </div>
         </div>
       </section>
