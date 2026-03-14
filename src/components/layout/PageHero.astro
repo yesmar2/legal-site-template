@@ -20,7 +20,7 @@ const { title, badge, class: className, ...rest } = Astro.props;
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(59,130,246,0.05),transparent_50%)]"></div>
   <div aria-hidden="true" class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:72px_72px]"></div>
 
-  <div class="relative mx-auto max-w-6xl px-6">
+  <div class="relative mx-auto max-w-6xl px-6 text-center">
     {badge && (
       <div class="mb-5 inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-800/50 px-4 py-1.5 text-sm text-slate-300">
         <slot name="badgeIcon" />
@@ -28,11 +28,11 @@ const { title, badge, class: className, ...rest } = Astro.props;
       </div>
     )}
 
-    <h1 class="max-w-3xl text-balance text-4xl font-bold tracking-tight text-white md:text-5xl">
+    <h1 class="text-balance text-4xl font-bold tracking-tight text-white md:text-5xl">
       {title}
     </h1>
 
-    <div class="mt-4 max-w-2xl text-base leading-relaxed text-slate-300 md:text-lg">
+    <div class="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-300 md:text-lg">
       <slot />
     </div>
   </div>
