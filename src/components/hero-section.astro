@@ -29,22 +29,18 @@ import { site } from '../config/site';
           Serving {site.location.city} & {site.location.county}
         </div>
 
-        <h1 class="text-pretty text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-          Jamestown
-          <br />
-          Criminal
-          <br />
-          Defense
-          <br />
+        <h1 class="text-balance text-5xl font-extrabold leading-tight tracking-tight text-foreground sm:text-6xl lg:text-7xl">
+          {site.location.city}<br />
+          <span class="text-primary">Criminal Defense</span><br />
           Lawyers
         </h1>
 
         <p class="mt-4 text-lg font-semibold text-muted-foreground">
-          Sample Law Firm
+          {site.firmName}
         </p>
 
         <p class="mt-6 max-w-lg text-lg leading-relaxed text-muted-foreground">
-          At {site.firmName}, we are committed to protecting your Constitutional rights and fighting aggressively for your freedom. Whether you've been charged with a criminal offense or have legal questions, we're here to help you understand your options.
+          At {site.firmName}, we represent clients throughout {site.location.city} and {site.location.county}, providing counsel in matters that affect their families, futures, and livelihoods in criminal defense, personal injury, family law, and real estate matters.
         </p>
 
         <div class="mt-8 flex flex-col gap-4 sm:flex-row">
