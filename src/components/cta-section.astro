@@ -8,11 +8,11 @@ import { site } from '../config/site';
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-3xl text-center">
       <h2 class="text-pretty text-3xl font-bold tracking-tight text-background md:text-4xl lg:text-5xl">
-        Ready to Discuss Your Case?
+        Need Legal Representation?
       </h2>
       <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-background/70">
-        Don't face legal challenges alone. Contact us today for a free, confidential 
-        consultation to discuss your situation and learn about your options.
+        Don't face legal challenges alone. Contact {site.firmName} today for a free, confidential 
+        consultation to discuss your situation and learn about your legal options.
       </p>
 
       <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -21,19 +21,19 @@ import { site } from '../config/site';
           class="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-8 py-4 text-base font-semibold text-primary-foreground shadow-lg shadow-primary/30 transition-all hover:bg-primary/90 hover:shadow-xl"
         >
           <Calendar class="h-5 w-5" />
-          Get Your Free Audit
+          Schedule Your Free Consultation
         </a>
         <a 
           href={`tel:${site.phone.replace(/[^0-9+]/g, '')}`}
           class="inline-flex items-center justify-center gap-2 rounded-lg border border-background/20 bg-transparent px-8 py-4 text-base font-semibold text-background transition-all hover:bg-background/10"
         >
           <Phone class="h-5 w-5" />
-          Schedule a Call
+          {site.phone}
         </a>
       </div>
 
       <p class="mt-8 text-sm text-background/60">
-        {site.isTwentyFourSeven && site.hasEveningAndWeekendAppointments && 'Free audit includes visibility across all major platforms. No obligation, no pressure - just actionable insights.'}
+        {site.isTwentyFourSeven && site.hasEveningAndWeekendAppointments && 'Available 24/7. Evening and weekend appointments available.'}
         {site.isTwentyFourSeven && !site.hasEveningAndWeekendAppointments && 'Available 24/7 for emergencies.'}
         {!site.isTwentyFourSeven && site.hasEveningAndWeekendAppointments && 'Evening and weekend appointments available.'}
       </p>
