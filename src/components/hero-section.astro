@@ -30,18 +30,21 @@ import { site } from '../config/site';
         </div>
 
         <h1 class="text-pretty text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-          Your Future
+          Jamestown
           <br />
-          Deserves
+          Criminal
           <br />
-          <span class="text-primary">Expert Legal</span>
+          Defense
           <br />
-          <span class="text-primary">Representation</span>
+          Lawyers
         </h1>
 
+        <p class="mt-4 text-lg font-semibold text-muted-foreground">
+          Sample Law Firm
+        </p>
+
         <p class="mt-6 max-w-lg text-lg leading-relaxed text-muted-foreground">
-          {site.firmName} represents clients throughout {site.location.city} and {site.location.county} in 
-          criminal defense, personal injury, family law, and real estate matters. We help you navigate the legal system with confidence.
+          At {site.firmName}, we are committed to protecting your Constitutional rights and fighting aggressively for your freedom. Whether you've been charged with a criminal offense or have legal questions, we're here to help you understand your options.
         </p>
 
         <div class="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -50,8 +53,7 @@ import { site } from '../config/site';
             class="group inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3.5 text-base font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/25"
           >
             <Calendar class="h-5 w-5" />
-            Get Your Free Consultation
-            <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            Schedule Your Consultation
           </a>
           <a
             href={`tel:${site.phone.replace(/[^0-9+]/g, '')}`}
