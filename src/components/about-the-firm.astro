@@ -14,40 +14,39 @@ import { site } from '../config/site';
       <div>
         <p class="mb-3 text-sm font-semibold uppercase tracking-wide text-primary">Why Choose Us</p>
         <h2 class="text-pretty text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
-          Local Legal Expertise You Can Trust
+          About Our Firm
         </h2>
         <p class="mt-6 text-lg leading-relaxed text-muted-foreground">
-          {site.firmName} represents clients throughout {site.location.city} and {site.location.county}, providing dedicated counsel in matters that affect their families, futures, and livelihoods.
-        </p>
+          {site.firmName} represents clients in criminal defense, family law, and other legal matters throughout {{city}} and {site.location.county}, providing experienced counsel tailored to meet your legal needs. With over {site.yearsExperience} years of experience serving the local community, we're committed to achieving the best possible outcomes for our clients.</p>
 
         <!-- Feature list -->
         <ul class="mt-8 space-y-4">
           <li class="flex items-start gap-3">
             <CheckCircle class="mt-0.5 h-5 w-5 shrink-0 text-primary" />
             <div>
+              <p class="font-semibold text-foreground">20+ Years Experience</p>
+              <p class="text-sm text-muted-foreground">Decades of legal experience serving {site.location.city} and surrounding areas.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <CheckCircle class="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+            <div>
+              <p class="font-semibold text-foreground">Personalized Attention</p>
+              <p class="text-sm text-muted-foreground">Each client receives individualized attention and customized legal strategies.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <CheckCircle class="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+            <div>
               <p class="font-semibold text-foreground">Local Court Knowledge</p>
-              <p class="text-sm text-muted-foreground">We practice exclusively in {site.location.county}, understanding every local court's procedures and judges.</p>
+              <p class="text-sm text-muted-foreground">Intimate knowledge of local court procedures and practices throughout {site.location.county}.</p>
             </div>
           </li>
           <li class="flex items-start gap-3">
             <CheckCircle class="mt-0.5 h-5 w-5 shrink-0 text-primary" />
             <div>
-              <p class="font-semibold text-foreground">Direct Attorney Access</p>
-              <p class="text-sm text-muted-foreground">Every case receives individual attention from your attorney, not paralegals or junior associates.</p>
-            </div>
-          </li>
-          <li class="flex items-start gap-3">
-            <CheckCircle class="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-            <div>
-              <p class="font-semibold text-foreground">Clear Communication</p>
-              <p class="text-sm text-muted-foreground">We keep you informed every step of the way with regular updates and honest advice about your case.</p>
-            </div>
-          </li>
-          <li class="flex items-start gap-3">
-            <CheckCircle class="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-            <div>
-              <p class="font-semibold text-foreground">Proven Track Record</p>
-              <p class="text-sm text-muted-foreground">Over {site.yearsExperience} years of successfully representing clients in criminal, personal injury, family, and real estate matters.</p>
+              <p class="font-semibold text-foreground">{site.consultationText}s Available</p>
+              <p class="text-sm text-muted-foreground">{site.consultationText}s help potential clients understand options and determine next steps.</p>
             </div>
           </li>
         </ul>
