@@ -4,7 +4,7 @@ import Users from '@lucide/astro/icons/users';
 import Clock from '@lucide/astro/icons/clock';
 import Award from '@lucide/astro/icons/award';
 import ArrowRight from '@lucide/astro/icons/arrow-right';
-import CheckCircle from '@lucide/astro/icons/check-circle';
+import Check from '@lucide/astro/icons/check';
 import { site } from '../config/site';
 ---
 <section class="relative overflow-hidden bg-muted/30 py-24 md:py-32">
@@ -74,15 +74,15 @@ import { site } from '../config/site';
         <!-- Feature list -->
         <div class="mt-8 space-y-4">
           <div class="flex items-start gap-3">
-            <CheckCircle class="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+            <div class="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-primary/10"><Check class="h-3 w-3 text-primary" /></div>
             <p class="text-muted-foreground">Every case receives individual attention so clients work directly with their attorney from start to finish.</p>
           </div>
           <div class="flex items-start gap-3">
-            <CheckCircle class="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+            <div class="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-primary/10"><Check class="h-3 w-3 text-primary" /></div>
             <p class="text-muted-foreground">Regularly appearing in courts across {site.location.county}, with insight into local procedures and expectations.</p>
           </div>
           <div class="flex items-start gap-3">
-            <CheckCircle class="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+            <div class="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-primary/10"><Check class="h-3 w-3 text-primary" /></div>
             <p class="text-muted-foreground">{site.consultationText}s are available to help clients understand their options before making important decisions.</p>
           </div>
         </div>
