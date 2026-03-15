@@ -5,13 +5,14 @@ import { site } from '../config/site';
 import { courts } from '../data/courts';
 import CourtCard from '@/src/components/CourtCard.astro';
 ---
-<section class="bg-muted py-20 md:py-24">
+<section class="bg-muted/30 py-24 md:py-32">
   <div class="mx-auto max-w-6xl px-6">
-    <div class="text-center">
-      <h2 class="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="text-xs font-semibold uppercase tracking-widest text-primary">Local Courts</p>
+      <h2 class="mt-3 text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
         Local Courts We Handle
       </h2>
-      <p class="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
+      <p class="mt-5 text-lg leading-relaxed text-muted-foreground">
         {site.copy.localCourtsLeadCityCounty
           .replace('{{city}}', site.location.city)
           .replace('{{county}}', site.location.county)}
@@ -19,21 +20,20 @@ import CourtCard from '@/src/components/CourtCard.astro';
       </p>
     </div>
 
-    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {courts.map((court) => (
         <CourtCard court={court} variant="home" />
       ))}
     </div>
 
-    <div class="mt-10 text-center">
+    <div class="mt-12 text-center">
       <a 
         href="/guides/criminal-case-process-new-york" 
-        class="inline-flex items-center gap-1.5 text-sm text-primary hover:underline"
+        class="group inline-flex items-center gap-2 text-sm font-semibold text-primary transition-all duration-200 hover:gap-3"
       >
         Learn more about how local courts handle criminal cases
-        <ArrowRight class="h-3.5 w-3.5" />
+        <ArrowRight class="h-4 w-4" />
       </a>
     </div>
   </div>
 </section>
-

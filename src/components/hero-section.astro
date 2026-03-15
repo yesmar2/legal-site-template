@@ -5,99 +5,126 @@ import Clock from '@lucide/astro/icons/clock';
 import Scale from '@lucide/astro/icons/scale';
 import Calendar from '@lucide/astro/icons/calendar';
 import Phone from '@lucide/astro/icons/phone';
+import ArrowRight from '@lucide/astro/icons/arrow-right';
+import Check from '@lucide/astro/icons/check';
 import { site } from '../config/site';
 ---
-<section class="relative isolate flex min-h-[90vh] items-center overflow-hidden">
-  <!-- Background Image with Overlay -->
-  <div class="absolute inset-0 -z-20">
-    <img 
-      src="/courthouse-hero.jpg" 
-      alt="" 
-      class="h-full w-full object-cover"
-      loading="eager"
-    />
-    <div class="absolute inset-0 bg-gradient-to-b from-foreground/85 via-foreground/75 to-foreground/90" />
+<section class="relative overflow-hidden bg-background pb-20 pt-12 md:pb-28 md:pt-16">
+  <!-- Subtle background elements -->
+  <div class="pointer-events-none absolute inset-0 -z-10">
+    <div class="absolute right-0 top-0 h-[600px] w-[600px] -translate-y-1/4 translate-x-1/4 rounded-full bg-primary/5 blur-3xl" />
+    <div class="absolute bottom-0 left-0 h-[500px] w-[500px] -translate-x-1/4 translate-y-1/4 rounded-full bg-accent/5 blur-3xl" />
   </div>
 
-  <!-- Subtle glass elements -->
-  <div
-    aria-hidden="true"
-    class="absolute left-1/4 top-1/4 -z-10 h-96 w-96 rounded-full bg-primary/10 blur-3xl" 
-  />
-  <div
-    aria-hidden="true"
-    class="absolute bottom-1/4 right-1/4 -z-10 h-80 w-80 rounded-full bg-accent/10 blur-3xl" 
-  />
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      <!-- Left Content -->
+      <div>
+        <!-- Eyebrow badge -->
+        <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-muted/50 px-4 py-1.5 text-sm text-muted-foreground">
+          <span class="flex h-1.5 w-1.5 rounded-full bg-primary" />
+          Serving {site.location.city} & {site.location.county}, {site.address.state}
+        </div>
 
-  <div class="relative mx-auto flex w-full max-w-6xl flex-col px-6 py-20 lg:px-8 lg:py-28">
-    <div class="mx-auto max-w-4xl text-center">
-      <!-- Eyebrow badge with glass effect -->
-      <div class="mb-8 inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm font-medium text-white/90 backdrop-blur-md">
-        <span class="flex h-2 w-2 rounded-full bg-primary" />
-        Serving {site.location.city} &amp; {site.location.county}, {site.address.state}
-      </div>
+        <h1 class="text-balance text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+          {site.location.city}<br />
+          <span class="text-primary">Criminal Defense</span><br />
+          Lawyers
+        </h1>
 
-      <h1 class="text-balance font-serif text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl xl:text-7xl">
-        {site.location.city} Criminal Defense Lawyers
-      </h1>
-      <p class="mt-4 text-xl font-medium text-primary sm:text-2xl lg:text-3xl">
-        {site.firmName}
-      </p>
+        <p class="mt-2 text-xl font-medium text-muted-foreground sm:text-2xl">
+          {site.firmName}
+        </p>
 
-      <p class="mx-auto mt-6 max-w-2xl text-pretty text-base leading-relaxed text-white/70 sm:text-lg">
-        At {site.firmName}, we represent clients throughout {site.location.city} and {site.location.county}, {site.address.state} in criminal defense, personal injury, family law, and real estate matters.
-      </p>
+        <p class="mt-6 max-w-lg text-lg leading-relaxed text-muted-foreground">
+          At {site.firmName}, we represent clients throughout {site.location.city} and {site.location.county}, {site.address.state} in criminal defense, personal injury, family law, and real estate matters.
+        </p>
 
-      <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <a
-          href="/contact"
-          class="group inline-flex h-14 items-center justify-center gap-3 rounded-xl bg-primary px-8 text-base font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all duration-300 hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30"
-        >
-          <Calendar class="h-5 w-5" />
-          Schedule {site.consultationText}
-          <span class="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
-        </a>
-        <a href={`tel:${site.phone.replace(/[^0-9+]/g, '')}`}>
-          <span 
-            class="inline-flex h-14 items-center justify-center gap-3 rounded-xl border border-white/20 bg-white/5 px-8 text-base font-semibold text-white backdrop-blur-md transition-all duration-300 hover:border-white/30 hover:bg-white/10"
+        <!-- CTA Buttons -->
+        <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+          <a
+            href="/contact"
+            class="group inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-primary px-6 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all duration-200 hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30"
           >
-            <Phone class="h-5 w-5" />
+            <Calendar class="h-4 w-4" />
+            Schedule {site.consultationText}
+            <ArrowRight class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+          </a>
+          <a
+            href={`tel:${site.phone.replace(/[^0-9+]/g, '')}`}
+            class="inline-flex h-12 items-center justify-center gap-2 rounded-xl border border-border bg-background px-6 text-sm font-semibold text-foreground transition-all duration-200 hover:bg-muted"
+          >
+            <Phone class="h-4 w-4 text-primary" />
             Call {site.phone}
-          </span>
-        </a>
+          </a>
+        </div>
       </div>
-    </div>
 
-    <!-- Trust signals with glass cards -->
-    <div class="mx-auto mt-16 w-full max-w-4xl lg:mt-20">
-      <div class="grid grid-cols-2 gap-4 sm:grid-cols-4">
-        <div class="group flex flex-col items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur-md transition-all duration-300 hover:border-primary/40 hover:bg-white/10">
-          <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/20 ring-1 ring-white/10">
-            <Shield class="h-7 w-7 text-primary" />
+      <!-- Right Side - Visual Card Element -->
+      <div class="relative">
+        <!-- Courthouse background image -->
+        <div class="relative overflow-hidden rounded-2xl">
+          <img 
+            src="/courthouse-hero.jpg" 
+            alt="Courthouse" 
+            class="h-[400px] w-full object-cover lg:h-[480px]"
+            loading="eager"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-foreground/60 via-foreground/20 to-transparent" />
+          
+          <!-- Overlay stats cards -->
+          <div class="absolute bottom-6 left-6 right-6">
+            <div class="grid grid-cols-2 gap-3">
+              <div class="rounded-xl border border-white/10 bg-white/10 p-4 backdrop-blur-md">
+                <div class="flex items-center gap-3">
+                  <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
+                    <Shield class="h-5 w-5 text-primary-foreground" />
+                  </div>
+                  <div>
+                    <p class="text-xl font-bold text-white">{site.yearsExperience}+</p>
+                    <p class="text-xs text-white/70">Years Experience</p>
+                  </div>
+                </div>
+              </div>
+              <div class="rounded-xl border border-white/10 bg-white/10 p-4 backdrop-blur-md">
+                <div class="flex items-center gap-3">
+                  <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
+                    <MapPin class="h-5 w-5 text-primary-foreground" />
+                  </div>
+                  <div>
+                    <p class="text-xl font-bold text-white">Local</p>
+                    <p class="text-xs text-white/70">{site.location.county}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <span class="text-3xl font-bold text-white">{site.yearsExperience}+</span>
-          <span class="text-sm text-white/60">Years Experience</span>
         </div>
-        <div class="group flex flex-col items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur-md transition-all duration-300 hover:border-primary/40 hover:bg-white/10">
-          <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/20 ring-1 ring-white/10">
-            <MapPin class="h-7 w-7 text-primary" />
+
+        <!-- Floating badge -->
+        <div class="absolute -right-4 -top-4 rounded-xl border border-border bg-background p-4 shadow-xl sm:-right-8">
+          <div class="flex items-center gap-3">
+            <div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
+              <Clock class="h-5 w-5 text-primary" />
+            </div>
+            <div>
+              <p class="text-sm font-bold text-foreground">Free</p>
+              <p class="text-xs text-muted-foreground">Initial Consultation</p>
+            </div>
           </div>
-          <span class="text-3xl font-bold text-white">Local</span>
-          <span class="text-sm text-white/60">Chautauqua County</span>
         </div>
-        <div class="group flex flex-col items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur-md transition-all duration-300 hover:border-primary/40 hover:bg-white/10">
-          <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/20 ring-1 ring-white/10">
-            <Clock class="h-7 w-7 text-primary" />
+
+        <!-- Floating badge bottom left -->
+        <div class="absolute -bottom-4 -left-4 rounded-xl border border-border bg-background p-4 shadow-xl sm:-left-8">
+          <div class="flex items-center gap-3">
+            <div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
+              <Scale class="h-5 w-5 text-primary" />
+            </div>
+            <div>
+              <p class="text-sm font-bold text-foreground">Trial</p>
+              <p class="text-xs text-muted-foreground">Proven Experience</p>
+            </div>
           </div>
-          <span class="text-3xl font-bold text-white">Free</span>
-          <span class="text-sm text-white/60">Initial Consultation</span>
-        </div>
-        <div class="group flex flex-col items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur-md transition-all duration-300 hover:border-primary/40 hover:bg-white/10">
-          <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/20 ring-1 ring-white/10">
-            <Scale class="h-7 w-7 text-primary" />
-          </div>
-          <span class="text-3xl font-bold text-white">Trial</span>
-          <span class="text-sm text-white/60">Proven Experience</span>
         </div>
       </div>
     </div>
