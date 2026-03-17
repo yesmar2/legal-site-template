@@ -8,4 +8,6 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   output: 'static',
+  site: 'https://yesmar2.github.io', // Replace with your username
+  base: '/legal-site-template',
 });
