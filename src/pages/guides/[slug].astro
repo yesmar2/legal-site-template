@@ -131,12 +131,22 @@ const lawyerHelpBullets = hasCustomLawyerHelp ? lawyerHelp!.bullets : defaultLaw
             <!-- Main content -->
             <article class="guide-article lg:col-span-8">
               
-              <!-- Quick Answer - Cleaner presentation -->
+              <!-- Quick Answer - Eye-catching callout -->
               {guide.quickAnswer && (
-                <div class="relative overflow-hidden rounded-xl bg-secondary/50 p-6 md:p-8">
-                  <div class="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-primary/5"></div>
-                  <p class="relative text-sm leading-relaxed text-muted-foreground md:text-base">
-                    <span class="mb-2 block text-xs font-semibold uppercase tracking-wider text-primary">Quick Answer</span>
+                <div class="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-6 md:p-8">
+                  <!-- Decorative elements -->
+                  <div class="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-primary/10 blur-2xl"></div>
+                  <div class="absolute -bottom-4 -left-4 h-20 w-20 rounded-full bg-primary/5 blur-xl"></div>
+                  
+                  <!-- Icon badge -->
+                  <div class="mb-4 inline-flex items-center gap-2 rounded-full bg-primary/15 px-3 py-1">
+                    <svg class="h-4 w-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-primary">Quick Answer</span>
+                  </div>
+                  
+                  <p class="relative text-base leading-relaxed text-foreground md:text-lg">
                     {guide.quickAnswer}
                   </p>
                 </div>
