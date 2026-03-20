@@ -75,17 +75,38 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
     
     <SiteHeader />
     <main id="main-content">
-      <!-- Hero - Dark with legal themed background image -->
-      <section class="relative isolate overflow-hidden pb-16 pt-8 md:pb-24 md:pt-12">
-        <!-- Background image -->
-        <div aria-hidden="true" class="pointer-events-none absolute inset-0">
-          <img 
-            src="/images/legal-hero-bg.jpg" 
-            alt="" 
-            class="h-full w-full object-cover"
-          />
-          <!-- Overlay for text readability -->
-          <div class="absolute inset-0 bg-slate-900/20"></div>
+      <!-- Hero - Dark with legal themed CSS background -->
+      <section class="relative isolate overflow-hidden bg-gradient-to-r from-slate-900 via-blue-950 to-blue-900 pb-16 pt-8 md:pb-24 md:pt-12">
+        <!-- SVG decorative elements -->
+        <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden">
+          <!-- Abstract flowing curves -->
+          <svg class="absolute inset-0 h-full w-full" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="curve-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="rgba(255,255,255,0.03)" />
+                <stop offset="100%" stop-color="rgba(255,255,255,0.08)" />
+              </linearGradient>
+            </defs>
+            <!-- Flowing curves -->
+            <path d="M-100,200 Q200,100 400,200 T800,200 T1200,200 T1600,200" fill="none" stroke="url(#curve-gradient)" stroke-width="1" />
+            <path d="M-100,250 Q200,150 400,250 T800,250 T1200,250 T1600,250" fill="none" stroke="url(#curve-gradient)" stroke-width="1" />
+            <path d="M-100,300 Q200,200 400,300 T800,300 T1200,300 T1600,300" fill="none" stroke="url(#curve-gradient)" stroke-width="1" />
+            <path d="M-100,350 Q200,250 400,350 T800,350 T1200,350 T1600,350" fill="none" stroke="url(#curve-gradient)" stroke-width="1" />
+          </svg>
+          
+          <!-- Scales of justice icon -->
+          <svg class="absolute right-8 top-1/2 h-64 w-64 -translate-y-1/2 text-white/[0.06] md:right-16 md:h-80 md:w-80 lg:right-24 lg:h-96 lg:w-96" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.5" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L12 22" stroke-linecap="round" />
+            <path d="M2 6L12 3L22 6" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M2 6L2 8C2 10 4 12 7 12C10 12 12 10 12 8L12 6" stroke-linecap="round" />
+            <path d="M12 6L12 8C12 10 14 12 17 12C20 12 22 10 22 8L22 6" stroke-linecap="round" />
+            <circle cx="7" cy="9" r="4" />
+            <circle cx="17" cy="9" r="4" />
+          </svg>
+          
+          <!-- Soft glow accents -->
+          <div class="absolute -left-32 top-1/4 h-64 w-64 rounded-full bg-blue-500/10 blur-3xl"></div>
+          <div class="absolute -right-32 bottom-1/4 h-80 w-80 rounded-full bg-blue-400/10 blur-3xl"></div>
         </div>
         
         <div class="relative mx-auto max-w-6xl px-6">
