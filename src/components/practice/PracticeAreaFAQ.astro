@@ -27,7 +27,15 @@ const faqs: PracticeFaq[] = Array.isArray(practice.faqs) ? practice.faqs : [];
               <span class="shrink-0 text-lg transition-transform group-open:rotate-90">›</span>
             </summary>
             <div class="mt-2 border-t border-border pt-3 text-sm leading-relaxed text-muted-foreground">
-              {faq.answer}
+              {Array.isArray(faq.answer) ? (
+                <ul class="list-disc space-y-1 pl-5">
+                  {faq.answer.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              ) : (
+                faq.answer
+              )}
             </div>
           </details>
         ))}

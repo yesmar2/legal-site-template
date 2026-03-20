@@ -127,6 +127,54 @@ export const practiceAreas: PracticeArea[] = [
       subheadline: 'Protect Your Transaction',
       body: "Whether you're buying, selling, or dealing with a property dispute, having an experienced attorney can make all the difference. Contact us for a consultation to discuss your real estate matter."
     }
+  },
+  {
+    slug: 'elder-law',
+    name: 'Elder Law',
+    title: `${site.location.city} Elder Law Attorneys`,
+    description:
+      'Guidance for seniors and families in long-term care planning, guardianship, and estate planning matters.',
+    heroDescription:
+      `Need help with long-term care planning, guardianship, or estate planning in ${site.location.city} or ${site.location.county}? Our elder law attorneys provide practical guidance for seniors and their families.`,
+    homeCardDescription:
+      'Guidance for long-term care planning, guardianship, and estate planning.',
+    href: '/practice/elder-law',
+    icon: 'heart',
+    courts: ['chautauqua-county-court', 'jamestown-city-court'],
+    caseTypeIds: ['medicaid-planning', 'guardianship', 'estate-planning'],
+    attorneySlugs: ['sarah-mitchell'],
+    faqs: [
+      {
+        question: 'What are the 2026 Medicaid resource and income limits in NY?',
+        answer: [
+          'Individual Resource Limit: $33,038',
+          'Individual Monthly Income Limit: $1,836',
+          'Community Spouse Resource Allowance (CSRA): Up to $162,660.',
+          'Minimum Monthly Maintenance Needs Allowance (MMMNA): $4,066.50.'
+        ]
+      },
+      {
+        question: 'Will Medicaid take my home in Jamestown if I enter a nursing home?',
+        answer: [
+          'Home Equity Limit: The 2026 limit is $1,130,000.',
+          'The Rule: Your primary residence is generally exempt if your spouse, a minor child, or a disabled child lives there.',
+          'Local Chautauqua County note: The Chautauqua County Department of Social Services can place a lien on the property after death through Estate Recovery unless a Medicaid Asset Protection Trust (MAPT) is in place.'
+        ]
+      },
+      {
+        question: 'Has the 30-month "Community Medicaid" look-back started yet?',
+        answer: [
+          'Current Status: As of March 2026, the 30-month look-back for Home Care (Community Medicaid) has still not been implemented by the NY Department of Health.',
+          'The Window: There is currently a limited-time window to transfer assets without a penalty for home-based care.',
+          'Important distinction: The 5-year/60-month look-back for Nursing Homes remains fully in effect.'
+        ]
+      }
+    ],
+    cta: {
+      headline: 'Need Elder Law Guidance?',
+      subheadline: 'Plan With Confidence',
+      body: 'Whether you are planning for long-term care or helping a loved one through guardianship or estate decisions, we are here to help. Contact us for a consultation to discuss your options.'
+    }
   }
 ];
 

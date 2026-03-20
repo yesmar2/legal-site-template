@@ -230,6 +230,125 @@ export const guides: Guide[] = [
         `A family law attorney can help you understand your options, protect your rights, and guide you through each step of the process. Call ${site.phone} to schedule a confidential consultation with ${site.firmName}.`
     }
   },
+  {
+    title: `Applying for Medicaid in ${site.location.county} (2026)`,
+    slug: 'applying-for-medicaid-chautauqua-county-2026',
+    description:
+      `Step-by-step overview of how to apply for Medicaid in ${site.location.county}, including level-of-care screening, financial review, and local filing offices.`,
+    quickAnswer:
+      `Applying for Medicaid in ${site.location.county} usually involves a level-of-care assessment through CASA in ${site.location.city}, a financial review by local social services, and filing through the Chautauqua County Department of Social Services.`,
+    practiceArea: 'elder-law',
+    court: 'chautauqua-county-court',
+    city: site.location.city,
+    county: site.location.county,
+    lastReviewed: 'March 2026',
+    reviewedBy: `${site.firmName} – Elder Law Attorney`,
+    courts: ['chautauqua-county-court', 'jamestown-city-court'],
+    takeaways: [
+      'Deadline: As of March 2026, the 30-month Home Care look-back has not started yet in NY.',
+      'Limits: You must have less than $33,038 in resources to qualify as an individual.',
+      'Protection: Your home is exempt up to $1,130,000 in equity if a spouse or certain relatives live there.',
+      'Action: A formal "Level of Care" assessment from Chautauqua CASA is required before filing.'
+    ],
+    sources: [
+      {
+        title:
+          'NYS DOH Medicaid Levels (March 2026) — GIS 26 MA/03 and related General Information System memos',
+        url: 'https://www.health.ny.gov/health_care/medicaid/publications/pub2026gis.htm'
+      },
+      {
+        title: 'Chautauqua County DSS Services',
+        url: 'https://chqgov.com/human-services/social-services'
+      },
+      {
+        title: 'NY Social Services Law § 366 — statute governing spousal refusal',
+        url: 'https://www.nysenate.gov/legislation/laws/SOS/366'
+      },
+      {
+        title: 'New York State MAPS Manual — Medicaid administrative procedures',
+        url: 'https://www.health.ny.gov/health_care/medicaid/publications/search_by_topic.htm'
+      }
+    ],
+    processSteps: [
+      {
+        title: 'The 60-Month Financial Audit',
+        description:
+          'Before filing any application, we conduct a comprehensive look-back audit of all financial records dating back five years (to March 2021). We identify any uncompensated asset transfers or gifts that might trigger a penalty period under New York’s Western Region rate, currently $13,765 per month for 2026. Correcting these issues early is the only way to ensure a seamless approval.'
+      },
+      {
+        title: 'CASA Nursing Assessment & Level of Care',
+        description:
+          'To qualify for nursing home coverage, an applicant must be medically cleared for nursing home level of care. We coordinate the mandatory assessment with the Chautauqua County CASA (Community Alternative Systems Agency). A registered nurse will perform a home visit to evaluate medical needs and verify eligibility for the Medicaid Long-Term Care program.'
+      },
+      {
+        title: 'Strategic Asset Protection & Trust Funding',
+        description:
+          'Once the audit and medical assessment are clear, we implement legal protections to safeguard your legacy. This includes moving non-exempt assets into a Medicaid Asset Protection Trust (MAPT) or utilizing Spousal Refusal strategies. Our goal is to ensure the applicant meets the $33,038 resource limit while protecting the $1,130,000 home equity exemption allowed in 2026.'
+      },
+      {
+        title: 'Formal Application Filing with Chautauqua County DSS',
+        description:
+          'We handle the preparation and submission of the formal DOH-4220 application. Depending on your location, we file with the Medical Assistance Division at the local Department of Social Services (DSS) offices: Jamestown Office - 110 East 4th Street, Jamestown, NY 14701; Dunkirk Office - 319 Central Avenue, Dunkirk, NY 14048; and Mayville Office - 7 North Erie Street, Mayville, NY 14757.'
+      },
+      {
+        title: 'Income Spend-Down Management',
+        description:
+          'If the applicant’s monthly income exceeds the $1,836 eligibility threshold, we establish a pooled income trust. This allows you to spend down excess income on personal bills and supplemental needs while remaining fully eligible for Medicaid coverage. We manage the setup to ensure your Social Security and pension benefits continue to support your quality of life.'
+      }
+    ],
+    faqs: [
+      {
+        question: 'Where do I file a Medicaid application in Chautauqua County?',
+        answer:
+          'Applications are generally handled through the Chautauqua County Department of Social Services (LDSS), with local access points in Jamestown and Mayville.'
+      },
+      {
+        question: 'How far back can Medicaid review financial transactions?',
+        answer:
+          'For institutional coverage, New York generally applies a 5-year (60-month) look-back period and reviews transfers and other financial activity during that time.'
+      },
+      {
+        question: 'What if my income is over $1,836 per month?',
+        answer:
+          'In some cases, a pooled income trust can be used to help meet income-eligibility requirements while still allowing funds to be used for approved living expenses.'
+      }
+    ],
+    cta: {
+      headline: `Need help applying for Medicaid in ${site.location.county}?`,
+      body:
+        `Elder law planning can affect long-term care options, asset protection, and family finances. Call ${site.phone} to schedule a consultation with ${site.firmName}.`
+    },
+    lawyerHelp: {
+      bullets: [
+        'Audit Protection: We perform a forensic review of 60 months of bank statements to identify "gift" triggers before the County finds them.',
+        'Asset Sheltering: We implement Spousal Refusal and Asset Protection Trusts to keep your life savings in your family, not the nursing home.',
+        'Bureaucracy Management: We serve as your primary point of contact for Chautauqua County DSS, handling the 45-day review and all follow-up inquiries.',
+        'CASA Preparation: We guide you through the medical assessment process to ensure the "Nursing Home Level of Care" is correctly documented.'
+      ]
+    },
+    localResources: [
+      {
+        label: 'Chautauqua County Department of Social Services',
+        href: 'https://chqgov.com/human-services/social-services',
+        description: 'For Medicaid application filing and eligibility interviews.',
+        details: [
+          'Jamestown Office: 110 East 4th Street, Jamestown, NY 14701 | (716) 661-8200',
+          'Dunkirk Office: 319 Central Avenue, Dunkirk, NY 14048 | (716) 363-3500',
+          'Mayville Office: 7 North Erie Street (HRC Building), Mayville, NY 14757 | (716) 753-4000'
+        ]
+      },
+      {
+        label: 'Community Alternative Systems Agency (CASA)',
+        description: 'For mandatory nursing home level-of-care assessments.',
+        details: [
+          'Mayville Office: 7 North Erie Street, Mayville, NY 14757',
+          'Contact Numbers: Jamestown: (716) 661-4447',
+          'Dunkirk: (716) 363-4447',
+          'Mayville: (716) 753-4447'
+        ]
+      }
+    ]
+  },
 ];
 
 

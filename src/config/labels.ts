@@ -3,6 +3,7 @@ export const practiceLabels: Record<string, string> = {
   'personal-injury': 'Personal Injury',
   'family-law': 'Family Law',
   'real-estate-law': 'Real Estate Law',
+  'elder-law': 'Elder Law',
 };
 
 export const courtLabels: Record<string, string> = {

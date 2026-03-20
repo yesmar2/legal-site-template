@@ -9,5 +9,4 @@ export default defineConfig({
   },
   output: 'static',
   site: 'https://yesmar2.github.io', // Replace with your username
-  base: '/legal-site-template',
 });

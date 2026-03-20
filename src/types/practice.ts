@@ -2,11 +2,12 @@ export type PracticeAreaSlug =
   | 'criminal-defense'
   | 'personal-injury'
   | 'family-law'
-  | 'real-estate-law';
+  | 'real-estate-law'
+  | 'elder-law';
 
 export interface PracticeFaq {
   question: string;
-  answer: string;
+  answer: string | string[];
 }
 
 export interface PracticeCta {

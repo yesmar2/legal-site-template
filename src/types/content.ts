@@ -32,6 +32,21 @@ export interface GuideSidebar {
   courtLinks?: GuideSidebarLink[] | string[];
 }
 
+export interface GuideLocalResource {
+  label: string;
+  href?: string;
+  description?: string;
+  details?: string[];
+}
+
+export interface GuideLawyerHelp {
+  /** Defaults to "How a Lawyer Can Help" when omitted */
+  heading?: string;
+  /** Optional intro paragraph; omitted if empty */
+  intro?: string;
+  bullets: string[];
+}
+
 export interface Guide {
   slug: string;
   title: string;
@@ -50,6 +65,8 @@ export interface Guide {
   faqs?: GuideFaq[];
   cta?: GuideCta;
   sidebar?: GuideSidebar;
+  localResources?: GuideLocalResource[];
+  lawyerHelp?: GuideLawyerHelp;
 }
 
 export interface CourtLocation {

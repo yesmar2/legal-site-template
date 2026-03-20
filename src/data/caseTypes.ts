@@ -128,5 +128,33 @@ export const caseTypes = [
       'Representation in lease disputes, evictions, and related landlord–tenant issues in local courts.',
     href: '/practice/real-estate-law',
   },
+  // Elder Law
+  {
+    id: 'medicaid-planning',
+    practiceSlug: 'elder-law',
+    icon: 'file-text',
+    title: 'Medicaid Planning',
+    description:
+      'Planning guidance to help families prepare for long-term care needs and understand eligibility rules.',
+    href: '/practice/elder-law',
+  },
+  {
+    id: 'guardianship',
+    practiceSlug: 'elder-law',
+    icon: 'users',
+    title: 'Guardianship Proceedings',
+    description:
+      'Representation in guardianship matters to protect vulnerable adults and support responsible decision-making.',
+    href: '/practice/elder-law',
+  },
+  {
+    id: 'estate-planning',
+    practiceSlug: 'elder-law',
+    icon: 'award',
+    title: 'Estate Planning',
+    description:
+      'Support with wills, powers of attorney, and related planning documents for seniors and their families.',
+    href: '/practice/elder-law',
+  },
 ];
 
