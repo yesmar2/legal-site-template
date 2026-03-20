@@ -40,26 +40,36 @@ const guidesByPractice = guides.reduce((acc, guide) => {
   <div class="flex min-h-screen flex-col bg-background">
     <SiteHeader />
     <main>
-      <!-- Hero Section - Clean editorial style -->
-      <section class="relative overflow-hidden border-b border-border bg-background pb-16 pt-8 md:pb-20 md:pt-12">
-        <!-- Subtle abstract decorative elements -->
-        <div aria-hidden="true" class="pointer-events-none absolute right-0 top-0 h-full w-1/2 overflow-hidden">
-          <div class="absolute -right-32 -top-32 h-64 w-64 rounded-full bg-primary/[0.03]"></div>
-          <div class="absolute right-20 top-1/3 h-40 w-40 rounded-full bg-primary/[0.02]"></div>
-          <div class="absolute -bottom-20 right-1/4 h-56 w-56 rounded-full bg-primary/[0.02]"></div>
+      <!-- Hero Section - Dark with legal themed background -->
+      <section class="relative isolate overflow-hidden bg-slate-950 pb-16 pt-8 md:pb-20 md:pt-12">
+        <!-- Grid pattern overlay -->
+        <div aria-hidden="true" class="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:64px_64px]"></div>
+        
+        <!-- Gradient accents -->
+        <div aria-hidden="true" class="pointer-events-none absolute -left-40 top-0 h-[500px] w-[500px] rounded-full bg-primary/10 blur-3xl"></div>
+        <div aria-hidden="true" class="pointer-events-none absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-primary/5 blur-3xl"></div>
+        
+        <!-- Legal scale icon - decorative -->
+        <div aria-hidden="true" class="pointer-events-none absolute right-8 top-1/2 hidden -translate-y-1/2 opacity-[0.04] lg:block xl:right-16">
+          <svg class="h-[400px] w-[400px] text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.5">
+            <path d="M12 3v18M3 6l9-3 9 3M3 6v2c0 1.5 2 3 5 3s5-1.5 5-3V6M16 6v2c0 1.5 2 3 5 3s5-1.5 5-3V6" />
+            <circle cx="7" cy="8" r="3" />
+            <circle cx="17" cy="8" r="3" />
+            <path d="M4 9l3 8h0a3 3 0 0 0 6 0h0l3-8M14 9l3 8h0a3 3 0 0 0 6 0h0l3-8" />
+          </svg>
         </div>
         
         <div class="relative mx-auto max-w-6xl px-6">
-          <div class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-medium text-primary">
+          <div class="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
             <BookOpen class="h-3.5 w-3.5" />
             Resources & Information
           </div>
           
-          <h1 class="mt-6 max-w-3xl text-balance text-4xl font-semibold tracking-tight text-foreground sm:text-5xl md:text-6xl">
+          <h1 class="mt-6 max-w-3xl text-balance text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl">
             Legal Guides
           </h1>
           
-          <p class="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
+          <p class="mt-6 max-w-2xl text-base leading-relaxed text-slate-300 md:text-lg">
             Our legal guides explain common legal situations in {site.location.city} and throughout {site.location.county}, {site.address.state}. These resources cover topics such as DUI arrests, criminal court procedures, and family law matters, including what to expect in local courts like{' '}
             <a href="/courts/jamestown-city-court" class="font-medium text-primary underline-offset-2 hover:underline">
               Jamestown City Court

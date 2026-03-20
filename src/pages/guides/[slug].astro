@@ -59,44 +59,54 @@ const lawyerHelpBullets = hasCustomLawyerHelp ? lawyerHelp!.bullets : defaultLaw
   <div class="flex min-h-screen flex-col bg-background">
     <SiteHeader />
     <main>
-      <!-- Hero - Clean Editorial Style -->
-      <section class="relative overflow-hidden border-b border-border bg-background pb-16 pt-8 md:pb-24 md:pt-12">
-        <!-- Subtle abstract decorative elements -->
-        <div aria-hidden="true" class="pointer-events-none absolute right-0 top-0 h-full w-1/2 overflow-hidden">
-          <div class="absolute -right-32 -top-32 h-64 w-64 rounded-full bg-primary/[0.03]"></div>
-          <div class="absolute right-20 top-1/3 h-40 w-40 rounded-full bg-primary/[0.02]"></div>
-          <div class="absolute -bottom-20 right-1/4 h-56 w-56 rounded-full bg-primary/[0.02]"></div>
+      <!-- Hero - Dark with legal themed background -->
+      <section class="relative isolate overflow-hidden bg-slate-950 pb-16 pt-8 md:pb-24 md:pt-12">
+        <!-- Grid pattern overlay -->
+        <div aria-hidden="true" class="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:64px_64px]"></div>
+        
+        <!-- Gradient accents -->
+        <div aria-hidden="true" class="pointer-events-none absolute -left-40 top-0 h-[500px] w-[500px] rounded-full bg-primary/10 blur-3xl"></div>
+        <div aria-hidden="true" class="pointer-events-none absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-primary/5 blur-3xl"></div>
+        
+        <!-- Legal scale icon - decorative -->
+        <div aria-hidden="true" class="pointer-events-none absolute right-8 top-1/2 hidden -translate-y-1/2 opacity-[0.04] lg:block xl:right-16">
+          <svg class="h-[400px] w-[400px] text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.5">
+            <path d="M12 3v18M3 6l9-3 9 3M3 6v2c0 1.5 2 3 5 3s5-1.5 5-3V6M16 6v2c0 1.5 2 3 5 3s5-1.5 5-3V6" />
+            <circle cx="7" cy="8" r="3" />
+            <circle cx="17" cy="8" r="3" />
+            <path d="M4 9l3 8h0a3 3 0 0 0 6 0h0l3-8M14 9l3 8h0a3 3 0 0 0 6 0h0l3-8" />
+          </svg>
         </div>
         
         <div class="relative mx-auto max-w-6xl px-6">
           <!-- Breadcrumb -->
-          <nav class="mb-8 flex items-center gap-1.5 text-sm text-muted-foreground">
-            <a href="/" class="transition-colors hover:text-foreground">Home</a>
+          <nav class="mb-8 flex items-center gap-1.5 text-sm text-slate-400">
+            <a href="/" class="transition-colors hover:text-white">Home</a>
             <ChevronRight class="h-3.5 w-3.5" />
-            <a href="/guides" class="transition-colors hover:text-foreground">Guides</a>
+            <a href="/guides" class="transition-colors hover:text-white">Guides</a>
             <ChevronRight class="h-3.5 w-3.5" />
-            <span class="text-foreground">{guide.title}</span>
+            <span class="text-slate-300">{guide.title}</span>
           </nav>
 
           <!-- Practice area badge -->
           <a 
             href={`/practice/${guide.practiceArea}`}
-            class="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-medium text-primary transition-colors hover:bg-primary/10"
+            class="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-medium text-primary transition-colors hover:bg-primary/20"
           >
             {practiceLabels[guide.practiceArea as keyof typeof practiceLabels] ?? guide.practiceArea}
             <ArrowRight class="h-3 w-3" />
           </a>
 
-          <h1 class="max-w-4xl text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl">
+          <h1 class="max-w-4xl text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
             {guide.title}
           </h1>
           
-          <p class="mt-6 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
+          <p class="mt-6 max-w-2xl text-pretty text-base leading-relaxed text-slate-300 md:text-lg">
             {guide.description}
           </p>
 
           <!-- Meta info row -->
-          <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
+          <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-slate-400">
             {guide.court && (
               <a
                 href={`/courts/${guide.court}`}
@@ -108,12 +118,12 @@ const lawyerHelpBullets = hasCustomLawyerHelp ? lawyerHelp!.bullets : defaultLaw
             )}
             {guide.city && guide.county && (
               <span class="flex items-center gap-1.5">
-                <span class="h-1 w-1 rounded-full bg-border"></span>
+                <span class="h-1 w-1 rounded-full bg-slate-600"></span>
                 {guide.city}, {guide.county}
               </span>
             )}
             <span class="flex items-center gap-1.5">
-              <span class="h-1 w-1 rounded-full bg-border"></span>
+              <span class="h-1 w-1 rounded-full bg-slate-600"></span>
               Updated {guide.lastReviewed ?? 'March 2026'}
             </span>
           </div>
