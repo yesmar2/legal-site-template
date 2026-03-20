@@ -49,12 +49,12 @@ const guidesByPractice = guides.reduce((acc, guide) => {
             alt="" 
             class="h-full w-full object-cover"
           />
-          <!-- Overlay for better text readability -->
-          <div class="absolute inset-0 bg-slate-950/30"></div>
+          <!-- Overlay for text readability -->
+          <div class="absolute inset-0 bg-slate-900/20"></div>
         </div>
         
         <div class="relative mx-auto max-w-6xl px-6">
-          <div class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm">
+          <div class="inline-flex items-center gap-2 rounded-full border border-sky-300/30 bg-sky-400/20 px-3 py-1 text-xs font-medium text-sky-100 backdrop-blur-sm">
             <BookOpen class="h-3.5 w-3.5" />
             Resources & Information
           </div>
@@ -63,13 +63,13 @@ const guidesByPractice = guides.reduce((acc, guide) => {
             Legal Guides
           </h1>
           
-          <p class="mt-6 max-w-2xl text-base leading-relaxed text-white/80 md:text-lg">
+          <p class="mt-6 max-w-2xl text-base leading-relaxed text-sky-50/90 md:text-lg">
             Our legal guides explain common legal situations in {site.location.city} and throughout {site.location.county}, {site.address.state}. These resources cover topics such as DUI arrests, criminal court procedures, and family law matters, including what to expect in local courts like{' '}
-            <a href="/courts/jamestown-city-court" class="font-medium text-white underline underline-offset-2 hover:text-white/90">
+            <a href="/courts/jamestown-city-court" class="font-medium text-sky-200 underline underline-offset-2 hover:text-white">
               Jamestown City Court
             </a>
             {' '}and{' '}
-            <a href="/courts/chautauqua-county-court" class="font-medium text-white underline underline-offset-2 hover:text-white/90">
+            <a href="/courts/chautauqua-county-court" class="font-medium text-sky-200 underline underline-offset-2 hover:text-white">
               Chautauqua County Court
             </a>.
           </p>
