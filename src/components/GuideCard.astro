@@ -1,15 +1,17 @@
 ---
 import BookOpen from '@lucide/astro/icons/book-open';
 import { courts as allCourts } from '@/src/data/courts';
+import { firstCourtSlugFromResources } from '@/src/lib/guideResources';
 import { site } from '@/src/config/site';
 import Card from '@/src/components/Card.astro';
+import type { GuideLocalResource } from '@/src/types/content';
 
 interface GuideLike {
   slug: string;
   title: string;
   description: string;
   practiceArea?: string;
-  courts?: string[];
+  localResources?: GuideLocalResource[];
   lastReviewed?: string;
 }
 
@@ -19,7 +21,7 @@ interface Props {
   slug?: string;
   category?: string;
   practiceAreaSlug?: string;
-  courts?: string[];
+  localResources?: GuideLocalResource[];
   lastReviewed?: string;
   guide?: GuideLike;
 }
@@ -32,11 +34,11 @@ const title = props.title ?? baseGuide.title;
 const description = props.description ?? baseGuide.description;
 const slug = props.slug ?? baseGuide.slug;
 const practiceAreaSlug = props.practiceAreaSlug ?? baseGuide.practiceArea;
-const courts = props.courts ?? baseGuide.courts;
+const localResources = props.localResources ?? baseGuide.localResources;
 const lastReviewed = props.lastReviewed ?? baseGuide.lastReviewed;
 const category = props.category;
 
-const primaryCourtSlug = Array.isArray(courts) && courts.length > 0 ? courts[0] : undefined;
+const primaryCourtSlug = firstCourtSlugFromResources(localResources);
 const primaryCourt = primaryCourtSlug
   ? allCourts.find((court) => court.slug === primaryCourtSlug)
   : undefined;

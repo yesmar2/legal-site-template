@@ -6,6 +6,7 @@ import PageCTA from '@/src/components/layout/PageCTA.astro';
 import { guides } from '@/src/data/guides';
 import { site } from '@/src/config/site';
 import { courts } from '@/src/data/courts';
+import { firstCourtSlugFromResources } from '@/src/lib/guideResources';
 import BookOpen from '@lucide/astro/icons/book-open';
 import ArrowRight from '@lucide/astro/icons/arrow-right';
 
@@ -21,7 +22,7 @@ const practiceLabels: Record<string, string> = {
 };
 
 const getPrimaryCourt = (guide: (typeof guides)[number]) => {
-  const slug = Array.isArray(guide.courts) && guide.courts.length > 0 ? guide.courts[0] : undefined;
+  const slug = firstCourtSlugFromResources(guide.localResources);
   return slug ? courts.find((court) => court.slug === slug) : undefined;
 };
 

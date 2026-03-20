@@ -11,6 +11,7 @@ import CourtCTA from '@/src/components/courts/court-cta.astro';
 import { courts } from '../../data/courts';
 import { guides } from '../../data/guides';
 import { practiceAreas } from '../../data/practiceAreas';
+import { guideReferencesCourt } from '@/src/lib/guideResources';
 
 export async function getStaticPaths() {
   return courts.map((court) => ({
@@ -26,9 +27,7 @@ if (!courtData) {
   throw new Error(`Court not found for slug: ${slug}`);
 }
 
-const relatedGuides = guides.filter((guide) =>
-  guide.courts?.includes(slug)
-);
+const relatedGuides = guides.filter((guide) => guideReferencesCourt(guide.localResources, slug));
 
 // Practice areas that list this court in their courts[] — real practice pages to link to
 const relatedPracticeAreas = practiceAreas.filter((p) => p.courts?.includes(slug));

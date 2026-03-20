@@ -16,6 +16,9 @@ import FileText from '@lucide/astro/icons/file-text';
 import Shield from '@lucide/astro/icons/shield';
 import BookOpen from '@lucide/astro/icons/book-open';
 import GuideCard from '@/src/components/GuideCard.astro';
+import { resolveGuideResources } from '@/src/lib/guideResources';
+import ExternalLink from '@lucide/astro/icons/external-link';
+import ListTree from '@lucide/astro/icons/list-tree';
 import type { Guide } from '@/src/types/content';
 
 export async function getStaticPaths() {
@@ -31,15 +34,9 @@ const relatedGuides = guides.filter(
   (g) => g.practiceArea === guide.practiceArea && g.slug !== guide.slug
 );
 
-const relevantCourts = Array.isArray(guide.courts)
-  ? guide.courts
-      .map((slug) => courts.find((court) => court.slug === slug))
-      .filter((court): court is (typeof courts)[number] => Boolean(court))
-  : [];
-
 const processSteps = Array.isArray(guide.processSteps) ? guide.processSteps : [];
 const faqs = Array.isArray(guide.faqs) ? guide.faqs : [];
-const localResources = Array.isArray(guide.localResources) ? guide.localResources : [];
+const resolvedResources = resolveGuideResources(guide.localResources, courts);
 const lawyerHelp = guide.lawyerHelp;
 const hasCustomLawyerHelp =
   Boolean(lawyerHelp && Array.isArray(lawyerHelp.bullets) && lawyerHelp.bullets.length > 0);
@@ -71,7 +68,7 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
 const tocItems = [
   { id: 'overview', label: 'Overview' },
   ...(processSteps.length > 0 ? [{ id: 'legal-process', label: 'Legal Process' }] : []),
-  ...(relevantCourts.length > 0 ? [{ id: 'courts', label: 'Courts' }] : []),
+  ...(resolvedResources.length > 0 ? [{ id: 'local-resources', label: 'Local resources' }] : []),
   { id: 'lawyer-help', label: 'How a Lawyer Can Help' },
   ...(faqs.length > 0 ? [{ id: 'faq', label: 'FAQs' }] : []),
   { id: 'why-choose-local', label: 'Why Choose Local' },
@@ -269,34 +266,73 @@ const tocItems = [
                 </section>
               )}
 
-              <!-- Courts - Simplified cards -->
-              {relevantCourts.length > 0 && (
-                <section id="courts" class="guide-section scroll-mt-24">
-                  <h2>Relevant Courts</h2>
+              <!-- Local resources (courts + agencies/links from guide data) -->
+              {resolvedResources.length > 0 && (
+                <section id="local-resources" class="guide-section scroll-mt-24">
+                  <h2>Local resources</h2>
+                  <p class="mt-2 text-sm text-muted-foreground">
+                    Courts and local offices referenced in this guide.
+                  </p>
                   <div class="mt-6 space-y-3">
-                    {relevantCourts.map((court) => (
-                      <a
-                        href={court.href ?? `/courts/${court.slug}`}
-                        class="group flex items-center justify-between rounded-lg border border-border bg-card p-4 transition-all hover:border-primary/30 hover:bg-secondary/50 md:p-5"
-                      >
-                        <div class="flex items-center gap-4">
-                          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                            <Building2 class="h-5 w-5" />
+                    {resolvedResources.map((row) =>
+                      row.kind === 'court' ? (
+                        <a
+                          href={row.court.href ?? `/courts/${row.court.slug}`}
+                          class="group flex items-center justify-between rounded-lg border border-border bg-card p-4 transition-all hover:border-primary/30 hover:bg-secondary/50 md:p-5"
+                        >
+                          <div class="flex items-center gap-4">
+                            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                              <Building2 class="h-5 w-5" />
+                            </div>
+                            <div>
+                              <h3 class="font-medium text-foreground group-hover:text-primary">
+                                {row.court.name}
+                              </h3>
+                              {(row.description ?? row.court.cardDescription) && (
+                                <p class="mt-0.5 text-sm text-muted-foreground">
+                                  {row.description ?? row.court.cardDescription}
+                                </p>
+                              )}
+                            </div>
                           </div>
-                          <div>
-                            <h3 class="font-medium text-foreground group-hover:text-primary">
-                              {court.name}
-                            </h3>
-                            {court.cardDescription && (
-                              <p class="mt-0.5 text-sm text-muted-foreground">
-                                {court.cardDescription}
-                              </p>
-                            )}
+                          <ArrowRight class="h-5 w-5 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary" />
+                        </a>
+                      ) : (
+                        <div class="rounded-lg border border-border bg-card p-4 md:p-5">
+                          <div class="flex items-start gap-4">
+                            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                              <ListTree class="h-5 w-5" />
+                            </div>
+                            <div class="min-w-0 flex-1">
+                              {row.href ? (
+                                <a
+                                  href={row.href}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  class="inline-flex flex-wrap items-center gap-1.5 font-medium text-foreground hover:text-primary"
+                                >
+                                  {row.label}
+                                  <ExternalLink class="h-3.5 w-3.5 shrink-0 text-muted-foreground" aria-hidden="true" />
+                                  <span class="sr-only">(opens in new tab)</span>
+                                </a>
+                              ) : (
+                                <p class="font-medium text-foreground">{row.label}</p>
+                              )}
+                              {row.description && (
+                                <p class="mt-1 text-sm text-muted-foreground">{row.description}</p>
+                              )}
+                              {Array.isArray(row.details) && row.details.length > 0 && (
+                                <ul class="mt-2 space-y-1 text-sm text-muted-foreground">
+                                  {row.details.map((line) => (
+                                    <li>{line}</li>
+                                  ))}
+                                </ul>
+                              )}
+                            </div>
                           </div>
                         </div>
-                        <ArrowRight class="h-5 w-5 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary" />
-                      </a>
-                    ))}
+                      )
+                    )}
                   </div>
                 </section>
               )}
@@ -564,69 +600,64 @@ const tocItems = [
                 </a>
               </div>
 
-              <!-- Local Courts - Simplified list -->
-              <nav aria-label="Local Courts">
-                <h3 class="text-sm font-semibold uppercase tracking-wider text-foreground">
-                  Local Courts
-                </h3>
-                <div class="mt-4 space-y-2">
-                  <a href="/courts/jamestown-city-court" class="flex items-center gap-3 rounded-lg p-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
-                    <Building2 class="h-4 w-4 text-primary" aria-hidden="true" />
-                    Jamestown City Court
-                  </a>
-                  <a href="/courts/dunkirk-city-court" class="flex items-center gap-3 rounded-lg p-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
-                    <Building2 class="h-4 w-4 text-primary" aria-hidden="true" />
-                    Dunkirk City Court
-                  </a>
-                  <a href="/courts/chautauqua-county-court" class="flex items-center gap-3 rounded-lg p-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
-                    <Building2 class="h-4 w-4 text-primary" aria-hidden="true" />
-                    Chautauqua County Court
-                  </a>
-                </div>
-              </nav>
-
-              <!-- Local Resources -->
-              {localResources.length > 0 && (
-                <div>
+              <!-- Local resources (same data as main column — courts + links) -->
+              {resolvedResources.length > 0 && (
+                <nav aria-label="Local resources">
                   <h3 class="text-sm font-semibold uppercase tracking-wider text-foreground">
-                    Local Resources
+                    Local resources
                   </h3>
                   <div class="mt-4 space-y-4">
-                    {localResources.map((resource) => (
+                    {resolvedResources.map((row) => (
                       <div class="text-sm">
-                        <div class="flex items-start gap-2">
-                          <Building2 class="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                          <div class="min-w-0">
-                            {resource.href ? (
-                              <a
-                                href={resource.href}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="font-medium text-foreground hover:text-primary"
-                              >
-                                {resource.label}
-                              </a>
-                            ) : (
-                              <p class="font-medium text-foreground">{resource.label}</p>
-                            )}
-                            {resource.description && (
-                              <p class="mt-1 text-xs leading-relaxed text-muted-foreground">
-                                {resource.description}
-                              </p>
-                            )}
-                            {Array.isArray(resource.details) && resource.details.length > 0 && (
-                              <ul class="mt-2 space-y-1 text-xs leading-relaxed text-muted-foreground">
-                                {resource.details.map((detail) => (
-                                  <li>{detail}</li>
-                                ))}
-                              </ul>
-                            )}
+                        {row.kind === 'court' ? (
+                          <a
+                            href={row.court.href ?? `/courts/${row.court.slug}`}
+                            class="flex items-start gap-2 rounded-lg p-2 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                          >
+                            <Building2 class="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+                            <span class="min-w-0">
+                              <span class="font-medium text-foreground">{row.court.name}</span>
+                              {(row.description ?? row.court.cardDescription) && (
+                                <span class="mt-1 block text-xs leading-relaxed text-muted-foreground">
+                                  {row.description ?? row.court.cardDescription}
+                                </span>
+                              )}
+                            </span>
+                          </a>
+                        ) : (
+                          <div class="flex items-start gap-2 rounded-lg p-2">
+                            <ListTree class="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+                            <div class="min-w-0">
+                              {row.href ? (
+                                <a
+                                  href={row.href}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  class="inline-flex flex-wrap items-center gap-1 font-medium text-foreground hover:text-primary"
+                                >
+                                  {row.label}
+                                  <ExternalLink class="h-3.5 w-3.5 shrink-0 text-muted-foreground" aria-hidden="true" />
+                                </a>
+                              ) : (
+                                <p class="font-medium text-foreground">{row.label}</p>
+                              )}
+                              {row.description && (
+                                <p class="mt-1 text-xs leading-relaxed text-muted-foreground">{row.description}</p>
+                              )}
+                              {Array.isArray(row.details) && row.details.length > 0 && (
+                                <ul class="mt-2 space-y-1 text-xs leading-relaxed text-muted-foreground">
+                                  {row.details.map((line) => (
+                                    <li>{line}</li>
+                                  ))}
+                                </ul>
+                              )}
+                            </div>
                           </div>
-                        </div>
+                        )}
                       </div>
                     ))}
                   </div>
-                </div>
+                </nav>
               )}
             </aside>
           </div>

@@ -15,7 +15,7 @@ export const guides: Guide[] = [
     county: site.location.county,
     lastReviewed: "January 2026",
     reviewedBy: `${site.firmName} – Criminal Defense Attorney`,
-    courts: ["jamestown-city-court"],
+    localResources: [{ type: 'court', courtSlug: 'jamestown-city-court' }],
     takeaways: [
       "Most DUI arrests in New York lead to an arraignment in local court within about 24 hours or the next business day.",
       "Your driver's license can be suspended or restricted before the criminal case is fully resolved.",
@@ -116,7 +116,7 @@ export const guides: Guide[] = [
     city: site.location.city,
     county: site.location.county,
     lastReviewed: "January 2026",
-    courts: ["jamestown-city-court"],
+    localResources: [{ type: 'court', courtSlug: 'jamestown-city-court' }],
     processSteps: [
       {
         title: 'Arrest and Booking',
@@ -179,7 +179,14 @@ export const guides: Guide[] = [
     city: site.location.county,
     county: site.location.county,
     lastReviewed: "January 2026",
-    courts: ["chautauqua-county-family-court"],
+    localResources: [
+      {
+        type: 'link',
+        label: 'Chautauqua County Family Court',
+        href: 'https://www.nycourts.gov/courts/7jd/chautauqua/index.shtml',
+        description: 'Matrimonial and family matters filed in Chautauqua County.'
+      }
+    ],
     processSteps: [
       {
         title: 'Initial Consultation and Case Review',
@@ -243,7 +250,6 @@ export const guides: Guide[] = [
     county: site.location.county,
     lastReviewed: 'March 2026',
     reviewedBy: `${site.firmName} – Elder Law Attorney`,
-    courts: ['chautauqua-county-court', 'jamestown-city-court'],
     takeaways: [
       'Deadline: As of March 2026, the 30-month Home Care look-back has not started yet in NY.',
       'Limits: You must have less than $33,038 in resources to qualify as an individual.',
@@ -327,7 +333,10 @@ export const guides: Guide[] = [
       ]
     },
     localResources: [
+      { type: 'court', courtSlug: 'chautauqua-county-court' },
+      { type: 'court', courtSlug: 'jamestown-city-court' },
       {
+        type: 'link',
         label: 'Chautauqua County Department of Social Services',
         href: 'https://chqgov.com/human-services/social-services',
         description: 'For Medicaid application filing and eligibility interviews.',
@@ -338,6 +347,7 @@ export const guides: Guide[] = [
         ]
       },
       {
+        type: 'link',
         label: 'Community Alternative Systems Agency (CASA)',
         description: 'For mandatory nursing home level-of-care assessments.',
         details: [

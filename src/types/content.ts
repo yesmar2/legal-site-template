@@ -32,12 +32,25 @@ export interface GuideSidebar {
   courtLinks?: GuideSidebarLink[] | string[];
 }
 
-export interface GuideLocalResource {
-  label: string;
-  href?: string;
-  description?: string;
-  details?: string[];
-}
+/**
+ * Local resources for a guide: courts (linked to `/courts/[slug]`) and arbitrary links (agencies, CASA, etc.).
+ * Courts are first-class by referencing shared `courts` data via `courtSlug`.
+ */
+export type GuideLocalResource =
+  | {
+      type: 'court';
+      courtSlug: string;
+      /** Optional; defaults to the court’s card description when omitted */
+      description?: string;
+      details?: string[];
+    }
+  | {
+      type: 'link';
+      label: string;
+      href?: string;
+      description?: string;
+      details?: string[];
+    };
 
 export interface GuideLawyerHelp {
   /** Defaults to "How a Lawyer Can Help" when omitted */
@@ -60,11 +73,11 @@ export interface Guide {
   reviewedBy?: string;
   takeaways?: string[];
   sources?: GuideSource[];
-  courts?: string[];
   processSteps?: GuideProcessStep[];
   faqs?: GuideFaq[];
   cta?: GuideCta;
   sidebar?: GuideSidebar;
+  /** Courts, agencies, and other local links — use `type: 'court'` for courts we have pages for */
   localResources?: GuideLocalResource[];
   lawyerHelp?: GuideLawyerHelp;
 }
