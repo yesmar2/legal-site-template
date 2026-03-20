@@ -40,17 +40,36 @@ const guidesByPractice = guides.reduce((acc, guide) => {
   <div class="flex min-h-screen flex-col bg-background">
     <SiteHeader />
     <main>
-      <!-- Hero Section - Dark with legal themed background image -->
-      <section class="relative isolate overflow-hidden pb-16 pt-8 md:pb-20 md:pt-12">
-        <!-- Background image -->
-        <div aria-hidden="true" class="pointer-events-none absolute inset-0">
-          <img 
-            src="/images/legal-hero-bg.jpg" 
-            alt="" 
-            class="h-full w-full object-cover"
-          />
-          <!-- Overlay for text readability -->
-          <div class="absolute inset-0 bg-slate-900/20"></div>
+      <!-- Hero Section - Dark with legal themed CSS background -->
+      <section class="relative isolate overflow-hidden bg-gradient-to-r from-slate-900 via-blue-950 to-blue-900 pb-16 pt-8 md:pb-20 md:pt-12">
+        <!-- SVG decorative elements -->
+        <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden">
+          <!-- Abstract flowing curves -->
+          <svg class="absolute inset-0 h-full w-full" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="curve-gradient-index" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="rgba(255,255,255,0.02)" />
+                <stop offset="50%" stop-color="rgba(255,255,255,0.06)" />
+                <stop offset="100%" stop-color="rgba(255,255,255,0.03)" />
+              </linearGradient>
+            </defs>
+            <!-- Layered flowing curves -->
+            <path d="M0,100 Q200,50 400,100 T800,100 T1200,100 T1600,100 T2000,100" fill="none" stroke="url(#curve-gradient-index)" stroke-width="1" />
+            <path d="M0,140 Q200,90 400,140 T800,140 T1200,140 T1600,140 T2000,140" fill="none" stroke="url(#curve-gradient-index)" stroke-width="1" />
+            <path d="M0,180 Q200,130 400,180 T800,180 T1200,180 T1600,180 T2000,180" fill="none" stroke="url(#curve-gradient-index)" stroke-width="1" />
+            <path d="M0,220 Q200,170 400,220 T800,220 T1200,220 T1600,220 T2000,220" fill="none" stroke="url(#curve-gradient-index)" stroke-width="1" />
+            <path d="M0,260 Q200,210 400,260 T800,260 T1200,260 T1600,260 T2000,260" fill="none" stroke="url(#curve-gradient-index)" stroke-width="1" />
+            <path d="M0,300 Q200,250 400,300 T800,300 T1200,300 T1600,300 T2000,300" fill="none" stroke="url(#curve-gradient-index)" stroke-width="1" />
+          </svg>
+          
+          <!-- Abstract circular accents on the right -->
+          <div class="absolute -right-20 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full border border-white/[0.05] md:-right-16 md:h-80 md:w-80 lg:-right-12 lg:h-96 lg:w-96"></div>
+          <div class="absolute -right-8 top-1/2 h-48 w-48 -translate-y-1/2 rounded-full border border-white/[0.04] md:-right-4 md:h-60 md:w-60 lg:right-0 lg:h-72 lg:w-72"></div>
+          <div class="absolute right-8 top-1/2 h-32 w-32 -translate-y-1/2 rounded-full border border-white/[0.03] md:right-12 md:h-40 md:w-40 lg:right-16 lg:h-48 lg:w-48"></div>
+          
+          <!-- Soft glow accents -->
+          <div class="absolute -left-32 top-1/4 h-64 w-64 rounded-full bg-blue-500/10 blur-3xl"></div>
+          <div class="absolute -right-32 bottom-1/4 h-80 w-80 rounded-full bg-blue-400/10 blur-3xl"></div>
         </div>
         
         <div class="relative mx-auto max-w-6xl px-6">
