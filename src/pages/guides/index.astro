@@ -40,23 +40,17 @@ const guidesByPractice = guides.reduce((acc, guide) => {
   <div class="flex min-h-screen flex-col bg-background">
     <SiteHeader />
     <main>
-      <!-- Hero Section - Dark with legal themed background -->
-      <section class="relative isolate overflow-hidden bg-slate-950 pb-16 pt-8 md:pb-20 md:pt-12">
-        <!-- Grid pattern overlay -->
-        <div aria-hidden="true" class="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:64px_64px]"></div>
-        
-        <!-- Gradient accents -->
-        <div aria-hidden="true" class="pointer-events-none absolute -left-40 top-0 h-[500px] w-[500px] rounded-full bg-primary/10 blur-3xl"></div>
-        <div aria-hidden="true" class="pointer-events-none absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-primary/5 blur-3xl"></div>
-        
-        <!-- Legal scale icon - decorative -->
-        <div aria-hidden="true" class="pointer-events-none absolute right-8 top-1/2 hidden -translate-y-1/2 opacity-[0.04] lg:block xl:right-16">
-          <svg class="h-[400px] w-[400px] text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.5">
-            <path d="M12 3v18M3 6l9-3 9 3M3 6v2c0 1.5 2 3 5 3s5-1.5 5-3V6M16 6v2c0 1.5 2 3 5 3s5-1.5 5-3V6" />
-            <circle cx="7" cy="8" r="3" />
-            <circle cx="17" cy="8" r="3" />
-            <path d="M4 9l3 8h0a3 3 0 0 0 6 0h0l3-8M14 9l3 8h0a3 3 0 0 0 6 0h0l3-8" />
-          </svg>
+      <!-- Hero Section - Dark with legal themed background image -->
+      <section class="relative isolate overflow-hidden pb-16 pt-8 md:pb-20 md:pt-12">
+        <!-- Background image -->
+        <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+          <img 
+            src="/images/legal-hero-bg.jpg" 
+            alt="" 
+            class="h-full w-full object-cover"
+          />
+          <!-- Overlay for better text readability -->
+          <div class="absolute inset-0 bg-slate-950/40"></div>
         </div>
         
         <div class="relative mx-auto max-w-6xl px-6">
