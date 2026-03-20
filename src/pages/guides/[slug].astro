@@ -53,6 +53,26 @@ const lawyerHelpHeading = lawyerHelp?.heading ?? 'How a Lawyer Can Help';
 const lawyerHelpIntro = hasCustomLawyerHelp ? lawyerHelp!.intro : defaultLawyerHelpIntro;
 const lawyerHelpBullets = hasCustomLawyerHelp ? lawyerHelp!.bullets : defaultLawyerHelpBullets;
 
+const city = guide.city ?? site.location.city;
+const county = guide.county ?? site.location.county;
+
+/** Sidebar “Need Help?” blurb — must match each guide’s practice area, not DUI-only */
+const sidebarNeedHelpBody = (() => {
+  switch (guide.practiceArea) {
+    case 'elder-law':
+      return `Planning for Medicaid, long-term care, or protecting assets in ${city} or ${county}? A local elder law attorney can help you understand your options and avoid costly mistakes.`;
+    case 'family-law':
+      return `If you're dealing with divorce, custody, support, or other family matters in ${county}, speaking with a local family law attorney early can help protect your rights and your family.`;
+    case 'personal-injury':
+      return `If you've been injured in ${city} or ${county}, a local attorney can help you evaluate your claim, deal with insurers, and pursue fair compensation.`;
+    case 'real-estate-law':
+      return `If you're buying, selling, or facing a title or boundary issue in ${city} or ${county}, a local real estate attorney can help protect your interests.`;
+    case 'criminal-defense':
+    default:
+      return `If you've been arrested for DUI or another criminal charge in ${city} or anywhere in ${county}, speaking with a local defense attorney early can help protect your record and driving privileges.`;
+  }
+})();
+
 // Calculate reading time (average 200 words per minute)
 const wordCount = [
   guide.description,
@@ -589,7 +609,7 @@ const tocItems = [
                   Need Help?
                 </h3>
                 <p class="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  If you've been arrested for DUI or another criminal charge in {site.location.city} or anywhere in {site.location.county}, speaking with a local defense attorney early can help protect your record and driving privileges.
+                  {sidebarNeedHelpBody}
                 </p>
                 <a
                   href="/contact"
