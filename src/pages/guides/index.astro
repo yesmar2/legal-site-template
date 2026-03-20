@@ -2,14 +2,12 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SiteHeader from '@/src/components/site-header.astro';
 import SiteFooter from '@/src/components/site-footer.astro';
-import PageHero from '@/src/components/layout/PageHero.astro';
 import PageCTA from '@/src/components/layout/PageCTA.astro';
 import { guides } from '@/src/data/guides';
 import { site } from '@/src/config/site';
 import { courts } from '@/src/data/courts';
 import BookOpen from '@lucide/astro/icons/book-open';
-import Card from '@/src/components/Card.astro';
-import CardGrid from '@/src/components/layout/CardGrid.astro';
+import ArrowRight from '@lucide/astro/icons/arrow-right';
 
 const pageTitle = `Legal Guides | ${site.firmName}`;
 const pageDescription = `Practical legal guides from ${site.firmName} to help people throughout ${site.location.county} understand common legal issues and local court processes.`;
@@ -19,58 +17,102 @@ const practiceLabels: Record<string, string> = {
   "family-law": "Family Law",
   "personal-injury": "Personal Injury",
   "real-estate-law": "Real Estate Law",
+  "elder-law": "Elder Law",
 };
 
 const getPrimaryCourt = (guide: (typeof guides)[number]) => {
   const slug = Array.isArray(guide.courts) && guide.courts.length > 0 ? guide.courts[0] : undefined;
   return slug ? courts.find((court) => court.slug === slug) : undefined;
 };
+
+// Group guides by practice area
+const guidesByPractice = guides.reduce((acc, guide) => {
+  const area = guide.practiceArea;
+  if (!acc[area]) acc[area] = [];
+  acc[area].push(guide);
+  return acc;
+}, {} as Record<string, typeof guides>);
 ---
 <BaseLayout
   title={pageTitle}
   description={pageDescription}
 >
-  <div class="flex min-h-screen flex-col">
+  <div class="flex min-h-screen flex-col bg-background">
     <SiteHeader />
     <main>
-      <PageHero title="Legal Guides" badge="Resources &amp; Information">
-        <BookOpen slot="badgeIcon" class="h-4 w-4 text-blue-400" />
-        <p>
-          Our legal guides explain common legal situations in {site.location.city} and throughout {site.location.county}, {site.address.state}. These resources cover topics such as DUI arrests, criminal court procedures, and family law matters, including what to expect in local courts like{' '}
-          <a href="/courts/jamestown-city-court" class="font-medium text-blue-400 hover:text-blue-300 hover:underline">
-            Jamestown City Court
-          </a>
-          {' '}and{' '}
-          <a href="/courts/chautauqua-county-court" class="font-medium text-blue-400 hover:text-blue-300 hover:underline">
-            Chautauqua County Court
-          </a>.
-        </p>
-      </PageHero>
+      <!-- Hero Section - Clean editorial style -->
+      <section class="relative overflow-hidden border-b border-border bg-background pb-16 pt-8 md:pb-20 md:pt-12">
+        <!-- Subtle decorative illustration -->
+        <div aria-hidden="true" class="pointer-events-none absolute -right-20 top-1/2 hidden h-[400px] w-[400px] -translate-y-1/2 opacity-[0.08] lg:block xl:-right-10 xl:h-[500px] xl:w-[500px]">
+          <img src="/illustrations/legal-guide-hero.jpg" alt="" class="h-full w-full object-contain" />
+        </div>
+        
+        <div class="relative mx-auto max-w-6xl px-6">
+          <div class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-medium text-primary">
+            <BookOpen class="h-3.5 w-3.5" />
+            Resources & Information
+          </div>
+          
+          <h1 class="mt-6 max-w-3xl text-balance text-4xl font-semibold tracking-tight text-foreground sm:text-5xl md:text-6xl">
+            Legal Guides
+          </h1>
+          
+          <p class="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
+            Our legal guides explain common legal situations in {site.location.city} and throughout {site.location.county}, {site.address.state}. These resources cover topics such as DUI arrests, criminal court procedures, and family law matters, including what to expect in local courts like{' '}
+            <a href="/courts/jamestown-city-court" class="font-medium text-primary underline-offset-2 hover:underline">
+              Jamestown City Court
+            </a>
+            {' '}and{' '}
+            <a href="/courts/chautauqua-county-court" class="font-medium text-primary underline-offset-2 hover:underline">
+              Chautauqua County Court
+            </a>.
+          </p>
+        </div>
+      </section>
 
-      <section class="bg-background py-20 md:py-24">
+      <!-- Guides Grid - Modern flowing layout -->
+      <section class="py-16 md:py-20">
         <div class="mx-auto max-w-6xl px-6">
-          <CardGrid gapClass="gap-6">
-            {guides.map((guide) => {
-              const primaryCourt = getPrimaryCourt(guide);
-
-              return (
-                <Card
-                  href={`/guides/${guide.slug}`}
-                  title={guide.title}
-                  icon={BookOpen}
-                  eyebrow={practiceLabels[guide.practiceArea] ?? guide.practiceArea}
-                  ctaLabel="Read Guide"
-                >
-                  {guide.description}
-                  {guide.lastReviewed && (
-                    <p class="mt-2 text-xs text-slate-400">
-                      Last Reviewed: {guide.lastReviewed}
+          {Object.entries(guidesByPractice).map(([practiceArea, practiceGuides]) => (
+            <div class="mb-16 last:mb-0">
+              <div class="mb-6 flex items-center gap-3">
+                <h2 class="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+                  {practiceLabels[practiceArea] ?? practiceArea}
+                </h2>
+                <div class="h-px flex-1 bg-border"></div>
+              </div>
+              
+              <div class="grid gap-4 sm:grid-cols-2">
+                {practiceGuides.map((guide) => (
+                  <a 
+                    href={`/guides/${guide.slug}`}
+                    class="group relative flex flex-col rounded-xl border border-border bg-card p-6 transition-all hover:border-primary/30 hover:bg-secondary/30"
+                  >
+                    <div class="flex items-start justify-between gap-4">
+                      <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                        <BookOpen class="h-5 w-5 text-primary" />
+                      </div>
+                      <ArrowRight class="h-5 w-5 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary" />
+                    </div>
+                    
+                    <h3 class="mt-4 text-lg font-medium text-foreground group-hover:text-primary">
+                      {guide.title}
+                    </h3>
+                    
+                    <p class="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
+                      {guide.description}
                     </p>
-                  )}
-                </Card>
-              );
-            })}
-          </CardGrid>
+                    
+                    <div class="mt-4 flex items-center gap-4 text-xs text-muted-foreground">
+                      {guide.lastReviewed && (
+                        <span>Updated {guide.lastReviewed}</span>
+                      )}
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
